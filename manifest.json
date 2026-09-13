@@ -1,0 +1,15 @@
+{
+  "name": "OraNW — ماذا يحدث الآن",
+  "short_name": "OraNW",
+  "description": "Live dashboard of the planet: prices, weather, incidents, time",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

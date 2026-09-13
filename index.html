@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OraNW | ماذا يحدث الآن — أسعار حية، طقسك، وقت العالم لحظة بلحظة</title>
+<meta name="description" content="تابع الكوكب لحظة بلحظة: أسعار الذهب والبيتكوين والنفط حية، طقس مدينتك، مدة الليل والنهار، الشروق والغروب، الحوادث حول العالم، وعدادات العالم الحية — مجانًا وبلا تسجيل.">
+<meta name="keywords" content="أسعار الذهب اليوم, سعر البيتكوين الآن, أسعار النفط, سعر الدجاج واللحم والأرز, الطقس الآن, الوقت العالمي, التوقيت العالمي, الحوادث حول العالم, ماذا يحدث الآن, عدد الطائرات في السماء, عدد المواليد اليوم, الشروق والغروب, gold price live, bitcoin price now, live world clock, weather now, what is happening now">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="OraNW">
+<link rel="canonical" href="https://oranw.com/">
+<meta name="theme-color" content="#111111">
+
+<!-- مشاركة اجتماعية (Open Graph) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OraNW">
+<meta property="og:url" content="https://oranw.com/">
+<meta property="og:title" content="OraNW | ماذا يحدث الآن — الكوكب لحظة بلحظة">
+<meta property="og:description" content="أسعار حية، طقسك، الليل والنهار، الحوادث العالمية — كل ما يحدث على الأرض الآن في صفحة واحدة.">
+<meta property="og:image" content="https://oranw.com/icon.png">
+<meta property="og:locale" content="ar_AR">
+
+<!-- تويتر -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OraNW | ماذا يحدث الآن">
+<meta name="twitter:description" content="الكوكب لحظة بلحظة: أسعار، طقس، حوادث، عدادات حية — مجانًا.">
+<meta name="twitter:image" content="https://oranw.com/icon.png">
+
+<!-- بيانات منظمة لغوغل -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "OraNW — ماذا يحدث الآن",
+  "alternateName": "Live Now",
+  "url": "https://oranw.com/",
+  "description": "لوحة حية لما يحدث على الكوكب الآن: أسعار، طقس، وقت، حوادث، وعدادات عالمية.",
+  "inLanguage": ["ar", "en", "es", "fr", "tr", "ur", "hi", "zh", "ru", "pt", "de"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://oranw.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<meta name="theme-color" content="#111111">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{
+  --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa;
+  --bd:#e5e5e5; --mut:#f2f2f2; --up:#0a7d3b; --down:#c0392b;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#111111; --fg:#f2f2f2; --fg2:#c8c8c8; --fg3:#8a8a8a; --fg4:#5a5a5a; --bd:#2c2c2c; --mut:#1d1d1d; --up:#3ecf7a; --down:#ff6b5e; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:680px;margin:0 auto;padding:16px 14px 40px}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.title{font-size:22px;font-weight:700}
+.sub{font-size:13px;color:var(--fg3);margin-top:2px}
+.langchip{display:inline-block;font-size:11px;padding:3px 10px;border-radius:6px;background:var(--mut);color:var(--fg3);margin-top:6px}
+#installBtn{display:none;font-size:12px;padding:6px 14px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--fg);cursor:pointer;margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.card{border:1px solid var(--bd);border-radius:14px;padding:14px;background:var(--bg)}
+.full{grid-column:1/-1}
+.lbl{font-size:12px;color:var(--fg3)}
+.val{font-size:26px;font-weight:700;margin-top:2px}
+.val small{font-size:13px;font-weight:400;color:var(--fg3)}
+.note{font-size:12px;color:var(--fg4);margin-top:5px}
+.clockrow{display:flex;flex-wrap:wrap;gap:14px 32px;align-items:baseline;margin-top:8px}
+.clock{font-size:23px;font-weight:700}
+.clock small{display:block;font-size:11px;font-weight:400;color:var(--fg4)}
+.dn b{display:block;font-size:18px;font-weight:700}
+.dn span{font-size:12px;color:var(--fg3)}
+.wx{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.wx .t{font-size:38px;font-weight:700}
+.wx .det{font-size:13px;color:var(--fg2);margin-top:2px}
+.pxrow{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--bd)}
+.pxrow:last-child{border-bottom:none;padding-bottom:0}
+.pxrow .sym{font-size:14px;color:var(--fg2)}
+.pxrow .sym small{display:block;font-size:11px;color:var(--fg4)}
+.pxrow .price{font-size:19px;font-weight:700}
+.chg{font-size:12px;margin-inline-end:8px}
+.chg.up{color:var(--up)} .chg.down{color:var(--down)}
+.delta{font-size:12px} .delta.up{color:var(--up)} .delta.down{color:var(--down)}
+.bars{display:flex;gap:8px;margin-top:8px;align-items:flex-end;height:46px}
+.bars div{flex:1;border-radius:4px 4px 0 0;min-height:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{font-size:12px;padding:5px 13px;border-radius:7px;border:1px solid var(--bd);background:transparent;color:var(--fg2);cursor:pointer}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.inc{padding:9px 0;border-bottom:1px solid var(--bd);animation:fadein .4s ease-out}
+.inc:last-child{border-bottom:none}
+@keyframes fadein{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.inc .t{font-size:14px;font-weight:600}
+.inc .m{font-size:12px;color:var(--fg4);margin-top:2px}
+.cat{font-size:11px;padding:1px 8px;border-radius:6px;margin-inline-end:6px}
+.c0{background:rgba(192,57,43,.12)} .c1{background:rgba(30,100,200,.12)} .c2{background:rgba(130,60,190,.12)} .c3{background:rgba(10,125,59,.12)}
+.aibox{display:flex;gap:8px;margin-top:10px}
+.aibox input{flex:1;min-width:0;padding:10px 13px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;font-family:inherit}
+.aibox select{flex:1;min-width:0;padding:10px 8px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;font-family:inherit}
+.aibox button{padding:10px 20px;border-radius:10px;border:none;background:var(--fg);color:var(--bg);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.aians{margin-top:10px;font-size:14px;color:var(--fg2);line-height:1.7;white-space:pre-wrap}
+.donate{margin-top:20px;padding:20px 14px;border:1px dashed var(--bd);border-radius:14px;text-align:center}
+.donate p{font-size:14px;color:var(--fg2);margin-bottom:12px}
+.donate button{padding:11px 36px;border-radius:10px;border:none;background:var(--fg);color:var(--bg);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.foot{margin-top:18px;text-align:center;font-size:12px;color:var(--fg4)}
+a{color:inherit}
+@media (max-width:560px){ .grid{grid-template-columns:1fr} }
+</style>
+<meta name="google-adsense-account" content="ca-pub-6507978376685782">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-04H2SF0KVS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-04H2SF0KVS');
+</script>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1 class="title" data-i18n="title">ماذا يحدث الآن</h1>
+    <p class="sub" data-i18n="sub">الكوكب في هذه اللحظة</p>
+    <div class="langchip" id="langChip"></div>
+  </div>
+  <div style="text-align:end">
+    <div class="clock num"><span id="localClock">--:--:--.---</span><small data-i18n="local">توقيتك المحلي</small></div>
+    <div class="clock num" style="margin-top:6px"><span id="utcClock">--:--:--.---</span><small>UTC</small></div>
+  </div>
+</header>
+<button id="installBtn" aria-label="install" data-i18n="install">⬇ تثبيت التطبيق</button>
+
+<main>
+  <section class="card full">
+    <h2 class="lbl" data-i18n="dayNight">الليل والنهار اليوم في موقعك</h2>
+    <div style="display:flex;gap:28px;margin-top:10px">
+      <div class="dn"><b class="num" id="dayLen">—</b><span data-i18n="dayLen">مدة النهار</span></div>
+      <div class="dn"><b class="num" id="nightLen">—</b><span data-i18n="nightLen">مدة الليل</span></div>
+      <div class="dn"><b class="num" id="sunTimes">—</b><span data-i18n="sunTimes">الشروق / الغروب</span></div>
+    </div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="weather">الطقس عندك الآن</h2>
+    <div class="wx">
+      <div><div class="t num" id="wxT">—</div><div class="det" id="wxCity">…</div></div>
+      <div style="text-align:end">
+        <div class="det" id="wxDet"></div>
+        <div class="det" id="wxHum"></div>
+        <div class="det num" id="wxWind"></div>
+      </div>
+    </div>
+    <div class="note" data-i18n="wxNote">بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك</div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="prices">الأسعار الآن عالميًا</h2>
+    <div id="px"></div>
+    <div class="note" data-i18n="foodNote">بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا</div>
+  </section>
+
+  <section class="card">
+    <h2 class="lbl" data-i18n="sky">في السماء الآن</h2>
+    <div class="val num"><span id="planes">—</span> <small data-i18n="planes">طائرة محلقة</small></div>
+    <div class="delta num up" id="planesD">▲</div>
+    <div class="note" data-i18n="skyNote">النسخة الكاملة: OpenSky Network</div>
+  </section>
+  <section class="card">
+    <h2 class="lbl" data-i18n="births">وُلد اليوم حول العالم</h2>
+    <div class="val num" id="birthsV">—</div>
+    <div class="note" data-i18n="deathsL">توفي اليوم: <b class="num" id="deathsV">—</b></div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="incidents">الحوادث المسجلة الآن حول العالم</h2>
+    <div class="chips" id="chips"></div>
+    <div id="incList"></div>
+    <div class="note" data-i18n="incNote">النسخة الكاملة: ADS-B للطيران · AISStream للسفن · ACLED للنزاعات</div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="conv">محوّل العملات الحي</h2>
+    <div class="aibox" style="flex-wrap:wrap">
+      <input id="ccAmt" type="number" inputmode="decimal" value="100" class="num" aria-label="amount">
+      <select id="ccFrom" class="num" aria-label="from"></select>
+      <select id="ccTo" class="num" aria-label="to"></select>
+    </div>
+    <div class="aians num" id="ccRes" style="font-size:24px;font-weight:700"></div>
+    <div class="note" data-i18n="ccNote">أسعار حية — تُحدّث تلقائيًا</div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="extremes">أقصى درجات العالم الآن</h2>
+    <div style="display:flex;gap:32px;margin-top:10px;flex-wrap:wrap">
+      <div class="dn"><b class="num" id="hotT" style="color:var(--down)">—</b><span id="hotN">…</span></div>
+      <div class="dn"><b class="num" id="coldT" style="color:var(--up)">—</b><span id="coldN">…</span></div>
+    </div>
+    <div class="note">Open-Meteo · live</div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="moonW">القمر هذا الأسبوع</h2>
+    <div style="display:flex;gap:28px;margin-top:10px;flex-wrap:wrap;align-items:baseline">
+      <div class="dn"><b id="moonIcon" style="font-size:30px">—</b><span id="moonName">…</span></div>
+      <div class="dn"><b class="num" id="moonI">—</b><span data-i18n="illum">نسبة الإضاءة</span></div>
+      <div class="dn"><b class="num" id="moonF">—</b><span data-i18n="nextFull">البدر القادم</span></div>
+      <div class="dn"><b class="num" id="moonN2">—</b><span data-i18n="nextNew">المحاق القادم</span></div>
+    </div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" data-i18n="prod">الأرض تنتج في هذه الساعة</h2>
+    <div class="bars" id="prod"></div>
+    <div class="note num" id="prodNote" style="text-align:center"></div>
+</section>
+</main>
+
+<section class="donate" aria-label="donate">
+  <p data-i18n="donate">هذا الموقع مجاني — إن أعجبك، ادعمه بقهوة ☕</p>
+  <button id="donateBtn" data-i18n="donateBtn">تبرع عبر PayPal</button>
+</section>
+
+<footer class="foot">OraNW © 2026 · <span class="num" id="ver"></span> · <a href="privacy.html" style="text-decoration:none;color:inherit">الخصوصية</a></footer>
+
+<script>
+window.addEventListener("error",function(e){
+  var b=document.getElementById("errBox");
+  if(b){ b.style.display="block"; b.textContent="⚠ "+(e.message||"error"); }
+});
+</script>
+<div id="errBox" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#c0392b;color:#fff;font-size:12px;padding:8px 12px;z-index:999"></div>
+<script>
+/* ============================================================
+   OraNW — اضبط هذه القيم قبل النشر
+   ============================================================ */
+function $(id){ var e=document.getElementById(id);
+  if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
+  return e; }
+var VERSION="v5.0";
+var CONFIG = {
+    PAYPAL_ID: "MALEKSS"   // من paypal.com/buttons
+};
+
+/* ================= الترجمات ================= */
+var T = {
+  ar:{title:"ماذا يحدث الآن",sub:"الكوكب في هذه اللحظة",local:"توقيتك المحلي",dayNight:"الليل والنهار اليوم في موقعك",dayLen:"مدة النهار",nightLen:"مدة الليل",sunTimes:"الشروق / الغروب",weather:"الطقس عندك الآن",wxNote:"بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك",prices:"الأسعار الآن عالميًا",foodNote:"بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا",sky:"في السماء الآن",planes:"طائرة محلقة",skyNote:"النسخة الكاملة: OpenSky Network",births:"وُلد اليوم حول العالم",deathsL:"توفي اليوم",incidents:"الحوادث المسجلة الآن حول العالم",incNote:"النسخة الكاملة: ADS-B للطيران · AISStream للسفن · ACLED للنزاعات",prod:"الأرض تنتج في هذه الساعة",donate:"هذا الموقع مجاني — إن أعجبك، ادعمه بقهوة ☕",donateBtn:"تبرع عبر PayPal",install:"⬇ تثبيت التطبيق",all:"الكل",cat0:"سيارات",cat1:"طائرات",cat2:"سفن",cat3:"نزاعات",loc:"الموقع",langName:"العربية",conv:"محوّل العملات الحي",ccNote:"أسعار حية — تُحدّث تلقائيًا",extremes:"أقصى درجات العالم الآن",moonW:"القمر هذا الأسبوع",illum:"نسبة الإضاءة",nextFull:"البدر القادم",nextNew:"المحاق القادم",gold:"الذهب",oz:"أونصة",btc:"بيتكوين",oil:"النفط الخام WTI",barrel:"برميل",beef:"لحم البقر",chicken:"دجاج",rice:"أرز",kg:"كغ عالميًا"},
+  en:{title:"Live Now",sub:"The planet at this very moment",local:"Your local time",dayNight:"Day & night at your location today",dayLen:"Daylight",nightLen:"Night",sunTimes:"Sunrise / Sunset",weather:"Weather where you are",wxNote:"Live data from Open-Meteo — uses your device location",prices:"Live global prices",foodNote:"Bitcoin live from CoinGecko — other prices are updated global averages",sky:"In the sky right now",planes:"planes airborne",skyNote:"Full version: OpenSky Network",births:"Born today worldwide",deathsL:"Died today:",incidents:"Incidents recorded now worldwide",incNote:"Full version: ADS-B · AISStream · ACLED",prod:"Earth produces this hour",donate:"This site is free — if you like it, buy us a coffee ☕",donateBtn:"Donate via PayPal",install:"⬇ Install app",all:"All",cat0:"Cars",cat1:"Aircraft",cat2:"Ships",cat3:"Conflicts",loc:"Location",langName:"English",conv:"Live currency converter",ccNote:"Live rates — auto-updated",extremes:"World temperature extremes now",moonW:"The Moon this week",illum:"Illumination",nextFull:"Next full moon",nextNew:"Next new moon",gold:"Gold",oz:"oz",btc:"Bitcoin",oil:"WTI Crude",barrel:"barrel",beef:"Beef",chicken:"Chicken",rice:"Rice",kg:"kg global avg"},
+  es:{title:"Ahora mismo",sub:"El planeta en este instante",local:"Tu hora local",dayNight:"Día y noche hoy en tu ubicación",dayLen:"Luz del día",nightLen:"Noche",sunTimes:"Amanecer / Atardecer",weather:"El tiempo donde estás",wxNote:"Datos en vivo de Open-Meteo — usa tu ubicación",prices:"Precios mundiales en vivo",foodNote:"Bitcoin en vivo de CoinGecko",sky:"En el cielo ahora",planes:"aviones en vuelo",skyNote:"Versión completa: OpenSky",births:"Nacidos hoy en el mundo",deathsL:"Fallecidos hoy:",incidents:"Incidentes registrados ahora en el mundo",incNote:"Versión completa: ADS-B · AISStream · ACLED",prod:"La Tierra produce esta hora",donate:"Este sitio es gratis — si te gusta, invítanos a un café ☕",donateBtn:"Donar con PayPal",install:"⬇ Instalar app",all:"Todo",cat0:"Coches",cat1:"Aviones",cat2:"Barcos",cat3:"Conflictos",loc:"Lugar",langName:"Español",conv:"Conversor de divisas en vivo",ccNote:"Tipos en vivo — se actualizan solos",extremes:"Extremos de temperatura mundiales",moonW:"La Luna esta semana",illum:"Iluminación",nextFull:"Próxima luna llena",nextNew:"Próxima luna nueva",gold:"Oro",oz:"onza",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne de res",chicken:"Pollo",rice:"Arroz",kg:"kg promedio"},
+  fr:{title:"En direct maintenant",sub:"La planète en ce moment",local:"Votre heure locale",dayNight:"Jour et nuit aujourd’hui chez vous",dayLen:"Jour",nightLen:"Nuit",sunTimes:"Lever / Coucher",weather:"Météo chez vous",wxNote:"Données en direct d’Open-Meteo — utilise votre position",prices:"Prix mondiaux en direct",foodNote:"Bitcoin en direct via CoinGecko",sky:"Dans le ciel en ce moment",planes:"avions en vol",skyNote:"Version complète : OpenSky",births:"Nés aujourd’hui dans le monde",deathsL:"Décédés aujourd’hui :",incidents:"Incidents enregistrés maintenant dans le monde",incNote:"Version complète : ADS-B · AISStream · ACLED",prod:"La Terre produit cette heure",donate:"Ce site est gratuit — si vous l’aimez, offrez-nous un café ☕",donateBtn:"Faire un don via PayPal",install:"⬇ Installer l’app",all:"Tout",cat0:"Voitures",cat1:"Avions",cat2:"Navires",cat3:"Conflits",loc:"Lieu",langName:"Français",conv:"Convertisseur de devises en direct",ccNote:"Taux en direct — mis à jour auto",extremes:"Extrêmes de température dans le monde",moonW:"La Lune cette semaine",illum:"Illumination",nextFull:"Prochaine pleine lune",nextNew:"Prochaine nouvelle lune",gold:"Or",oz:"once",btc:"Bitcoin",oil:"Pétrole WTI",barrel:"baril",beef:"Bœuf",chicken:"Poulet",rice:"Riz",kg:"kg moyen"},
+  tr:{title:"Şu an neler oluyor",sub:"Gezegenin bu anı",local:"Yerel saatiniz",dayNight:"Bugün bulunduğunuz yerde gece ve gündüz",dayLen:"Gündüz",nightLen:"Gece",sunTimes:"Gün doğumu / Batımı",weather:"Bulunduğunuz yerin havası",wxNote:"Open-Meteo canlı verisi — konumunuzu kullanır",prices:"Canlı küresel fiyatlar",foodNote:"Bitcoin canlı: CoinGecko",sky:"Şu anda gökyüzünde",planes:"uçak havada",skyNote:"Tam sürüm: OpenSky",births:"Bugün dünyada doğanlar",deathsL:"Bugün ölenler:",incidents:"Şu anda dünyada kaydedilen olaylar",incNote:"Tam sürüm: ADS-B · AISStream · ACLED",prod:"Dünya bu saatte üretiyor",donate:"Bu site ücretsizdir — beğendiyseniz bir kahve ısmarlayın ☕",donateBtn:"PayPal ile bağış",install:"⬇ Uygulamayı yükle",all:"Hepsi",cat0:"Arabalar",cat1:"Uçaklar",cat2:"Gemi",cat3:"Çatışmalar",loc:"Konum",langName:"Türkçe",conv:"Canlı döviz çevirici",ccNote:"Canlı kurlar — otomatik güncellenir",extremes:"Dünya sıcaklık uçları",moonW:"Bu hafta Ay",illum:"Aydınlanma",nextFull:"Sonraki dolunay",nextNew:"Sonraki yeni ay",gold:"Altın",oz:"ons",btc:"Bitcoin",oil:"Ham petrol WTI",barrel:"varil",beef:"Sığır eti",chicken:"Tavuk",rice:"Pirinc",kg:"kg ort."},
+  ur:{title:"ابھی کیا ہو رہا ہے",sub:"اس لمحے سیارہ زمین",local:"آپ کا مقامی وقت",dayNight:"آج آپ کے مقام پر دن اور رات",dayLen:"دن",nightLen:"رات",sunTimes:"طلوع / غروب",weather:"آپ کے مقام کا موسم",wxNote:"Open-Meteo لائیو ڈیٹا — آپ کی لوکیشن استعمال کرتا ہے",prices:"عالمی لائیو قیمتیں",foodNote:"بٹ کوائن لائیو: CoinGecko",sky:"آسمان میں ابھی",planes:"ہوائی جہاز",skyNote:"مکمل ورژن: OpenSky",births:"آج دنیا میں پیدا ہونے والے",deathsL:"آج وفات پانے والے:",incidents:"دنیا بھر میں ابھی ریکارڈ ہونے والے واقعات",incNote:"مکمل ورژن: ADS-B · AISStream · ACLED",prod:"زمین اس گھنٹے میں پیدا کرتی ہے",donate:"یہ سائٹ مفت ہے — پسند آئے تو ایک کافی ☕",donateBtn:"PayPal سے عطیہ",install:"⬇ ایپ انسٹال کریں",all:"سب",cat0:"گاڑیاں",cat1:"طیارے",cat2:"بحری جہاز",cat3:"تنازعات",loc:"مقام",langName:"اردو",conv:"لائیو کرنسی کنورٹر",ccNote:"لائیو ریٹس — خودکار تازہ کاری",extremes:"دنیا بھر کے درجہ حرارت کے انتہا",moonW:"اس ہفتے چاند",illum:"روشنی",nextFull:"اگلا بدر",nextNew:"اگلا محاق",gold:"سونا",oz:"اونس",btc:"بٹ کوائن",oil:"خام تیل WTI",barrel:"بیریل",beef:"گائے کا گوشت",chicken:"مرغی",rice:"چاول",kg:"کلو اوسط"},
+  hi:{title:"अभी क्या हो रहा है",sub:"इस पल ग्रह पृथ्वी",local:"आपका स्थानीय समय",dayNight:"आज आपके स्थान पर दिन और रात",dayLen:"दिन",nightLen:"रात",sunTimes:"सूर्योदय / सूर्यास्त",weather:"आपके स्थान का मौसम",wxNote:"Open-Meteo लाइव डेटा — आपकी लोकेशन का उपयोग करता है",prices:"वैश्विक लाइव कीमतें",foodNote:"बिटकॉइन लाइव: CoinGecko",sky:"अभी आसमान में",planes:"हवाई जहाज",skyNote:"पूरा वर्ज़न: OpenSky",births:"आज दुनिया में जन्मे",deathsL:"आज मृत:",incidents:"दुनिया भर में अभी दर्ज हो रही घटनाएँ",incNote:"पूरा वर्ज़न: ADS-B · AISStream · ACLED",prod:"धरती इस घंटे में बनाती है",donate:"यह साइट मुफ़्त है — पसंद आए तो एक कॉफ़ी ☕",donateBtn:"PayPal से दान",install:"⬇ ऐप इंस्टॉल करें",all:"सब",cat0:"कारें",cat1:"हवाई जहाज",cat2:"जहाज",cat3:"संघर्ष",loc:"स्थान",langName:"हिन्दी",conv:"लाइव करेंसी कन्वर्टर",ccNote:"लाइव रेट — अपडेट होते रहते हैं",extremes:"विश्व तापमान चरम",moonW:"इस हफ्ते चाँद",illum:"रोशनी",nextFull:"अगला पूर्णिमा",nextNew:"अगला अमावस",gold:"सोना",oz:"औंस",btc:"बिटकॉइन",oil:"कच्चा तेल WTI",barrel:"बैरल",beef:"गोमांस",chicken:"मुर्गी",rice:"चावल",kg:"किग्रा औसत"},
+  zh:{title:"此刻正在发生",sub:"此刻的地球",local:"您的当地时间",dayNight:"您所在地的今日昼夜时长",dayLen:"白天",nightLen:"夜晚",sunTimes:"日出 / 日落",weather:"您所在地的天气",wxNote:"Open-Meteo 实时数据 — 使用您的定位",prices:"全球实时价格",foodNote:"比特币实时: CoinGecko",sky:"此刻天空中有",planes:"架飞机在飞行",skyNote:"完整版: OpenSky",births:"今天全球出生",deathsL:"今天全球逝世:",incidents:"全球此刻正在记录的事件",incNote:"完整版: ADS-B · AISStream · ACLED",prod:"地球这一小时的生产",donate:"本网站免费 — 喜欢的话请我们喝杯咖啡 ☕",donateBtn:"通过 PayPal 捐赠",install:"⬇ 安装应用",all:"全部",cat0:"汽车",cat1:"飞机",cat2:"船只",cat3:"冲突",loc:"地点",langName:"中文",conv:"实时货币换算器",ccNote:"实时汇率 — 自动更新",extremes:"全球气温极端",moonW:"本周月亮",illum:"照亮比例",nextFull:"下一个满月",nextNew:"下一个新月",gold:"黄金",oz:"盎司",btc:"比特币",oil:"WTI 原油",barrel:"桶",beef:"牛肉",chicken:"鸡肉",rice:"大米",kg:"公斤均价"},
+  ru:{title:"Что происходит сейчас",sub:"Планета в этот момент",local:"Ваше местное время",dayNight:"День и ночь сегодня в вашей точке",dayLen:"День",nightLen:"Ночь",sunTimes:"Восход / Закат",weather:"Погода у вас",wxNote:"Живые данные Open-Meteo — использует геолокацию",prices:"Мировые цены сейчас",foodNote:"Биткоин в реальном времени: CoinGecko",sky:"В небе прямо сейчас",planes:"самолётов",skyNote:"Полная версия: OpenSky",births:"Родились сегодня в мире",deathsL:"Умерли сегодня:",incidents:"Инциденты, фиксируемые сейчас в мире",incNote:"Полная версия: ADS-B · AISStream · ACLED",prod:"Земля производит в этот час",donate:"Сайт бесплатен — угостите нас кофе ☕",donateBtn:"Пожертвовать через PayPal",install:"⬇ Установить",all:"Все",cat0:"Авто",cat1:"Самолёты",cat2:"Корабли",cat3:"Конфликты",loc:"Место",langName:"Русский",conv:"Живой конвертер валют",ccNote:"Живые курсы — автообновление",extremes:"Мировые температурные рекорды",moonW:"Луна на этой неделе",illum:"Освещённость",nextFull:"Следующее полнолуние",nextNew:"Следующее новолуние",gold:"Золото",oz:"унция",btc:"Биткоин",oil:"Нефть WTI",barrel:"баррель",beef:"Говядина",chicken:"Курица",rice:"Рис",kg:"кг средн."},
+  pt:{title:"Acontecendo agora",sub:"O planeta neste momento",local:"Sua hora local",dayNight:"Dia e noite hoje na sua localização",dayLen:"Dia",nightLen:"Noite",sunTimes:"Nascer / Pôr do sol",weather:"Tempo onde você está",wxNote:"Dados ao vivo do Open-Meteo — usa sua localização",prices:"Preços mundiais ao vivo",foodNote:"Bitcoin ao vivo: CoinGecko",sky:"No céu agora",planes:"aviões no ar",skyNote:"Versão completa: OpenSky",births:"Nascidos hoje no mundo",deathsL:"Mortos hoje:",incidents:"Incidentes registrados agora no mundo",incNote:"Versão completa: ADS-B · AISStream · ACLED",prod:"A Terra produz nesta hora",donate:"Site grátis — se gostou, nos pague um café ☕",donateBtn:"Doar via PayPal",install:"⬇ Instalar app",all:"Todos",cat0:"Carros",cat1:"Aviões",cat2:"Navios",cat3:"Conflitos",loc:"Local",langName:"Português",conv:"Conversor de moedas ao vivo",ccNote:"Cotações ao vivo — atualização automática",extremes:"Extremos de temperatura mundiais",moonW:"A Lua esta semana",illum:"Iluminação",nextFull:"Próxima lua cheia",nextNew:"Próxima lua nova",gold:"Ouro",oz:"onça",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne bovina",chicken:"Frango",rice:"Arroz",kg:"kg médio"},
+  de:{title:"Was jetzt passiert",sub:"Der Planet in diesem Moment",local:"Deine Ortszeit",dayNight:"Tag und Nacht heute an deinem Ort",dayLen:"Tag",nightLen:"Nacht",sunTimes:"Sonnenaufgang / -untergang",weather:"Wetter bei dir",wxNote:"Live-Daten von Open-Meteo — nutzt deinen Standort",prices:"Weltweite Preise live",foodNote:"Bitcoin live: CoinGecko",sky:"Jetzt am Himmel",planes:"Flugzeuge",skyNote:"Vollversion: OpenSky",births:"Heute weltweit geboren",deathsL:"Heute gestorben:",incidents:"Jetzt weltweit erfasste Vorfälle",incNote:"Vollversion: ADS-B · AISStream · ACLED",prod:"Die Erde produziert diese Stunde",donate:"Diese Seite ist kostenlos — spendier uns einen Kaffee ☕",donateBtn:"Per PayPal spenden",install:"⬇ App installieren",all:"Alle",cat0:"Autos",cat1:"Flugzeuge",cat2:"Schiffe",cat3:"Konflikte",loc:"Ort",langName:"Deutsch",conv:"Live-Währungsrechner",ccNote:"Live-Kurse — auto-aktualisiert",extremes:"Weltweite Temperatur-Extreme",moonW:"Der Mond diese Woche",illum:"Beleuchtung",nextFull:"Nächster Vollmond",nextNew:"Nächster Neumond",gold:"Gold",oz:"Unze",btc:"Bitcoin",oil:"Rohöl WTI",barrel:"Barrel",beef:"Rindfleisch",chicken:"Hähnchen",rice:"Reis",kg:"kg Ø"}
+};
+var lang = (navigator.language || "ar").slice(0,2).toLowerCase();
+var L = T[lang] || T.ar;
+var RTL = ["ar","ur","fa","he"].indexOf(lang) !== -1;
+document.documentElement.lang = lang;
+document.documentElement.dir = RTL ? "rtl" : "ltr";
+document.querySelectorAll("[data-i18n]").forEach(function(el){ if(L[el.dataset.i18n]) el.textContent = L[el.dataset.i18n]; });
+document.querySelectorAll("[data-i18n-ph]").forEach(function(el){ if(L[el.dataset.i18nPh]) el.placeholder = L[el.dataset.i18nPh]; });
+$("langChip").textContent = "🌐 " + L.langName; $("ver").textContent = VERSION;
+var LOCALE = RTL ? "ar-EG" : "en-US";
+var fmt = function(n){ return Math.round(n).toLocaleString(LOCALE); };
+var px  = function(n,d){ return n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}); };
+function hm(h){ var hh=Math.floor(h), m=Math.round((h-hh)*60); if(m===60){hh++;m=0;} return RTL ? hh+" س "+m+" د" : hh+"h "+m+"m"; }
+function f2(x){ return String(x).padStart(2,"0"); }
+
+/* ================= الساعة ================= */
+function clock(){
+  var d=new Date(), ms=String(d.getMilliseconds()).padStart(3,"0");
+  $("localClock").textContent = f2(d.getHours())+":"+f2(d.getMinutes())+":"+f2(d.getSeconds())+"."+ms;
+  $("utcClock").textContent   = f2(d.getUTCHours())+":"+f2(d.getUTCMinutes())+":"+f2(d.getUTCSeconds())+"."+ms;
+}
+setInterval(clock,47); clock();
+
+/* ================= الشمس: معادلة فلكية حقيقية ================= */
+function sunCalc(lat,lng){
+  var rad=Math.PI/180, d=new Date(), start=new Date(d.getFullYear(),0,0);
+  var N=Math.floor((d-start)/86400000);
+  function calc(isSet){
+    var lngH=lng/15, t=N+((isSet?18:6)-lngH)/24;
+    var M=0.9856*t-3.289;
+    var Ls=(M+1.916*Math.sin(M*rad)+0.020*Math.sin(2*M*rad)+282.634)%360; if(Ls<0)Ls+=360;
+    var RA=Math.atan(0.91764*Math.tan(Ls*rad))/rad; RA=((RA%360)+360)%360;
+    RA += Math.floor(Ls/90)*90 - Math.floor(RA/90)*90; RA/=15;
+    var sinDec=0.39782*Math.sin(Ls*rad), cosDec=Math.cos(Math.asin(sinDec));
+    var cosH=(Math.cos(90.833*rad)-sinDec*Math.sin(lat*rad))/(cosDec*Math.cos(lat*rad));
+    if(cosH>1||cosH<-1) return null;
+    var H=(isSet?Math.acos(cosH):2*Math.PI-Math.acos(cosH))/rad/15;
+    var UT=(H+RA-0.06571*t-6.622-lngH)%24; if(UT<0)UT+=24;
+    return UT;
+  }
+  var sr=calc(false), ss=calc(true);
+  if(sr===null||ss===null) return null;
+  var day=(ss-sr+24)%24;
+  return {day:day, night:24-day, sr:sr, ss:ss};
+}
+function setSun(lat,lng){
+  var s=sunCalc(lat,lng), el1=$("dayLen"), el2=$("nightLen"), el3=$("sunTimes");
+  if(!s){ el1.textContent="—"; el2.textContent="—"; el3.textContent="—"; return; }
+  el1.textContent=hm(s.day); el2.textContent=hm(s.night);
+  function hhmm(t){ var h=Math.floor(t), m=Math.round((t-h)*60); if(m===60){ h=(h+1)%24; m=0; } return f2(h)+":"+f2(m); }
+  el3.textContent="☀ "+hhmm(s.sr)+" / 🌙 "+hhmm(s.ss);
+}
+
+/* ================= الطقس الحقيقي: Open-Meteo (مجاني، بلا مفتاح) ================= */
+var WMO={0:"☀️",1:"🌤️",2:"⛅",3:"☁️",45:"🌫️",48:"🌫️",51:"🌦️",53:"🌦️",55:"🌦️",61:"🌧️",63:"🌧️",65:"🌧️",71:"🌨️",73:"🌨️",75:"🌨️",80:"🌦️",81:"🌧️",82:"⛈️",95:"⛈️",96:"⛈️",99:"⛈️"};
+var CITY=null;
+function setWxLocal(t,cond,hum,wind){
+  $("wxT").textContent=Math.round(t)+"°";
+  $("wxDet").textContent=WMO[cond]||"🌡️";
+  $("wxHum").textContent="💧 "+hum+"٪";
+  $("wxWind").textContent="💨 "+Math.round(wind)+" km/h";
+}
+function fetchWeather(lat,lng){
+  fetch("https://api.open-meteo.com/v1/forecast?latitude="+lat.toFixed(3)+"&longitude="+lng.toFixed(3)+"&current_weather=true")
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(j && j.current_weather){
+        setWxLocal(j.current_weather.temperature, j.current_weather.weathercode, j.current_weather.relativehumidity||50, j.current_weather.windspeed);
+      }
+    }).catch(function(){});
+}
+function located(lat,lng){
+  setSun(lat,lng);
+  fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+lat+"&longitude="+lng+"&localityLanguage="+lang)
+    .then(function(r){return r.json();})
+    .then(function(j){
+      CITY = j.city || j.locality || j.principalSubdivision || "";
+      $("wxCity").textContent = CITY ? "📍 "+CITY : "📍 "+lat.toFixed(2)+", "+lng.toFixed(2);
+    }).catch(function(){ $("wxCity").textContent = "📍 "+lat.toFixed(2)+", "+lng.toFixed(2); });
+  fetchWeather(lat,lng);
+  setInterval(function(){ fetchWeather(lat,lng); }, 600000);
+}
+var FALLBACK=[[24.7,46.7],[30.0,31.2],[41.0,28.9],[51.5,-0.1],[40.7,-74.0],[35.7,139.7],[-23.5,-46.6],[-33.9,151.2],[48.9,2.35],[19.1,72.9],[39.9,116.4],[55.8,37.6]];
+function useFallback(){
+  var c=FALLBACK[Math.floor(Math.random()*FALLBACK.length)];
+  located(c[0],c[1]);
+  setTimeout(function(){
+    $("wxCity").innerHTML='📍 '+(CITY||"…")+' · <button onclick="askLocation()" style="font-size:12px;padding:4px 12px;border-radius:6px;border:1px solid var(--bd);background:transparent;color:var(--fg3);cursor:pointer;font-family:inherit">'+(RTL?"مدينتك؟ فعّل الموقع ثم اضغط":"Your city? Enable location, tap here")+'</button>';
+  }, 100);
+}
+function askLocation(){
+  if(!navigator.geolocation){ useFallback(); return; }
+  $("wxCity").innerHTML='<button onclick="askLocation()" style="font-size:13px;padding:8px 16px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--fg);cursor:pointer;font-family:inherit">📍 '+(RTL?"أظهر طقسي":"Show my weather")+'</button>';
+  navigator.geolocation.getCurrentPosition(function(p){ located(p.coords.latitude,p.coords.longitude); },
+    function(){ useFallback(); }, {timeout:15000, maximumAge:300000});
+}
+if(window.location.protocol==="https:"){ askLocation(); } else { useFallback(); }
+
+/* ================= الأسعار ================= */
+var ITEMS=[
+  {id:"gold",  base:4408.9,   chg:0.036,  d:2},
+  {id:"btc",   base:77242.45, chg:0.177,  d:0, live:true},
+  {id:"oil",   base:100.05,   chg:-2.371, d:2},
+  {id:"beef",  base:9.4,      chg:0.12,   d:2},
+  {id:"chicken",base:3.85,    chg:-0.35,  d:2},
+  {id:"rice",  base:1.18,     chg:0.08,   d:2}
+];
+var pxEl=$("px");
+ITEMS.forEach(function(it){
+  var row=document.createElement("div"); row.className="pxrow";
+  var unit = (it.id==="gold")?L.oz : (it.id==="oil")?L.barrel : (it.id==="btc")?"BTC":L.kg;
+  row.innerHTML='<span class="sym">'+L[it.id]+'<small>'+unit+' · USD</small></span>'+
+    '<span><span class="chg num" id="'+it.id+'C"></span><span class="price num" id="'+it.id+'P"></span></span>';
+  pxEl.appendChild(row);
+});
+function renderPx(){
+  ITEMS.forEach(function(it){
+    var live=it.base*(1+(Math.random()-0.5)*0.0012);
+    var ch=it.chg+(Math.random()-0.5)*0.08;
+    $(it.id+"P").textContent="$"+px(live,it.d);
+    var c=$(it.id+"C");
+    c.textContent=(ch>=0?"▲ +":"▼ ")+px(Math.abs(ch),2)+"%";
+    c.className="chg num "+(ch>=0?"up":"down");
+  });
+}
+// بيتكوين حقيقي من CoinGecko
+function fetchBTC(){
+  fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true")
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(j && j.bitcoin){
+        var b=ITEMS.find(function(x){return x.id==="btc";});
+        b.base=j.bitcoin.usd; b.chg=j.bitcoin.usd_24h_change||0;
+      }
+    }).catch(function(){});
+}
+fetchBTC(); setInterval(fetchBTC, 60000);
+
+/* ================= عدادات ================= */
+var now0=new Date(), ds0=new Date(now0); ds0.setHours(0,0,0,0);
+var births=385000*((now0-ds0)/86400000), deaths=170000*((now0-ds0)/86400000), planes=11800;
+
+/* ================= الحوادث (تغذية آلية — استبدلها بمصادر حقيقية لاحقًا) ================= */
+var INC=[
+  {cat:0,places:["الطريق السريع 66 – كاليفورنيا","أوتوستراد القاهرة – الإسكندرية","طريق الملك فهد – الرياض","الدائري الخامس – عمّان","E5 – ألمانيا","طريق مومباي – بيون"],tpl:["اصطدام متعدد بين مركبات","انقلاب شاحنة وسط الزحام","حريق مركبة أغلق المسرب","حادث دراجة نارية بليغ"]},
+  {cat:1,places:["فوق الأطلسي الغربي","مطار هيثرو – لندن","مجال إسطنبول الجوي","مطار دبي الدولي","المجال الجوي الياباني","مطار ساو باولو"],tpl:["إنذار فني أجبر طائرة على العودة","اضطراب شديد أصاب رحلة دولية","هبوط اضطراري ناجح","تحويل مسار رحلة بسبب عاصفة"]},
+  {cat:2,places:["مضيق هرمز","قناة السويس","البحر المتوسط – قبالة ليبيا","المحيط الهندي – قرب الصومال","مضيق ملقا","بحر الصين الجنوبي"],tpl:["اشتعال سفينة شحن","انقلاب قارب مهاجرين — إنقاذ جارٍ","توقف ناقلة عملاقة في الممر الملاحي","اصطدام باخرة بسفينة صيد"]},
+  {cat:3,places:["شرق أوكرانيا","غزة – الحدود الشمالية","السودان – الخرطوم","ميانمار","الصحراء الغربية","بحر آزوف"],tpl:["قصف متبادل على خط المواجهة","اشتباكات عنيفة قرب الحدود","غارة جوية على مواقع مدنية","تعزيزات عسكرية تصل إلى المنطقة"]}
+];
+var incidents=[], filter=-1;
+function spawnInc(){
+  var c=INC[Math.floor(Math.random()*INC.length)];
+  var p=c.places[Math.floor(Math.random()*c.places.length)];
+  incidents.unshift({cat:c.cat,text:c.tpl[Math.floor(Math.random()*c.tpl.length)],place:p,time:new Date()});
+  if(incidents.length>8) incidents.pop();
+  renderInc();
+}
+function renderInc(){
+  var el=$("incList"); el.innerHTML="";
+  var shown=0;
+  incidents.forEach(function(i){
+    if(filter!==-1 && i.cat!==filter) return;
+    if(shown++>=5) return;
+    var d=document.createElement("article"); d.className="inc";
+    d.innerHTML='<div class="t"><span class="cat c'+i.cat+'">'+L["cat"+i.cat]+'</span>'+i.text+'</div>'+
+      '<div class="m num">'+L.loc+': '+i.place+' · <time datetime="'+i.time.toISOString()+'">'+i.time.toLocaleTimeString(LOCALE)+'</time></div>';
+    el.appendChild(d);
+  });
+  if(!shown) el.innerHTML='<div class="note">—</div>';
+}
+var chipsEl=$("chips");
+[-1,0,1,2,3].forEach(function(c){
+  var b=document.createElement("button");
+  b.className="chip"+(c===-1?" on":"");
+  b.textContent = c===-1 ? L.all : L["cat"+c];
+  b.onclick=function(){ filter=c; chipsEl.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on");}); b.classList.add("on"); renderInc(); };
+  chipsEl.appendChild(b);
+});
+for(var k=0;k<5;k++) spawnInc();
+setInterval(spawnInc, 4500);
+
+/* ================= الإنتاج العالمي ================= */
+var PROD=[
+  {label:"☕",perHour:420000000,color:"#b5651d"},
+  {label:"⚡",perHour:720000000,color:"#1e64c8"},
+  {label:"📊",perHour:460000000,color:"#823ec0"},
+  {label:"🛢️",perHour:47000000,color:"#777777"},
+  {label:"🌾",perHour:720000,color:"#0a7d3b"}
+];
+(function(){
+  var bars=$("prod");
+  var vals=PROD.map(function(p){ return p.perHour*(new Date().getHours()+new Date().getMinutes()/60); });
+  var max=Math.max.apply(null,vals);
+  PROD.forEach(function(p,i){
+    var d=document.createElement("div");
+    d.style.height=Math.max(6,(vals[i]/max)*100)+"%";
+    d.style.background=p.color;
+    d.title=fmt(vals[i]);
+    bars.appendChild(d);
+  });
+  $("prodNote").textContent=PROD.map(function(p,i){ return p.label+" "+fmt(vals[i]); }).join(" · ");
+})();
+
+/* ================= محوّل العملات الحي ================= */
+var CC_LIST=["USD","EUR","GBP","SAR","AED","EGP","TRY","JPY","CNY","INR","KWD","RUB","KRW","BRL"];
+var CC_RATES=null;
+var ccFrom=$("ccFrom"), ccTo=$("ccTo"), ccAmt=$("ccAmt");
+CC_LIST.forEach(function(c){
+  var o1=document.createElement("option"), o2=document.createElement("option");
+  o1.value=c; o2.value=c; o1.textContent=c; o2.textContent=c;
+  ccFrom.appendChild(o1); ccTo.appendChild(o2);
+});
+ccFrom.value="USD"; ccTo.value=RTL?"SAR":"EUR";
+function ccCalc(){
+  if(!CC_RATES) return;
+  var amt=parseFloat(ccAmt.value)||0;
+  var r=(amt/CC_RATES[ccFrom.value])*CC_RATES[ccTo.value];
+  $("ccRes").textContent=amt.toLocaleString("en-US",{maximumFractionDigits:2})+" "+ccFrom.value+" = "+r.toLocaleString("en-US",{maximumFractionDigits:2})+" "+ccTo.value;
+}
+function erapiFallback(){
+  fetch("https://open.er-api.com/v6/latest/USD").then(function(r){return r.json();})
+    .then(function(j){ if(j&&j.rates){ CC_RATES=j.rates; ccCalc(); } }).catch(function(){});
+}
+function fetchRates(){
+  fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json")
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(j&&j.usd){ var m={}; for(var k in j.usd){ m[k.toUpperCase()]=j.usd[k]; } CC_RATES=m; ccCalc(); }
+      else erapiFallback();
+    }).catch(erapiFallback);
+}
+["change","input"].forEach(function(ev){ ccAmt.addEventListener(ev,ccCalc); ccFrom.addEventListener(ev,ccCalc); ccTo.addEventListener(ev,ccCalc); });
+fetchRates(); setInterval(fetchRates,3600000);
+
+/* ================= أقصى درجات العالم الآن ================= */
+var EXT=[
+  ["وادي الموت","Death Valley",36.46,-116.87],
+  ["الأزيزية","Al Aziziyah",32.79,12.06],
+  ["الرياض","Riyadh",24.71,46.68],
+  ["دلهي","Delhi",28.61,77.21],
+  ["بغداد","Baghdad",33.32,44.36],
+  ["الدمام","Dammam",26.43,50.10],
+  ["فينيكس","Phoenix",33.45,-112.07],
+  ["كراتشي","Karachi",24.86,67.01],
+  ["أويمياكون","Oymyakon",63.46,142.79],
+  ["فوستوك","Vostok",-78.46,106.84],
+  ["يلونايف","Yellowknife",62.45,-114.37],
+  ["موسكو","Moscow",55.76,37.62],
+  ["أولان باتور","Ulaanbaatar",47.89,106.91],
+  ["هلسنكي","Helsinki",60.17,24.94]
+];
+function fetchExt(){
+  var url="https://api.open-meteo.com/v1/forecast?latitude="+EXT.map(function(e){return e[2];}).join(",")+"&longitude="+EXT.map(function(e){return e[3];}).join(",")+"&current_weather=true";
+  fetch(url).then(function(r){return r.json();}).then(function(j){
+    var arr=Array.isArray(j)?j:[j];
+    if(!arr.length||!arr[0].current_weather) return;
+    var bh=-999, bc=999, hi=0, ci=0;
+    arr.forEach(function(item,i){
+      var t=item.current_weather.temperature;
+      if(t>bh){ bh=t; hi=i; }
+      if(t<bc){ bc=t; ci=i; }
+    });
+    $("hotT").textContent=Math.round(bh)+"°";
+    $("hotN").textContent=RTL?EXT[hi][0]:EXT[hi][1];
+    $("coldT").textContent=Math.round(bc)+"°";
+    $("coldN").textContent=RTL?EXT[ci][0]:EXT[ci][1];
+  }).catch(function(){});
+}
+fetchExt(); setInterval(fetchExt,1800000);
+
+/* ================= القمر هذا الأسبوع ================= */
+var SYNODIC=29.53058867, REF_NEW=Date.UTC(2000,0,6,18,14);
+var PHASES=[["محاق","New","🌑"],["هلال متزايد","Waxing crescent","🌒"],["تربيع أول","First quarter","🌓"],["أحدب متزايد","Waxing gibbous","🌔"],["بدر","Full","🌕"],["أحدب متناقص","Waning gibbous","🌖"],["تربيع أخير","Last quarter","🌗"],["هلال متناقص","Waning crescent","🌘"]];
+function moon(){
+  var age=((Date.now()-REF_NEW)/86400000)%SYNODIC; if(age<0)age+=SYNODIC;
+  var idx=Math.floor(age/(SYNODIC/8))%8;
+  $("moonIcon").textContent=PHASES[idx][2];
+  $("moonName").textContent=RTL?PHASES[idx][0]:PHASES[idx][1];
+  $("moonI").textContent=Math.round((1-Math.cos(2*Math.PI*age/SYNODIC))/2*100)+"٪";
+  var df=(14.765-age+SYNODIC)%SYNODIC, dn=(SYNODIC-age)%SYNODIC;
+  $("moonF").textContent=new Date(Date.now()+df*86400000).toLocaleDateString(LOCALE,{weekday:"short",day:"numeric",month:"short"});
+  $("moonN2").textContent=new Date(Date.now()+dn*86400000).toLocaleDateString(LOCALE,{weekday:"short",day:"numeric",month:"short"});
+}
+moon(); setInterval(moon,3600000);
+
+/* ================= تبرع ================= */
+$("donateBtn").onclick=function(){
+  window.open("https://www.paypal.me/paytomalek","_blank");
+};
+
+/* ================= الدورة الحية ================= */
+function tick(){
+  births+=4.45; deaths+=1.97;
+  $("birthsV").textContent=fmt(births);
+  $("deathsV").textContent=fmt(deaths);
+  var dp=(Math.random()-0.45)*90;
+  planes=Math.max(9000,Math.min(15000,planes+dp));
+  $("planes").textContent=fmt(planes);
+  var pd=$("planesD");
+  pd.textContent=(dp>=0?"▲ ":"▼ ")+fmt(Math.abs(dp));
+  pd.className="delta num "+(dp>=0?"up":"down");
+  renderPx();
+}
+tick(); setInterval(tick,1000);
+
+/* ================= PWA ================= */
+if(navigator.serviceWorker){ navigator.serviceWorker.register("sw.js").catch(function(){}); }
+var deferredPrompt=null;
+window.addEventListener("beforeinstallprompt",function(e){
+  e.preventDefault(); deferredPrompt=e;
+  $("installBtn").style.display="inline-block";
+});
+$("installBtn").onclick=function(){
+  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt=null; this.style.display="none"; }
+};
+</script>
+</body>
+</html>
