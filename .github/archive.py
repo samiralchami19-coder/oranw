@@ -9,19 +9,41 @@ def get(url):
         return r.read().decode('utf-8', 'ignore')
 
 def stooq(sym):
+    # محاولتان مع فاصل — stooq يحظر أحيانًا الطلبات المتتالية
+    import time
+    for attempt in range(2):
+        try:
+            csv = get('https://stooq.com/q/l/?s=%s&f=sd2t2ohlcv&h&e=csv' % sym)
+            lines = csv.strip().splitlines()
+            if len(lines) < 2:
+                return None
+            return float(lines[1].split(',')[6])  # إغلاق
+        except Exception:
+            time.sleep(3)
+    return None
+
+def coingecko(ids):
     try:
-        csv = get('https://stooq.com/q/l/?s=%s&f=sd2t2ohlcv&h&e=csv' % sym)
-        lines = csv.strip().splitlines()
-        if len(lines) < 2:
-            return None
-        return float(lines[1].split(',')[6])  # إغلاق
+        j = json.loads(get('https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd' % ids))
+        return j
     except Exception:
         return None
 
 def btc_price():
+    j = coingecko('bitcoin')
     try:
-        j = json.loads(get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd'))
         return float(j['bitcoin']['usd'])
+    except Exception:
+        return None
+
+def gold_price():
+    # الذهب من stooq، والاحتياط: PAX Gold (رمز مرتبط بأونصة الذهب)
+    v = stooq('xauusd')
+    if v:
+        return v
+    j = coingecko('pax-gold')
+    try:
+        return float(j['pax-gold']['usd'])
     except Exception:
         return None
 
@@ -83,7 +105,7 @@ hot, cold = extremes()
 midx, illum = moon()
 entry = {
     "d": datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d'),
-    "gold": stooq('xauusd'),
+    "gold": gold_price(),
     "btc": btc_price(),
     "oil": stooq('cl.f'),
     "hot": hot, "cold": cold,
