@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أرشيف الكوكب — OraNW</title>
+<meta name="description" content="أرشيف يومي لما حدث على الكوكب: أسعار الذهب والبيتكوين والنفط، أقصى درجات الحرارة، مرحلة القمر">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+:root{ --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa; --bd:#e5e5e5; --mut:#f2f2f2; --up:#0a7d3b; --down:#c0392b; }
+@media (prefers-color-scheme: dark){ :root{ --bg:#111111; --fg:#f2f2f2; --fg2:#c8c8c8; --fg3:#8a8a8a; --fg4:#5a5a5a; --bd:#2c2c2c; --mut:#1d1d1d; --up:#3ecf7a; --down:#ff6b5e; } }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:680px;margin:0 auto;padding:20px 16px 60px}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+a{color:inherit;text-decoration:none}
+.back{display:inline-block;margin-bottom:16px;font-size:14px;color:var(--fg3)}
+h1{font-size:22px}
+.sub{font-size:13px;color:var(--fg3);margin:4px 0 18px}
+.picker{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.picker input,.picker button{padding:10px 14px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;font-family:inherit}
+.picker button{background:var(--fg);color:var(--bg);border:none;font-weight:600;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:1px solid var(--bd);border-radius:14px;padding:14px}
+.full{grid-column:1/-1}
+.lbl{font-size:12px;color:var(--fg3)}
+.val{font-size:24px;font-weight:700;margin-top:4px}
+.val small{font-size:13px;font-weight:400;color:var(--fg3)}
+.note{font-size:12px;color:var(--fg4);margin-top:6px}
+.empty{padding:40px 16px;text-align:center;color:var(--fg4);font-size:14px;line-height:2}
+.moon{font-size:44px}
+</style>
+</head>
+<body>
+<a class="back" href="index.html">← <span data-x="back">العودة إلى الموقع</span></a>
+<h1 data-x="title">أرشيف الكوكب</h1>
+<p class="sub" data-x="sub">لقطة يومية محفوظة — اختر أي تاريخ وشاهد ما كان يحدث على الأرض</p>
+
+<div class="picker">
+  <input type="date" id="d" class="num">
+  <button id="go" data-x="show">اعرض</button>
+  <button id="latest" data-x="latest">الأحدث</button>
+</div>
+
+<div id="out"><div class="empty" data-x="loading">يُحمَّل الأرشيف…</div></div>
+
+<script>
+var AR = (navigator.language||"ar").slice(0,2)==="ar";
+var X = AR ? {back:"العودة إلى الموقع",title:"أرشيف الكوكب",sub:"لقطة يومية محفوظة — اختر أي تاريخ وشاهد ما كان يحدث على الأرض",show:"اعرض",latest:"الأحدث",loading:"يُحمَّل الأرشيف…",prices:"الأسعار في ذلك اليوم",gold:"الذهب (أونصة)",btc:"بيتكوين",oil:"النفط WTI (برميل)",hot:"الأعلى حرارة",cold:"الأدنى برودة",moon:"القمر في ذلك الليلة",illum:"نسبة الإضاءة",day:"مدة النهار (الرياض)",none:"لا توجد لقطة لهذا التاريخ بعد — يبدأ الأرشيف من أول ليلة بعد التفعيل",err:"تعذر تحميل الأرشيف"}
+           : {back:"Back to site",title:"Planet Archive",sub:"A daily snapshot — pick any date and see what Earth looked like",show:"Show",latest:"Latest",loading:"Loading archive…",prices:"Prices that day",gold:"Gold (oz)",btc:"Bitcoin",oil:"WTI Oil (barrel)",hot:"Hottest",cold:"Coldest",moon:"The Moon that night",illum:"Illumination",day:"Daylight (Riyadh)",none:"No snapshot for this date yet — the archive starts from the first night after activation",err:"Failed to load archive"};
+document.documentElement.lang = AR?"ar":"en";
+document.documentElement.dir = AR?"rtl":"ltr";
+document.querySelectorAll("[data-x]").forEach(function(e){ e.textContent=X[e.dataset.x]; });
+
+var PHASES=[["محاق","New","🌑"],["هلال متزايد","Waxing crescent","🌒"],["تربيع أول","First quarter","🌓"],["أحدب متزايد","Waxing gibbous","🌔"],["بدر","Full","🌕"],["أحدب متناقص","Waning gibbous","🌖"],["تربيع أخير","Last quarter","🌗"],["هلال متناقص","Waning crescent","🌘"]];
+var DATA=null;
+
+function fmtHM(h){ var hh=Math.floor(h), m=Math.round((h-hh)*60); if(m===60){hh++;m=0;} return AR?hh+" س "+m+" د":hh+"h "+m+"m"; }
+function money(v,d){ return v==null?"—":"$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}); }
+
+function render(e){
+  if(!e){ document.getElementById("out").innerHTML='<div class="empty">'+X.none+'</div>'; return; }
+  var ph=PHASES[e.moon||0];
+  document.getElementById("out").innerHTML=
+  '<div class="grid">'+
+  '<div class="card full"><div class="lbl">'+X.prices+' — <b class="num">'+e.d+'</b></div>'+
+    '<div style="display:flex;gap:28px;margin-top:10px;flex-wrap:wrap">'+
+    '<div><div class="val num">'+money(e.gold,2)+'</div><div class="note">'+X.gold+'</div></div>'+
+    '<div><div class="val num">'+money(e.btc,0)+'</div><div class="note">'+X.btc+'</div></div>'+
+    '<div><div class="val num">'+money(e.oil,2)+'</div><div class="note">'+X.oil+'</div></div>'+
+    '</div></div>'+
+  '<div class="card"><div class="lbl">🔥 '+X.hot+'</div><div class="val num">'+e.hot.t+'°</div><div class="note">'+(AR?e.hot.n:e.hot.ne)+'</div></div>'+
+  '<div class="card"><div class="lbl">❄️ '+X.cold+'</div><div class="val num">'+e.cold.t+'°</div><div class="note">'+(AR?e.cold.n:e.cold.ne)+'</div></div>'+
+  '<div class="card"><div class="lbl">'+X.moon+'</div><div class="moon">'+(AR?ph[0]:ph[1])+' '+ph[2]+'</div><div class="note">'+X.illum+': <b class="num">'+e.illum+'٪</b></div></div>'+
+  '<div class="card"><div class="lbl">☀️ '+X.day+'</div><div class="val num">'+(e.dayLen?fmtHM(e.dayLen):"—")+'</div></div>'+
+  '</div>';
+}
+
+fetch("archive.json").then(function(r){return r.json();}).then(function(j){
+  DATA=j||[];
+  if(!DATA.length){ document.getElementById("out").innerHTML='<div class="empty">'+X.none+'</div>'; return; }
+  document.getElementById("d").min=DATA[0].d;
+  document.getElementById("d").max=DATA[DATA.length-1].d;
+  showLatest();
+}).catch(function(){ document.getElementById("out").innerHTML='<div class="empty">'+X.err+'</div>'; });
+
+function showLatest(){ if(DATA&&DATA.length) render(DATA[DATA.length-1]); }
+document.getElementById("latest").onclick=showLatest;
+document.getElementById("go").onclick=function(){
+  var v=document.getElementById("d").value;
+  var e=DATA.find(function(x){return x.d===v;});
+  render(e);
+};
+document.getElementById("d").addEventListener("change",function(){ document.getElementById("go").click(); });
+</script>
+</body>
+</html>
