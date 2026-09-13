@@ -3,8 +3,14 @@
 # يعمل تلقائيًا كل ليلة عبر GitHub Actions ويكتب archive.json
 import json, math, datetime, os, urllib.request
 
+BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+
 def get(url):
-    req = urllib.request.Request(url, headers={'User-Agent': 'oranw-archive/1.0'})
+    req = urllib.request.Request(url, headers={
+        'User-Agent': BROWSER_UA,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+    })
     with urllib.request.urlopen(req, timeout=25) as r:
         return r.read().decode('utf-8', 'ignore')
 
@@ -33,6 +39,17 @@ def btc_price():
     j = coingecko('bitcoin')
     try:
         return float(j['bitcoin']['usd'])
+    except Exception:
+        return None
+
+def oil_price():
+    # النفط: stooq ثم Yahoo Finance
+    v = stooq('cl.f')
+    if v:
+        return v
+    try:
+        j = json.loads(get('https://query1.finance.yahoo.com/v8/finance/chart/CL%3DF?interval=1d&range=1d'))
+        return float(j['chart']['result'][0]['meta']['regularMarketPrice'])
     except Exception:
         return None
 
@@ -107,7 +124,7 @@ entry = {
     "d": datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d'),
     "gold": gold_price(),
     "btc": btc_price(),
-    "oil": stooq('cl.f'),
+    "oil": oil_price(),
     "hot": hot, "cold": cold,
     "moon": midx, "illum": illum,
     "dayLen": day_length(24.71, 46.68)  # مرجع: الرياض
@@ -124,4 +141,4 @@ data.append(entry)
 data = data[-400:]
 with open('archive.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False)
-print('archived:', entry['d'])
+print('archived:', entry['d'], '| gold:', entry['gold'], '| btc:', entry['btc'], '| oil:', entry['oil'])
