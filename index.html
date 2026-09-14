@@ -253,7 +253,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.4";
+var VERSION="v5.5";
 var CONFIG = {
     };
 
@@ -440,8 +440,18 @@ function fetchCommodities(){
   stooqLive("xauusd", function(v){ STOOQ_OK.gold=true; setReal("gold", v); });
   stooqLive("cl.f", function(v){ STOOQ_OK.oil=true; setReal("oil", v); });
 }
+// الذهب والنفط من أرشيف الموقع نفسه (الروبوت يلتقطها ليلًا من السيرفر — بلا CORS)
+function fetchArchivePrices(){
+  fetch("archive.json").then(function(r){return r.json();}).then(function(j){
+    if(!j || !j.length) return;
+    var e=j[j.length-1];
+    if(e.oil && !STOOQ_OK.oil){ setReal("oil", e.oil); }
+    if(e.gold && !STOOQ_OK.gold){ setReal("gold", e.gold); }
+  }).catch(function(){});
+}
 fetchCrypto(); setInterval(fetchCrypto, 60000);
 fetchCommodities(); setInterval(fetchCommodities, 300000);
+fetchArchivePrices(); setInterval(fetchArchivePrices, 600000);
 
 /* ================= عدادات ================= */
 var now0=new Date(), ds0=new Date(now0); ds0.setHours(0,0,0,0);

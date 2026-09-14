@@ -1,6 +1,6 @@
-// OraNW Service Worker — offline cache
-var CACHE = 'oranw-v5.4';
-var ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
+// OraNW Service Worker — offline cache (same-origin only)
+var CACHE = 'oranw-v5.5';
+var ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './icon.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }));
@@ -16,10 +16,11 @@ self.addEventListener('activate', function (e) {
 
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
+  if (new URL(e.request.url).origin !== self.location.origin) return; // لا نمس الطلبات الخارجية
   e.respondWith(
     caches.match(e.request).then(function (cached) {
       var fetched = fetch(e.request).then(function (res) {
-        if (res && res.ok && e.request.url.indexOf(self.location.origin) === 0) {
+        if (res && res.ok) {
           var clone = res.clone();
           caches.open(CACHE).then(function (c) { c.put(e.request, clone); });
         }
