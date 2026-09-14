@@ -1,5 +1,5 @@
 // OraNW Service Worker — offline cache (same-origin only)
-var CACHE = 'oranw-v5.5';
+var CACHE = 'oranw-v5.6';
 var ASSETS = ['./', './index.html', './manifest.json', './icon.svg', './icon.png'];
 
 self.addEventListener('install', function (e) {

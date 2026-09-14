@@ -253,7 +253,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.5";
+var VERSION="v5.6";
 var CONFIG = {
     };
 
@@ -409,48 +409,19 @@ function fetchCrypto(){
     .then(function(r){return r.json();})
     .then(function(j){
       if(j && j.bitcoin){ var b=findItem("btc"); b.base=j.bitcoin.usd; b.chg=j.bitcoin.usd_24h_change||0; }
-      if(j && j["pax-gold"]){ var g=findItem("gold"); if(!STOOQ_OK.gold){ setReal("gold", j["pax-gold"].usd); } }
+      if(j && j["pax-gold"]){ setReal("gold", j["pax-gold"].usd); }
     }).catch(function(){});
-}
-// الذهب والنفط الحقيقيان من stooq عبر بروكسيين احتياطيين
-var PROXIES=[
-  function(u){ return "https://api.codetabs.com/v1/proxy?quest="+encodeURIComponent(u); },
-  function(u){ return "https://api.allorigins.win/raw?url="+encodeURIComponent(u); }
-];
-function stooqLive(sym, cb){
-  var target="https://stooq.com/q/l/?s="+sym+"&f=sd2t2ohlcv&h&e=csv";
-  var attempt=0;
-  function tryNext(){
-    if(attempt>=PROXIES.length) return;
-    fetch(PROXIES[attempt++](target))
-      .then(function(r){ return r.text(); })
-      .then(function(t){
-        var lines=t.trim().split("\n");
-        if(lines.length<2){ tryNext(); return; }
-        var v=parseFloat(lines[1].split(",")[6]);
-        if(isNaN(v)){ tryNext(); return; }
-        cb(v);
-      })
-      .catch(tryNext);
-  }
-  tryNext();
-}
-var STOOQ_OK={gold:false,oil:false};
-function fetchCommodities(){
-  stooqLive("xauusd", function(v){ STOOQ_OK.gold=true; setReal("gold", v); });
-  stooqLive("cl.f", function(v){ STOOQ_OK.oil=true; setReal("oil", v); });
 }
 // الذهب والنفط من أرشيف الموقع نفسه (الروبوت يلتقطها ليلًا من السيرفر — بلا CORS)
 function fetchArchivePrices(){
   fetch("archive.json").then(function(r){return r.json();}).then(function(j){
     if(!j || !j.length) return;
     var e=j[j.length-1];
-    if(e.oil && !STOOQ_OK.oil){ setReal("oil", e.oil); }
-    if(e.gold && !STOOQ_OK.gold){ setReal("gold", e.gold); }
+    if(e.oil){ setReal("oil", e.oil); }
+    if(e.gold){ setReal("gold", e.gold); }
   }).catch(function(){});
 }
 fetchCrypto(); setInterval(fetchCrypto, 60000);
-fetchCommodities(); setInterval(fetchCommodities, 300000);
 fetchArchivePrices(); setInterval(fetchArchivePrices, 600000);
 
 /* ================= عدادات ================= */
