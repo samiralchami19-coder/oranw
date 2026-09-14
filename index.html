@@ -180,10 +180,14 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   </section>
 
   <section class="card full">
-    <h2 class="lbl" data-i18n="incidents">الحوادث المسجلة الآن حول العالم</h2>
-    <div class="chips" id="chips"></div>
-    <div id="incList"></div>
-    <div class="note" data-i18n="incNote">النسخة الكاملة: ADS-B للطيران · AISStream للسفن · ACLED للنزاعات</div>
+    <h2 class="lbl" id="newsT">آخر الأخبار العالمية</h2>
+    <div id="newsList"></div>
+    <div class="note" id="newsNote"></div>
+  </section>
+
+  <section class="card full">
+    <h2 class="lbl" id="quakesT">الزلازل المسجلة الآن</h2>
+    <div id="quakeList"></div>
   </section>
 
   <section class="card full">
@@ -253,23 +257,23 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.6";
+var VERSION="v5.8";
 var CONFIG = {
     };
 
 /* ================= الترجمات ================= */
 var T = {
-  ar:{title:"ماذا يحدث الآن",sub:"الكوكب في هذه اللحظة",local:"توقيتك المحلي",dayNight:"الليل والنهار اليوم في موقعك",dayLen:"مدة النهار",nightLen:"مدة الليل",sunTimes:"الشروق / الغروب",weather:"الطقس عندك الآن",wxNote:"بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك",prices:"الأسعار الآن عالميًا",foodNote:"بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا",sky:"في السماء الآن",planes:"طائرة محلقة",skyNote:"النسخة الكاملة: OpenSky Network",births:"وُلد اليوم حول العالم",deathsL:"توفي اليوم",incidents:"الحوادث المسجلة الآن حول العالم",incNote:"النسخة الكاملة: ADS-B للطيران · AISStream للسفن · ACLED للنزاعات",prod:"الأرض تنتج في هذه الساعة",install:"⬇ تثبيت التطبيق",all:"الكل",cat0:"سيارات",cat1:"طائرات",cat2:"سفن",cat3:"نزاعات",loc:"الموقع",langName:"العربية",conv:"محوّل العملات الحي",ccNote:"أسعار حية — تُحدّث تلقائيًا",extremes:"أقصى درجات العالم الآن",moonW:"القمر هذا الأسبوع",illum:"نسبة الإضاءة",nextFull:"البدر القادم",nextNew:"المحاق القادم",gold:"الذهب",oz:"أونصة",btc:"بيتكوين",oil:"النفط الخام WTI",barrel:"برميل",beef:"لحم البقر",chicken:"دجاج",rice:"أرز",kg:"كغ عالميًا"},
-  en:{title:"Live Now",sub:"The planet at this very moment",local:"Your local time",dayNight:"Day & night at your location today",dayLen:"Daylight",nightLen:"Night",sunTimes:"Sunrise / Sunset",weather:"Weather where you are",wxNote:"Live data from Open-Meteo — uses your device location",prices:"Live global prices",foodNote:"Bitcoin live from CoinGecko — other prices are updated global averages",sky:"In the sky right now",planes:"planes airborne",skyNote:"Full version: OpenSky Network",births:"Born today worldwide",deathsL:"Died today:",incidents:"Incidents recorded now worldwide",incNote:"Full version: ADS-B · AISStream · ACLED",prod:"Earth produces this hour",install:"⬇ Install app",all:"All",cat0:"Cars",cat1:"Aircraft",cat2:"Ships",cat3:"Conflicts",loc:"Location",langName:"English",conv:"Live currency converter",ccNote:"Live rates — auto-updated",extremes:"World temperature extremes now",moonW:"The Moon this week",illum:"Illumination",nextFull:"Next full moon",nextNew:"Next new moon",gold:"Gold",oz:"oz",btc:"Bitcoin",oil:"WTI Crude",barrel:"barrel",beef:"Beef",chicken:"Chicken",rice:"Rice",kg:"kg global avg"},
-  es:{title:"Ahora mismo",sub:"El planeta en este instante",local:"Tu hora local",dayNight:"Día y noche hoy en tu ubicación",dayLen:"Luz del día",nightLen:"Noche",sunTimes:"Amanecer / Atardecer",weather:"El tiempo donde estás",wxNote:"Datos en vivo de Open-Meteo — usa tu ubicación",prices:"Precios mundiales en vivo",foodNote:"Bitcoin en vivo de CoinGecko",sky:"En el cielo ahora",planes:"aviones en vuelo",skyNote:"Versión completa: OpenSky",births:"Nacidos hoy en el mundo",deathsL:"Fallecidos hoy:",incidents:"Incidentes registrados ahora en el mundo",incNote:"Versión completa: ADS-B · AISStream · ACLED",prod:"La Tierra produce esta hora",install:"⬇ Instalar app",all:"Todo",cat0:"Coches",cat1:"Aviones",cat2:"Barcos",cat3:"Conflictos",loc:"Lugar",langName:"Español",conv:"Conversor de divisas en vivo",ccNote:"Tipos en vivo — se actualizan solos",extremes:"Extremos de temperatura mundiales",moonW:"La Luna esta semana",illum:"Iluminación",nextFull:"Próxima luna llena",nextNew:"Próxima luna nueva",gold:"Oro",oz:"onza",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne de res",chicken:"Pollo",rice:"Arroz",kg:"kg promedio"},
-  fr:{title:"En direct maintenant",sub:"La planète en ce moment",local:"Votre heure locale",dayNight:"Jour et nuit aujourd’hui chez vous",dayLen:"Jour",nightLen:"Nuit",sunTimes:"Lever / Coucher",weather:"Météo chez vous",wxNote:"Données en direct d’Open-Meteo — utilise votre position",prices:"Prix mondiaux en direct",foodNote:"Bitcoin en direct via CoinGecko",sky:"Dans le ciel en ce moment",planes:"avions en vol",skyNote:"Version complète : OpenSky",births:"Nés aujourd’hui dans le monde",deathsL:"Décédés aujourd’hui :",incidents:"Incidents enregistrés maintenant dans le monde",incNote:"Version complète : ADS-B · AISStream · ACLED",prod:"La Terre produit cette heure",install:"⬇ Installer l’app",all:"Tout",cat0:"Voitures",cat1:"Avions",cat2:"Navires",cat3:"Conflits",loc:"Lieu",langName:"Français",conv:"Convertisseur de devises en direct",ccNote:"Taux en direct — mis à jour auto",extremes:"Extrêmes de température dans le monde",moonW:"La Lune cette semaine",illum:"Illumination",nextFull:"Prochaine pleine lune",nextNew:"Prochaine nouvelle lune",gold:"Or",oz:"once",btc:"Bitcoin",oil:"Pétrole WTI",barrel:"baril",beef:"Bœuf",chicken:"Poulet",rice:"Riz",kg:"kg moyen"},
-  tr:{title:"Şu an neler oluyor",sub:"Gezegenin bu anı",local:"Yerel saatiniz",dayNight:"Bugün bulunduğunuz yerde gece ve gündüz",dayLen:"Gündüz",nightLen:"Gece",sunTimes:"Gün doğumu / Batımı",weather:"Bulunduğunuz yerin havası",wxNote:"Open-Meteo canlı verisi — konumunuzu kullanır",prices:"Canlı küresel fiyatlar",foodNote:"Bitcoin canlı: CoinGecko",sky:"Şu anda gökyüzünde",planes:"uçak havada",skyNote:"Tam sürüm: OpenSky",births:"Bugün dünyada doğanlar",deathsL:"Bugün ölenler:",incidents:"Şu anda dünyada kaydedilen olaylar",incNote:"Tam sürüm: ADS-B · AISStream · ACLED",prod:"Dünya bu saatte üretiyor",install:"⬇ Uygulamayı yükle",all:"Hepsi",cat0:"Arabalar",cat1:"Uçaklar",cat2:"Gemi",cat3:"Çatışmalar",loc:"Konum",langName:"Türkçe",conv:"Canlı döviz çevirici",ccNote:"Canlı kurlar — otomatik güncellenir",extremes:"Dünya sıcaklık uçları",moonW:"Bu hafta Ay",illum:"Aydınlanma",nextFull:"Sonraki dolunay",nextNew:"Sonraki yeni ay",gold:"Altın",oz:"ons",btc:"Bitcoin",oil:"Ham petrol WTI",barrel:"varil",beef:"Sığır eti",chicken:"Tavuk",rice:"Pirinc",kg:"kg ort."},
-  ur:{title:"ابھی کیا ہو رہا ہے",sub:"اس لمحے سیارہ زمین",local:"آپ کا مقامی وقت",dayNight:"آج آپ کے مقام پر دن اور رات",dayLen:"دن",nightLen:"رات",sunTimes:"طلوع / غروب",weather:"آپ کے مقام کا موسم",wxNote:"Open-Meteo لائیو ڈیٹا — آپ کی لوکیشن استعمال کرتا ہے",prices:"عالمی لائیو قیمتیں",foodNote:"بٹ کوائن لائیو: CoinGecko",sky:"آسمان میں ابھی",planes:"ہوائی جہاز",skyNote:"مکمل ورژن: OpenSky",births:"آج دنیا میں پیدا ہونے والے",deathsL:"آج وفات پانے والے:",incidents:"دنیا بھر میں ابھی ریکارڈ ہونے والے واقعات",incNote:"مکمل ورژن: ADS-B · AISStream · ACLED",prod:"زمین اس گھنٹے میں پیدا کرتی ہے",install:"⬇ ایپ انسٹال کریں",all:"سب",cat0:"گاڑیاں",cat1:"طیارے",cat2:"بحری جہاز",cat3:"تنازعات",loc:"مقام",langName:"اردو",conv:"لائیو کرنسی کنورٹر",ccNote:"لائیو ریٹس — خودکار تازہ کاری",extremes:"دنیا بھر کے درجہ حرارت کے انتہا",moonW:"اس ہفتے چاند",illum:"روشنی",nextFull:"اگلا بدر",nextNew:"اگلا محاق",gold:"سونا",oz:"اونس",btc:"بٹ کوائن",oil:"خام تیل WTI",barrel:"بیریل",beef:"گائے کا گوشت",chicken:"مرغی",rice:"چاول",kg:"کلو اوسط"},
-  hi:{title:"अभी क्या हो रहा है",sub:"इस पल ग्रह पृथ्वी",local:"आपका स्थानीय समय",dayNight:"आज आपके स्थान पर दिन और रात",dayLen:"दिन",nightLen:"रात",sunTimes:"सूर्योदय / सूर्यास्त",weather:"आपके स्थान का मौसम",wxNote:"Open-Meteo लाइव डेटा — आपकी लोकेशन का उपयोग करता है",prices:"वैश्विक लाइव कीमतें",foodNote:"बिटकॉइन लाइव: CoinGecko",sky:"अभी आसमान में",planes:"हवाई जहाज",skyNote:"पूरा वर्ज़न: OpenSky",births:"आज दुनिया में जन्मे",deathsL:"आज मृत:",incidents:"दुनिया भर में अभी दर्ज हो रही घटनाएँ",incNote:"पूरा वर्ज़न: ADS-B · AISStream · ACLED",prod:"धरती इस घंटे में बनाती है",install:"⬇ ऐप इंस्टॉल करें",all:"सब",cat0:"कारें",cat1:"हवाई जहाज",cat2:"जहाज",cat3:"संघर्ष",loc:"स्थान",langName:"हिन्दी",conv:"लाइव करेंसी कन्वर्टर",ccNote:"लाइव रेट — अपडेट होते रहते हैं",extremes:"विश्व तापमान चरम",moonW:"इस हफ्ते चाँद",illum:"रोशनी",nextFull:"अगला पूर्णिमा",nextNew:"अगला अमावस",gold:"सोना",oz:"औंस",btc:"बिटकॉइन",oil:"कच्चा तेल WTI",barrel:"बैरल",beef:"गोमांस",chicken:"मुर्गी",rice:"चावल",kg:"किग्रा औसत"},
-  zh:{title:"此刻正在发生",sub:"此刻的地球",local:"您的当地时间",dayNight:"您所在地的今日昼夜时长",dayLen:"白天",nightLen:"夜晚",sunTimes:"日出 / 日落",weather:"您所在地的天气",wxNote:"Open-Meteo 实时数据 — 使用您的定位",prices:"全球实时价格",foodNote:"比特币实时: CoinGecko",sky:"此刻天空中有",planes:"架飞机在飞行",skyNote:"完整版: OpenSky",births:"今天全球出生",deathsL:"今天全球逝世:",incidents:"全球此刻正在记录的事件",incNote:"完整版: ADS-B · AISStream · ACLED",prod:"地球这一小时的生产",install:"⬇ 安装应用",all:"全部",cat0:"汽车",cat1:"飞机",cat2:"船只",cat3:"冲突",loc:"地点",langName:"中文",conv:"实时货币换算器",ccNote:"实时汇率 — 自动更新",extremes:"全球气温极端",moonW:"本周月亮",illum:"照亮比例",nextFull:"下一个满月",nextNew:"下一个新月",gold:"黄金",oz:"盎司",btc:"比特币",oil:"WTI 原油",barrel:"桶",beef:"牛肉",chicken:"鸡肉",rice:"大米",kg:"公斤均价"},
-  ru:{title:"Что происходит сейчас",sub:"Планета в этот момент",local:"Ваше местное время",dayNight:"День и ночь сегодня в вашей точке",dayLen:"День",nightLen:"Ночь",sunTimes:"Восход / Закат",weather:"Погода у вас",wxNote:"Живые данные Open-Meteo — использует геолокацию",prices:"Мировые цены сейчас",foodNote:"Биткоин в реальном времени: CoinGecko",sky:"В небе прямо сейчас",planes:"самолётов",skyNote:"Полная версия: OpenSky",births:"Родились сегодня в мире",deathsL:"Умерли сегодня:",incidents:"Инциденты, фиксируемые сейчас в мире",incNote:"Полная версия: ADS-B · AISStream · ACLED",prod:"Земля производит в этот час",install:"⬇ Установить",all:"Все",cat0:"Авто",cat1:"Самолёты",cat2:"Корабли",cat3:"Конфликты",loc:"Место",langName:"Русский",conv:"Живой конвертер валют",ccNote:"Живые курсы — автообновление",extremes:"Мировые температурные рекорды",moonW:"Луна на этой неделе",illum:"Освещённость",nextFull:"Следующее полнолуние",nextNew:"Следующее новолуние",gold:"Золото",oz:"унция",btc:"Биткоин",oil:"Нефть WTI",barrel:"баррель",beef:"Говядина",chicken:"Курица",rice:"Рис",kg:"кг средн."},
-  pt:{title:"Acontecendo agora",sub:"O planeta neste momento",local:"Sua hora local",dayNight:"Dia e noite hoje na sua localização",dayLen:"Dia",nightLen:"Noite",sunTimes:"Nascer / Pôr do sol",weather:"Tempo onde você está",wxNote:"Dados ao vivo do Open-Meteo — usa sua localização",prices:"Preços mundiais ao vivo",foodNote:"Bitcoin ao vivo: CoinGecko",sky:"No céu agora",planes:"aviões no ar",skyNote:"Versão completa: OpenSky",births:"Nascidos hoje no mundo",deathsL:"Mortos hoje:",incidents:"Incidentes registrados agora no mundo",incNote:"Versão completa: ADS-B · AISStream · ACLED",prod:"A Terra produz nesta hora",install:"⬇ Instalar app",all:"Todos",cat0:"Carros",cat1:"Aviões",cat2:"Navios",cat3:"Conflitos",loc:"Local",langName:"Português",conv:"Conversor de moedas ao vivo",ccNote:"Cotações ao vivo — atualização automática",extremes:"Extremos de temperatura mundiais",moonW:"A Lua esta semana",illum:"Iluminação",nextFull:"Próxima lua cheia",nextNew:"Próxima lua nova",gold:"Ouro",oz:"onça",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne bovina",chicken:"Frango",rice:"Arroz",kg:"kg médio"},
-  de:{title:"Was jetzt passiert",sub:"Der Planet in diesem Moment",local:"Deine Ortszeit",dayNight:"Tag und Nacht heute an deinem Ort",dayLen:"Tag",nightLen:"Nacht",sunTimes:"Sonnenaufgang / -untergang",weather:"Wetter bei dir",wxNote:"Live-Daten von Open-Meteo — nutzt deinen Standort",prices:"Weltweite Preise live",foodNote:"Bitcoin live: CoinGecko",sky:"Jetzt am Himmel",planes:"Flugzeuge",skyNote:"Vollversion: OpenSky",births:"Heute weltweit geboren",deathsL:"Heute gestorben:",incidents:"Jetzt weltweit erfasste Vorfälle",incNote:"Vollversion: ADS-B · AISStream · ACLED",prod:"Die Erde produziert diese Stunde",install:"⬇ App installieren",all:"Alle",cat0:"Autos",cat1:"Flugzeuge",cat2:"Schiffe",cat3:"Konflikte",loc:"Ort",langName:"Deutsch",conv:"Live-Währungsrechner",ccNote:"Live-Kurse — auto-aktualisiert",extremes:"Weltweite Temperatur-Extreme",moonW:"Der Mond diese Woche",illum:"Beleuchtung",nextFull:"Nächster Vollmond",nextNew:"Nächster Neumond",gold:"Gold",oz:"Unze",btc:"Bitcoin",oil:"Rohöl WTI",barrel:"Barrel",beef:"Rindfleisch",chicken:"Hähnchen",rice:"Reis",kg:"kg Ø"}
+  ar:{title:"ماذا يحدث الآن",sub:"الكوكب في هذه اللحظة",local:"توقيتك المحلي",dayNight:"الليل والنهار اليوم في موقعك",dayLen:"مدة النهار",nightLen:"مدة الليل",sunTimes:"الشروق / الغروب",weather:"الطقس عندك الآن",wxNote:"بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك",prices:"الأسعار الآن عالميًا",foodNote:"بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا",sky:"في السماء الآن",planes:"طائرة محلقة",skyNote:"النسخة الكاملة: OpenSky Network",births:"وُلد اليوم حول العالم",deathsL:"توفي اليوم",prod:"الأرض تنتج في هذه الساعة",install:"⬇ تثبيت التطبيق",all:"الكل",langName:"العربية",conv:"محوّل العملات الحي",ccNote:"أسعار حية — تُحدّث تلقائيًا",extremes:"أقصى درجات العالم الآن",moonW:"القمر هذا الأسبوع",illum:"نسبة الإضاءة",nextFull:"البدر القادم",nextNew:"المحاق القادم",gold:"الذهب",oz:"أونصة",btc:"بيتكوين",oil:"النفط الخام WTI",barrel:"برميل",beef:"لحم البقر",chicken:"دجاج",rice:"أرز",kg:"كغ عالميًا"},
+  en:{title:"Live Now",sub:"The planet at this very moment",local:"Your local time",dayNight:"Day & night at your location today",dayLen:"Daylight",nightLen:"Night",sunTimes:"Sunrise / Sunset",weather:"Weather where you are",wxNote:"Live data from Open-Meteo — uses your device location",prices:"Live global prices",foodNote:"Bitcoin live from CoinGecko — other prices are updated global averages",sky:"In the sky right now",planes:"planes airborne",skyNote:"Full version: OpenSky Network",births:"Born today worldwide",deathsL:"Died today:",prod:"Earth produces this hour",install:"⬇ Install app",all:"All",langName:"English",conv:"Live currency converter",ccNote:"Live rates — auto-updated",extremes:"World temperature extremes now",moonW:"The Moon this week",illum:"Illumination",nextFull:"Next full moon",nextNew:"Next new moon",gold:"Gold",oz:"oz",btc:"Bitcoin",oil:"WTI Crude",barrel:"barrel",beef:"Beef",chicken:"Chicken",rice:"Rice",kg:"kg global avg"},
+  es:{title:"Ahora mismo",sub:"El planeta en este instante",local:"Tu hora local",dayNight:"Día y noche hoy en tu ubicación",dayLen:"Luz del día",nightLen:"Noche",sunTimes:"Amanecer / Atardecer",weather:"El tiempo donde estás",wxNote:"Datos en vivo de Open-Meteo — usa tu ubicación",prices:"Precios mundiales en vivo",foodNote:"Bitcoin en vivo de CoinGecko",sky:"En el cielo ahora",planes:"aviones en vuelo",skyNote:"Versión completa: OpenSky",births:"Nacidos hoy en el mundo",deathsL:"Fallecidos hoy:",prod:"La Tierra produce esta hora",install:"⬇ Instalar app",all:"Todo",langName:"Español",conv:"Conversor de divisas en vivo",ccNote:"Tipos en vivo — se actualizan solos",extremes:"Extremos de temperatura mundiales",moonW:"La Luna esta semana",illum:"Iluminación",nextFull:"Próxima luna llena",nextNew:"Próxima luna nueva",gold:"Oro",oz:"onza",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne de res",chicken:"Pollo",rice:"Arroz",kg:"kg promedio"},
+  fr:{title:"En direct maintenant",sub:"La planète en ce moment",local:"Votre heure locale",dayNight:"Jour et nuit aujourd’hui chez vous",dayLen:"Jour",nightLen:"Nuit",sunTimes:"Lever / Coucher",weather:"Météo chez vous",wxNote:"Données en direct d’Open-Meteo — utilise votre position",prices:"Prix mondiaux en direct",foodNote:"Bitcoin en direct via CoinGecko",sky:"Dans le ciel en ce moment",planes:"avions en vol",skyNote:"Version complète : OpenSky",births:"Nés aujourd’hui dans le monde",deathsL:"Décédés aujourd’hui :",prod:"La Terre produit cette heure",install:"⬇ Installer l’app",all:"Tout",langName:"Français",conv:"Convertisseur de devises en direct",ccNote:"Taux en direct — mis à jour auto",extremes:"Extrêmes de température dans le monde",moonW:"La Lune cette semaine",illum:"Illumination",nextFull:"Prochaine pleine lune",nextNew:"Prochaine nouvelle lune",gold:"Or",oz:"once",btc:"Bitcoin",oil:"Pétrole WTI",barrel:"baril",beef:"Bœuf",chicken:"Poulet",rice:"Riz",kg:"kg moyen"},
+  tr:{title:"Şu an neler oluyor",sub:"Gezegenin bu anı",local:"Yerel saatiniz",dayNight:"Bugün bulunduğunuz yerde gece ve gündüz",dayLen:"Gündüz",nightLen:"Gece",sunTimes:"Gün doğumu / Batımı",weather:"Bulunduğunuz yerin havası",wxNote:"Open-Meteo canlı verisi — konumunuzu kullanır",prices:"Canlı küresel fiyatlar",foodNote:"Bitcoin canlı: CoinGecko",sky:"Şu anda gökyüzünde",planes:"uçak havada",skyNote:"Tam sürüm: OpenSky",births:"Bugün dünyada doğanlar",deathsL:"Bugün ölenler:",prod:"Dünya bu saatte üretiyor",install:"⬇ Uygulamayı yükle",all:"Hepsi",langName:"Türkçe",conv:"Canlı döviz çevirici",ccNote:"Canlı kurlar — otomatik güncellenir",extremes:"Dünya sıcaklık uçları",moonW:"Bu hafta Ay",illum:"Aydınlanma",nextFull:"Sonraki dolunay",nextNew:"Sonraki yeni ay",gold:"Altın",oz:"ons",btc:"Bitcoin",oil:"Ham petrol WTI",barrel:"varil",beef:"Sığır eti",chicken:"Tavuk",rice:"Pirinc",kg:"kg ort."},
+  ur:{title:"ابھی کیا ہو رہا ہے",sub:"اس لمحے سیارہ زمین",local:"آپ کا مقامی وقت",dayNight:"آج آپ کے مقام پر دن اور رات",dayLen:"دن",nightLen:"رات",sunTimes:"طلوع / غروب",weather:"آپ کے مقام کا موسم",wxNote:"Open-Meteo لائیو ڈیٹا — آپ کی لوکیشن استعمال کرتا ہے",prices:"عالمی لائیو قیمتیں",foodNote:"بٹ کوائن لائیو: CoinGecko",sky:"آسمان میں ابھی",planes:"ہوائی جہاز",skyNote:"مکمل ورژن: OpenSky",births:"آج دنیا میں پیدا ہونے والے",deathsL:"آج وفات پانے والے:",prod:"زمین اس گھنٹے میں پیدا کرتی ہے",install:"⬇ ایپ انسٹال کریں",all:"سب",langName:"اردو",conv:"لائیو کرنسی کنورٹر",ccNote:"لائیو ریٹس — خودکار تازہ کاری",extremes:"دنیا بھر کے درجہ حرارت کے انتہا",moonW:"اس ہفتے چاند",illum:"روشنی",nextFull:"اگلا بدر",nextNew:"اگلا محاق",gold:"سونا",oz:"اونس",btc:"بٹ کوائن",oil:"خام تیل WTI",barrel:"بیریل",beef:"گائے کا گوشت",chicken:"مرغی",rice:"چاول",kg:"کلو اوسط"},
+  hi:{title:"अभी क्या हो रहा है",sub:"इस पल ग्रह पृथ्वी",local:"आपका स्थानीय समय",dayNight:"आज आपके स्थान पर दिन और रात",dayLen:"दिन",nightLen:"रात",sunTimes:"सूर्योदय / सूर्यास्त",weather:"आपके स्थान का मौसम",wxNote:"Open-Meteo लाइव डेटा — आपकी लोकेशन का उपयोग करता है",prices:"वैश्विक लाइव कीमतें",foodNote:"बिटकॉइन लाइव: CoinGecko",sky:"अभी आसमान में",planes:"हवाई जहाज",skyNote:"पूरा वर्ज़न: OpenSky",births:"आज दुनिया में जन्मे",deathsL:"आज मृत:",prod:"धरती इस घंटे में बनाती है",install:"⬇ ऐप इंस्टॉल करें",all:"सब",langName:"हिन्दी",conv:"लाइव करेंसी कन्वर्टर",ccNote:"लाइव रेट — अपडेट होते रहते हैं",extremes:"विश्व तापमान चरम",moonW:"इस हफ्ते चाँद",illum:"रोशनी",nextFull:"अगला पूर्णिमा",nextNew:"अगला अमावस",gold:"सोना",oz:"औंस",btc:"बिटकॉइन",oil:"कच्चा तेल WTI",barrel:"बैरल",beef:"गोमांस",chicken:"मुर्गी",rice:"चावल",kg:"किग्रा औसत"},
+  zh:{title:"此刻正在发生",sub:"此刻的地球",local:"您的当地时间",dayNight:"您所在地的今日昼夜时长",dayLen:"白天",nightLen:"夜晚",sunTimes:"日出 / 日落",weather:"您所在地的天气",wxNote:"Open-Meteo 实时数据 — 使用您的定位",prices:"全球实时价格",foodNote:"比特币实时: CoinGecko",sky:"此刻天空中有",planes:"架飞机在飞行",skyNote:"完整版: OpenSky",births:"今天全球出生",deathsL:"今天全球逝世:",prod:"地球这一小时的生产",install:"⬇ 安装应用",all:"全部",langName:"中文",conv:"实时货币换算器",ccNote:"实时汇率 — 自动更新",extremes:"全球气温极端",moonW:"本周月亮",illum:"照亮比例",nextFull:"下一个满月",nextNew:"下一个新月",gold:"黄金",oz:"盎司",btc:"比特币",oil:"WTI 原油",barrel:"桶",beef:"牛肉",chicken:"鸡肉",rice:"大米",kg:"公斤均价"},
+  ru:{title:"Что происходит сейчас",sub:"Планета в этот момент",local:"Ваше местное время",dayNight:"День и ночь сегодня в вашей точке",dayLen:"День",nightLen:"Ночь",sunTimes:"Восход / Закат",weather:"Погода у вас",wxNote:"Живые данные Open-Meteo — использует геолокацию",prices:"Мировые цены сейчас",foodNote:"Биткоин в реальном времени: CoinGecko",sky:"В небе прямо сейчас",planes:"самолётов",skyNote:"Полная версия: OpenSky",births:"Родились сегодня в мире",deathsL:"Умерли сегодня:",prod:"Земля производит в этот час",install:"⬇ Установить",all:"Все",langName:"Русский",conv:"Живой конвертер валют",ccNote:"Живые курсы — автообновление",extremes:"Мировые температурные рекорды",moonW:"Луна на этой неделе",illum:"Освещённость",nextFull:"Следующее полнолуние",nextNew:"Следующее новолуние",gold:"Золото",oz:"унция",btc:"Биткоин",oil:"Нефть WTI",barrel:"баррель",beef:"Говядина",chicken:"Курица",rice:"Рис",kg:"кг средн."},
+  pt:{title:"Acontecendo agora",sub:"O planeta neste momento",local:"Sua hora local",dayNight:"Dia e noite hoje na sua localização",dayLen:"Dia",nightLen:"Noite",sunTimes:"Nascer / Pôr do sol",weather:"Tempo onde você está",wxNote:"Dados ao vivo do Open-Meteo — usa sua localização",prices:"Preços mundiais ao vivo",foodNote:"Bitcoin ao vivo: CoinGecko",sky:"No céu agora",planes:"aviões no ar",skyNote:"Versão completa: OpenSky",births:"Nascidos hoje no mundo",deathsL:"Mortos hoje:",prod:"A Terra produz nesta hora",install:"⬇ Instalar app",all:"Todos",langName:"Português",conv:"Conversor de moedas ao vivo",ccNote:"Cotações ao vivo — atualização automática",extremes:"Extremos de temperatura mundiais",moonW:"A Lua esta semana",illum:"Iluminação",nextFull:"Próxima lua cheia",nextNew:"Próxima lua nova",gold:"Ouro",oz:"onça",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne bovina",chicken:"Frango",rice:"Arroz",kg:"kg médio"},
+  de:{title:"Was jetzt passiert",sub:"Der Planet in diesem Moment",local:"Deine Ortszeit",dayNight:"Tag und Nacht heute an deinem Ort",dayLen:"Tag",nightLen:"Nacht",sunTimes:"Sonnenaufgang / -untergang",weather:"Wetter bei dir",wxNote:"Live-Daten von Open-Meteo — nutzt deinen Standort",prices:"Weltweite Preise live",foodNote:"Bitcoin live: CoinGecko",sky:"Jetzt am Himmel",planes:"Flugzeuge",skyNote:"Vollversion: OpenSky",births:"Heute weltweit geboren",deathsL:"Heute gestorben:",prod:"Die Erde produziert diese Stunde",install:"⬇ App installieren",all:"Alle",langName:"Deutsch",conv:"Live-Währungsrechner",ccNote:"Live-Kurse — auto-aktualisiert",extremes:"Weltweite Temperatur-Extreme",moonW:"Der Mond diese Woche",illum:"Beleuchtung",nextFull:"Nächster Vollmond",nextNew:"Nächster Neumond",gold:"Gold",oz:"Unze",btc:"Bitcoin",oil:"Rohöl WTI",barrel:"Barrel",beef:"Rindfleisch",chicken:"Hähnchen",rice:"Reis",kg:"kg Ø"}
 };
 var lang = (navigator.language || "ar").slice(0,2).toLowerCase();
 var L = T[lang] || T.ar;
@@ -396,7 +400,7 @@ function renderPx(){
   });
 }
 // أسعار حقيقية حية
-function findItem(id){ return ITEMS.find(function(x){return x.id===id;}); }
+function findItem(id){ return ITEMS.find(function(x){return x.id===id; }); }
 function setReal(id, v){
   if(!v || isNaN(v)) return;
   var it=findItem(id);
@@ -404,68 +408,76 @@ function setReal(id, v){
   if(it) it.base=v;
 }
 // بيتكوين + ذهب (PAX Gold كاحتياطي) من CoinGecko
-function fetchCrypto(){
-  fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold&vs_currencies=usd&include_24hr_change=true")
-    .then(function(r){return r.json();})
-    .then(function(j){
-      if(j && j.bitcoin){ var b=findItem("btc"); b.base=j.bitcoin.usd; b.chg=j.bitcoin.usd_24h_change||0; }
-      if(j && j["pax-gold"]){ setReal("gold", j["pax-gold"].usd); }
-    }).catch(function(){});
-}
-// الذهب والنفط من أرشيف الموقع نفسه (الروبوت يلتقطها ليلًا من السيرفر — بلا CORS)
+// كل الأسعار من أرشيف الموقع نفسه (الروبوت يلتقطها من السيرفر 4 مرات يوميًا — بلا CORS إطلاقًا)
+var LAST_TS="";
 function fetchArchivePrices(){
   fetch("archive.json").then(function(r){return r.json();}).then(function(j){
     if(!j || !j.length) return;
     var e=j[j.length-1];
-    if(e.oil){ setReal("oil", e.oil); }
+    if(e.btc){ var b=findItem("btc"); var ch=b.chg; b.base=e.btc; b.chg=ch; }
     if(e.gold){ setReal("gold", e.gold); }
+    if(e.oil){ setReal("oil", e.oil); }
+    LAST_TS=e.ts||e.d;
+    var note=document.querySelector("[data-i18n=\"foodNote\"]");
+    if(note) note.textContent=(RTL?"آخر تحديث: ":"Last update: ")+LAST_TS+" UTC";
   }).catch(function(){});
 }
-fetchCrypto(); setInterval(fetchCrypto, 60000);
-fetchArchivePrices(); setInterval(fetchArchivePrices, 600000);
+fetchArchivePrices(); setInterval(fetchArchivePrices, 300000);
 
 /* ================= عدادات ================= */
 var now0=new Date(), ds0=new Date(now0); ds0.setHours(0,0,0,0);
 var births=385000*((now0-ds0)/86400000), deaths=170000*((now0-ds0)/86400000), planes=11800;
 
-/* ================= الحوادث (تغذية آلية — استبدلها بمصادر حقيقية لاحقًا) ================= */
-var INC=[
-  {cat:0,places:["الطريق السريع 66 – كاليفورنيا","أوتوستراد القاهرة – الإسكندرية","طريق الملك فهد – الرياض","الدائري الخامس – عمّان","E5 – ألمانيا","طريق مومباي – بيون"],tpl:["اصطدام متعدد بين مركبات","انقلاب شاحنة وسط الزحام","حريق مركبة أغلق المسرب","حادث دراجة نارية بليغ"]},
-  {cat:1,places:["فوق الأطلسي الغربي","مطار هيثرو – لندن","مجال إسطنبول الجوي","مطار دبي الدولي","المجال الجوي الياباني","مطار ساو باولو"],tpl:["إنذار فني أجبر طائرة على العودة","اضطراب شديد أصاب رحلة دولية","هبوط اضطراري ناجح","تحويل مسار رحلة بسبب عاصفة"]},
-  {cat:2,places:["مضيق هرمز","قناة السويس","البحر المتوسط – قبالة ليبيا","المحيط الهندي – قرب الصومال","مضيق ملقا","بحر الصين الجنوبي"],tpl:["اشتعال سفينة شحن","انقلاب قارب مهاجرين — إنقاذ جارٍ","توقف ناقلة عملاقة في الممر الملاحي","اصطدام باخرة بسفينة صيد"]},
-  {cat:3,places:["شرق أوكرانيا","غزة – الحدود الشمالية","السودان – الخرطوم","ميانمار","الصحراء الغربية","بحر آزوف"],tpl:["قصف متبادل على خط المواجهة","اشتباكات عنيفة قرب الحدود","غارة جوية على مواقع مدنية","تعزيزات عسكرية تصل إلى المنطقة"]}
-];
-var incidents=[], filter=-1;
-function spawnInc(){
-  var c=INC[Math.floor(Math.random()*INC.length)];
-  var p=c.places[Math.floor(Math.random()*c.places.length)];
-  incidents.unshift({cat:c.cat,text:c.tpl[Math.floor(Math.random()*c.tpl.length)],place:p,time:new Date()});
-  if(incidents.length>8) incidents.pop();
-  renderInc();
+/* ================= بث حقيقي: أخبار GDELT + زلازل USGS ================= */
+var NEWS=(lang==="ar")?
+  {news:"آخر الأخبار العالمية",quakes:"الزلازل المسجلة الآن",ago:"منذ",min:"د",by:"المصدر",fail:"تعذر الوصول للبث الحي حاليًا",up:"GDELT — بيانات حقيقية تُحدَّث كل 15 دقيقة"}:
+  {news:"Latest world news",quakes:"Earthquakes right now",ago:"",min:"min ago",by:"Source",fail:"Live feed unavailable right now",up:"GDELT — real data, updates every 15 minutes"};
+$("newsT").textContent=NEWS.news;
+$("quakesT").textContent=NEWS.quakes;
+$("newsNote").textContent=NEWS.up;
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"'"); }
+function agoTxt(ms){ var m=Math.max(1,Math.round(ms/60000)); return NEWS.ago+" "+m+NEWS.min; }
+
+function fetchNews(){
+  var q=(lang==="ar")?"sourcelang:arabic":"sourcelang:english";
+  fetch("https://api.gdeltproject.org/api/v2/doc/doc?query="+encodeURIComponent(q)+"&mode=artlist&maxrecords=6&format=json&sort=HybridRel")
+    .then(function(r){return r.json();})
+    .then(function(j){
+      var el=$("newsList"); el.innerHTML="";
+      var arts=(j.articles||[]).slice(0,5);
+      arts.forEach(function(a){
+        var d=document.createElement("article"); d.className="inc";
+        var t=new Date();
+        if(a.seendate && a.seendate.length>=12){
+          t=new Date(+a.seendate.slice(0,4), +a.seendate.slice(4,6)-1, +a.seendate.slice(6,8), +a.seendate.slice(8,10), +a.seendate.slice(10,12));
+        }
+        d.innerHTML='<div class="t"><a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(a.title)+'</a></div>'+
+          '<div class="m num">'+NEWS.by+": "+esc(a.domain||"")+" · "+agoTxt(Date.now()-t.getTime())+"</div>";
+        el.appendChild(d);
+      });
+      if(!arts.length) el.innerHTML='<div class="note">'+NEWS.fail+"</div>";
+    })
+    .catch(function(){ $("newsList").innerHTML='<div class="note">'+NEWS.fail+"</div>"; });
 }
-function renderInc(){
-  var el=$("incList"); el.innerHTML="";
-  var shown=0;
-  incidents.forEach(function(i){
-    if(filter!==-1 && i.cat!==filter) return;
-    if(shown++>=5) return;
-    var d=document.createElement("article"); d.className="inc";
-    d.innerHTML='<div class="t"><span class="cat c'+i.cat+'">'+L["cat"+i.cat]+'</span>'+i.text+'</div>'+
-      '<div class="m num">'+L.loc+': '+i.place+' · <time datetime="'+i.time.toISOString()+'">'+i.time.toLocaleTimeString(LOCALE)+'</time></div>';
-    el.appendChild(d);
-  });
-  if(!shown) el.innerHTML='<div class="note">—</div>';
+function fetchQuakes(){
+  fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson")
+    .then(function(r){return r.json();})
+    .then(function(j){
+      var el=$("quakeList"); el.innerHTML="";
+      var fs=(j.features||[]).slice(0,5);
+      fs.forEach(function(f){
+        var p=f.properties;
+        var d=document.createElement("article"); d.className="inc";
+        d.innerHTML='<div class="t"><span class="cat c0">M'+p.mag.toFixed(1)+"</span>"+esc(p.place)+"</div>"+
+          '<div class="m num">'+agoTxt(Date.now()-p.time)+"</div>";
+        el.appendChild(d);
+      });
+      if(!fs.length) el.innerHTML='<div class="note">'+NEWS.fail+"</div>";
+    })
+    .catch(function(){ $("quakeList").innerHTML='<div class="note">'+NEWS.fail+"</div>"; });
 }
-var chipsEl=$("chips");
-[-1,0,1,2,3].forEach(function(c){
-  var b=document.createElement("button");
-  b.className="chip"+(c===-1?" on":"");
-  b.textContent = c===-1 ? L.all : L["cat"+c];
-  b.onclick=function(){ filter=c; chipsEl.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on");}); b.classList.add("on"); renderInc(); };
-  chipsEl.appendChild(b);
-});
-for(var k=0;k<5;k++) spawnInc();
-setInterval(spawnInc, 4500);
+fetchNews(); setInterval(fetchNews, 900000);
+fetchQuakes(); setInterval(fetchQuakes, 60000);
 
 /* ================= الإنتاج العالمي ================= */
 var PROD=[
