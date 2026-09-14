@@ -122,6 +122,7 @@ hot, cold = extremes()
 midx, illum = moon()
 entry = {
     "d": datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d'),
+    "ts": datetime.datetime.now(datetime.timezone.utc).strftime('%H:%M'),
     "gold": gold_price(),
     "btc": btc_price(),
     "oil": oil_price(),
