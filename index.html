@@ -257,7 +257,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.8";
+var VERSION="v5.9";
 var CONFIG = {
     };
 
@@ -438,26 +438,60 @@ $("newsNote").textContent=NEWS.up;
 function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"'"); }
 function agoTxt(ms){ var m=Math.max(1,Math.round(ms/60000)); return NEWS.ago+" "+m+NEWS.min; }
 
+function renderNews(arts){
+  var el=$("newsList"); el.innerHTML="";
+  arts.slice(0,5).forEach(function(a){
+    var d=document.createElement("article"); d.className="inc";
+    d.innerHTML='<div class="t"><a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(a.title)+'</a></div>'+
+      '<div class="m num">'+NEWS.by+": "+esc(a.domain||"")+" · "+agoTxt(Date.now()-a.time)+"</div>";
+    el.appendChild(d);
+  });
+}
+function newsFail(){ $("newsList").innerHTML='<div class="note">'+NEWS.fail+"</div>"; }
+
 function fetchNews(){
   var q=(lang==="ar")?"sourcelang:arabic":"sourcelang:english";
   fetch("https://api.gdeltproject.org/api/v2/doc/doc?query="+encodeURIComponent(q)+"&mode=artlist&maxrecords=6&format=json&sort=HybridRel")
-    .then(function(r){return r.json();})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(function(j){
-      var el=$("newsList"); el.innerHTML="";
-      var arts=(j.articles||[]).slice(0,5);
-      arts.forEach(function(a){
-        var d=document.createElement("article"); d.className="inc";
+      var arts=(j.articles||[]).slice(0,5).map(function(a){
         var t=new Date();
         if(a.seendate && a.seendate.length>=12){
           t=new Date(+a.seendate.slice(0,4), +a.seendate.slice(4,6)-1, +a.seendate.slice(6,8), +a.seendate.slice(8,10), +a.seendate.slice(10,12));
         }
-        d.innerHTML='<div class="t"><a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(a.title)+'</a></div>'+
-          '<div class="m num">'+NEWS.by+": "+esc(a.domain||"")+" · "+agoTxt(Date.now()-t.getTime())+"</div>";
-        el.appendChild(d);
+        return {title:a.title, url:a.url, domain:a.domain, time:t.getTime()};
       });
-      if(!arts.length) el.innerHTML='<div class="note">'+NEWS.fail+"</div>";
+      if(!arts.length) throw 0;
+      renderNews(arts);
     })
-    .catch(function(){ $("newsList").innerHTML='<div class="note">'+NEWS.fail+"</div>"; });
+    .catch(function(){
+      // الاحتياطي 1: Reddit r/worldnews
+      fetch("https://www.reddit.com/r/worldnews/hot.json?limit=10")
+        .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+        .then(function(j){
+          var arts=(j.data.children||[]).filter(function(c){return !c.data.stickied;}).slice(0,5).map(function(c){
+            return {title:c.data.title, url:"https://www.reddit.com"+c.data.permalink, domain:c.data.domain, time:c.data.created_utc*1000};
+          });
+          if(!arts.length) throw 0;
+          renderNews(arts);
+        })
+        .catch(function(){
+          // الاحتياطي 2: Google News عبر rss2json
+          var rss=(lang==="ar")?
+            "https://news.google.com/rss/headlines/section/topic/WORLD?hl=ar&gl=SA&ceid=SA:ar":
+            "https://news.google.com/rss/headlines/section/topic/WORLD?hl=en-US&gl=US&ceid=US:en";
+          fetch("https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(rss))
+            .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+            .then(function(j){
+              var arts=(j.items||[]).slice(0,5).map(function(a){
+                return {title:a.title, url:a.link, domain:(a.author||""), time:new Date(a.pubDate).getTime()};
+              });
+              if(!arts.length) throw 0;
+              renderNews(arts);
+            })
+            .catch(newsFail);
+        });
+    });
 }
 function fetchQuakes(){
   fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson")
