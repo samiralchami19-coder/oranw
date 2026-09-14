@@ -226,13 +226,13 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 
 
 <div style="text-align:center;margin-top:20px">
-  <a href="https://facebook.com/oranoww" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-block;margin:0 10px;opacity:.7">
+  <a href="https://facebook.com/oranw" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-block;margin:0 10px;opacity:.7">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
   </a>
-  <a href="https://instagram.com/oranoww" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-block;margin:0 10px;opacity:.7">
+  <a href="https://instagram.com/oranw" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-block;margin:0 10px;opacity:.7">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.8" cy="6.2" r="1.3" fill="currentColor" stroke="none"/></svg>
   </a>
-  <a href="https://x.com/oranww" target="_blank" rel="noopener" aria-label="X" style="display:inline-block;margin:0 10px;opacity:.7">
+  <a href="https://x.com/oranw" target="_blank" rel="noopener" aria-label="X" style="display:inline-block;margin:0 10px;opacity:.7">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.2 2h6.4l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z"/></svg>
   </a>
 </div>
@@ -253,7 +253,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.2";
+var VERSION="v5.3";
 var CONFIG = {
     };
 
@@ -387,7 +387,7 @@ ITEMS.forEach(function(it){
 });
 function renderPx(){
   ITEMS.forEach(function(it){
-    var live=it.base*(1+(Math.random()-0.5)*0.0012);
+    var live=it.base*(1+(Math.random()-0.5)*(it.live?0.0004:0.0012));
     var ch=it.chg+(Math.random()-0.5)*0.08;
     $(it.id+"P").textContent="$"+px(live,it.d);
     var c=$(it.id+"C");
@@ -395,18 +395,41 @@ function renderPx(){
     c.className="chg num "+(ch>=0?"up":"down");
   });
 }
-// بيتكوين حقيقي من CoinGecko
-function fetchBTC(){
-  fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true")
+// أسعار حقيقية حية
+function findItem(id){ return ITEMS.find(function(x){return x.id===id;}); }
+function setReal(id, v){
+  if(!v || isNaN(v)) return;
+  var it=findItem(id);
+  if(it && it.base){ var ch=(v-it.base)/it.base*100; if(Math.abs(ch)>0.001) it.chg=ch; }
+  if(it) it.base=v;
+}
+// بيتكوين + ذهب (PAX Gold كاحتياطي) من CoinGecko
+function fetchCrypto(){
+  fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold&vs_currencies=usd&include_24hr_change=true")
     .then(function(r){return r.json();})
     .then(function(j){
-      if(j && j.bitcoin){
-        var b=ITEMS.find(function(x){return x.id==="btc";});
-        b.base=j.bitcoin.usd; b.chg=j.bitcoin.usd_24h_change||0;
-      }
+      if(j && j.bitcoin){ var b=findItem("btc"); b.base=j.bitcoin.usd; b.chg=j.bitcoin.usd_24h_change||0; }
+      if(j && j["pax-gold"] && !findItem("gold").live){ var g=findItem("gold"); g.base=j["pax-gold"].usd; g.live=true; }
     }).catch(function(){});
 }
-fetchBTC(); setInterval(fetchBTC, 60000);
+// الذهب والنفط الحقيقيان من stooq عبر وسيط CORS مجاني
+function stooqLive(sym, cb){
+  var target="https://stooq.com/q/l/?s="+sym+"&f=sd2t2ohlcv&h&e=csv";
+  fetch("https://api.allorigins.win/raw?url="+encodeURIComponent(target))
+    .then(function(r){return r.text();})
+    .then(function(t){
+      var lines=t.trim().split("\n");
+      if(lines.length<2) return;
+      var v=parseFloat(lines[1].split(",")[6]);
+      if(!isNaN(v)) cb(v);
+    }).catch(function(){});
+}
+function fetchCommodities(){
+  stooqLive("xauusd", function(v){ var g=findItem("gold"); if(!g.live){ setReal("gold", v); g.live=true; } });
+  stooqLive("cl.f", function(v){ setReal("oil", v); });
+}
+fetchCrypto(); setInterval(fetchCrypto, 60000);
+fetchCommodities(); setInterval(fetchCommodities, 300000);
 
 /* ================= عدادات ================= */
 var now0=new Date(), ds0=new Date(now0); ds0.setHours(0,0,0,0);
