@@ -257,7 +257,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v5.9";
+var VERSION="v6.0";
 var CONFIG = {
     };
 
@@ -440,6 +440,8 @@ function agoTxt(ms){ var m=Math.max(1,Math.round(ms/60000)); return NEWS.ago+" "
 
 function renderNews(arts){
   var el=$("newsList"); el.innerHTML="";
+  arts=arts.filter(function(a){ return a.title && !/[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/.test(a.title); });
+  if(!arts.length){ newsFail(); return; }
   arts.slice(0,5).forEach(function(a){
     var d=document.createElement("article"); d.className="inc";
     d.innerHTML='<div class="t"><a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">'+esc(a.title)+'</a></div>'+
@@ -454,7 +456,8 @@ function fetchNews(){
   fetch("https://api.gdeltproject.org/api/v2/doc/doc?query="+encodeURIComponent(q)+"&mode=artlist&maxrecords=6&format=json&sort=HybridRel")
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(function(j){
-      var arts=(j.articles||[]).slice(0,5).map(function(a){
+      var want=(lang==="ar")?"Arabic":"English";
+      var arts=(j.articles||[]).filter(function(a){ return !a.language || a.language===want; }).slice(0,5).map(function(a){
         var t=new Date();
         if(a.seendate && a.seendate.length>=12){
           t=new Date(+a.seendate.slice(0,4), +a.seendate.slice(4,6)-1, +a.seendate.slice(6,8), +a.seendate.slice(8,10), +a.seendate.slice(10,12));
