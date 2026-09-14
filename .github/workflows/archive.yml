@@ -1,7 +1,7 @@
 name: Daily Archive
 on:
   schedule:
-    - cron: '55 21 * * *'   # 00:55 بتوقيت مكة تقريبًا (21:55 UTC)
+    - cron: '55 0,6,12,18 * * *'   # كل 6 ساعات (4 لقطات يوميًا)
   workflow_dispatch:
 
 permissions:
