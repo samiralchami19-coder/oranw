@@ -150,6 +150,13 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 
 <main>
   <section class="card full">
+    <h2 class="lbl" data-i18n="factT">🧪 حقيقة علمية اليوم</h2>
+    <div id="factToday" style="font-size:19px;font-weight:600;line-height:1.7;margin-top:8px">…</div>
+    <button id="factToggle" style="margin-top:12px;padding:8px 20px;border-radius:10px;border:1px solid var(--bd);background:transparent;color:var(--fg3);cursor:pointer;font-family:inherit;font-size:13px"></button>
+    <div id="factAll" style="display:none;margin-top:10px"></div>
+  </section>
+
+  <section class="card full">
     <h2 class="lbl" data-i18n="dayNight">الليل والنهار اليوم في موقعك</h2>
     <div style="display:flex;gap:28px;margin-top:10px">
       <div class="dn"><b class="num" id="dayLen">—</b><span data-i18n="dayLen">مدة النهار</span></div>
@@ -212,13 +219,6 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   </section>
 
   <section class="card full">
-    <h2 class="lbl" data-i18n="factT">🧪 حقيقة علمية اليوم</h2>
-    <div id="factToday" style="font-size:19px;font-weight:600;line-height:1.7;margin-top:8px">…</div>
-    <button id="factToggle" style="margin-top:12px;padding:8px 20px;border-radius:10px;border:1px solid var(--bd);background:transparent;color:var(--fg3);cursor:pointer;font-family:inherit;font-size:13px"></button>
-    <div id="factAll" style="display:none;margin-top:10px"></div>
-  </section>
-
-  <section class="card full">
     <h2 class="lbl" data-i18n="extremes">أقصى درجات العالم الآن</h2>
     <div style="display:flex;gap:32px;margin-top:10px;flex-wrap:wrap">
       <div class="dn"><b class="num" id="hotT" style="color:var(--down)">—</b><span id="hotN">…</span></div>
@@ -274,7 +274,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v6.4";
+var VERSION="v6.5";
 var CONFIG = {
     };
 
