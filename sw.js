@@ -30,4 +30,3 @@ self.addEventListener('fetch', function (e) {
     })
   );
 });
-<script async src="async-script.js"></script>
