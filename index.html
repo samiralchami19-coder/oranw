@@ -569,15 +569,6 @@ function fetchRates(){
 ["change","input"].forEach(function(ev){ ccAmt.addEventListener(ev,ccCalc); ccFrom.addEventListener(ev,ccCalc); ccTo.addEventListener(ev,ccCalc); });
 fetchRates(); setInterval(fetchRates,3600000);
 
-  <!DOCTYPE html>
-<html>
-<body>
-<p id="demo">This is a paragraph.</p>
-<script>
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script>
-</body>
-</html>
 /* ================= أقصى درجات العالم الآن ================= */
 var EXT=[
   ["وادي الموت","Death Valley",36.46,-116.87],
@@ -654,6 +645,15 @@ window.addEventListener("beforeinstallprompt",function(e){
 $("installBtn").onclick=function(){
   if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt=null; this.style.display="none"; }
 };
+</script>
+</body>
+</html>
+  <!DOCTYPE html>
+<html>
+<body>
+<p id="demo">This is a paragraph.</p>
+<script>
+document.getElementById("demo").innerHTML = "Hello JavaScript!";
 </script>
 </body>
 </html>
