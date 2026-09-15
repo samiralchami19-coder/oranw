@@ -5,6 +5,41 @@ import json, math, datetime, os, urllib.request
 
 BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
 
+
+# ================= بنك الحقائق العلمية (30 حقيقة) =================
+FACTS = [
+    {"ar": "قلبك ينبض نحو 100,000 مرة كل يوم", "en": "Your heart beats about 100,000 times a day"},
+    {"ar": "ضوء الشمس يستغرق 8 دقائق و20 ثانية ليصل إلى الأرض", "en": "Sunlight takes 8 minutes 20 seconds to reach Earth"},
+    {"ar": "أكبر صحراء في العالم هي القارة القطبية الجنوبية", "en": "The largest desert on Earth is Antarctica"},
+    {"ar": "الأخطبوط يملك ثلاثة قلوب ودمه أزرق", "en": "An octopus has three hearts and blue blood"},
+    {"ar": "جسم الإنسان يحتوي على نحو 37 تريليون خلية", "en": "The human body has about 37 trillion cells"},
+    {"ar": "يوم على كوكب الزهرة أطول من سنة كاملة عليه", "en": "A day on Venus is longer than its whole year"},
+    {"ar": "المحيطات تضم 96% من ماء كوكب الأرض", "en": "Oceans hold 96% of Earth's water"},
+    {"ar": "الحوت الأزرق قلبه بحجم سيارة صغيرة", "en": "A blue whale's heart is the size of a small car"},
+    {"ar": "أطول سلسلة جبال في العالم تحت الماء في منتصف المحيطات", "en": "The longest mountain range is underwater: the mid-ocean ridge"},
+    {"ar": "90% من براكين الأرض موجودة تحت سطح المحيط", "en": "90% of Earth's volcanoes are under the ocean"},
+    {"ar": "دماغك يولّد كهرباء كافية لتشغيل مصباح LED صغير", "en": "Your brain makes enough electricity to power a small LED"},
+    {"ar": "الإنسان يتنفس حوالي 20,000 مرة يوميًا", "en": "You breathe about 20,000 times a day"},
+    {"ar": "لون الشمس أبيض في الحقيقة، لا أصفر", "en": "The Sun is actually white, not yellow"},
+    {"ar": "الأرض ليست كروية تمامًا — تنتفخ عند خط الاستواء", "en": "Earth is not a perfect sphere; it bulges at the equator"},
+    {"ar": "الأرض تدور بسرعة 1,670 كم/س عند خط الاستواء", "en": "Earth spins at 1,670 km/h at the equator"},
+    {"ar": "قمر المشتري (آيو) هو أكثر الأجرام بركانية في المجموعة الشمسية", "en": "Jupiter's moon Io is the most volcanic body in the solar system"},
+    {"ar": "النحل يستطيع التعرف على الوجوه البشرية", "en": "Bees can recognize human faces"},
+    {"ar": "كل الذهب المستخرج في التاريخ يكاد يملأ حوض سباحة أولمبيًا واحدًا", "en": "All gold ever mined would nearly fill one Olympic pool"},
+    {"ar": "العظام أقوى من الخرسانة عند المقارنة بالوزن", "en": "Bone is stronger than concrete for its weight"},
+    {"ar": "الجاذبية على سطح القمر تساوي 16.6% فقط من جاذبية الأرض", "en": "Moon gravity is only 16.6% of Earth's"},
+    {"ar": "أول موقع ويب في التاريخ ما زال يعمل: info.cern.ch", "en": "The first website ever is still online: info.cern.ch"},
+    {"ar": "أكبر كائن حي على الأرض فطر واحد في أوريغون يمتد لعشرة كيلومترات مربعة", "en": "The largest living organism is a fungus in Oregon spanning 10 km²"},
+    {"ar": "الماء الساخن قد يتجمد أسرع من البارد — ظاهرة تسمى تأثير مبمبا", "en": "Hot water can freeze faster than cold: the Mpemba effect"},
+    {"ar": "حاسوبك يحمل أكثر قوة من الحاسوب الذي أوصل الإنسان إلى القمر", "en": "Your phone is more powerful than the Apollo moon computer"},
+    {"ar": "صوت الرعد لا يمكن سماعه من مسافة تتجاوز 25 كيلومترًا", "en": "Thunder cannot be heard beyond about 25 km"},
+    {"ar": "بعض أنواع السلاحف تستطيع التنفس عبر مؤخرتها", "en": "Some turtles can breathe through their rear ends"},
+    {"ar": "درجة حرارة البرق تفوق خمسة أضعاف حرارة سطح الشمس", "en": "Lightning is five times hotter than the Sun's surface"},
+    {"ar": "هناك أكثر من 3,000 لغة محكية في قارة أفريقيا وحدها", "en": "Over 3,000 languages are spoken in Africa alone"},
+    {"ar": "الفضاء بين المجرات ليس فارغًا تمامًا — يحوي ذرات متناثرة", "en": "Intergalactic space is not empty: it holds scattered atoms"},
+    {"ar": "أسماك القرش موجودة على الأرض منذ قبل الأشجار", "en": "Sharks existed on Earth before trees did"}
+]
+
 def get(url):
     req = urllib.request.Request(url, headers={
         'User-Agent': BROWSER_UA,
@@ -142,4 +177,21 @@ data.append(entry)
 data = data[-400:]
 with open('archive.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False)
+
+# ================= حقيقة اليوم — تُضاف مرة واحدة يوميًا وتُحفظ للأبد =================
+facts = []
+if os.path.exists('facts.json'):
+    try:
+        facts = json.load(open('facts.json', encoding='utf-8'))
+    except Exception:
+        facts = []
+today = entry['d']
+if not any(f.get('d') == today for f in facts):
+    facts.append({'d': today, 'f': FACTS[len(facts) % len(FACTS)]})
+    facts = facts[-365:]
+    with open('facts.json', 'w', encoding='utf-8') as f:
+        json.dump(facts, f, ensure_ascii=False)
+    print('fact added:', today)
+else:
+    print('fact exists:', today)
 print('archived:', entry['d'], '| gold:', entry['gold'], '| btc:', entry['btc'], '| oil:', entry['oil'])
