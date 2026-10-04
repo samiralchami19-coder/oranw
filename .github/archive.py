@@ -37,7 +37,37 @@ FACTS = [
     {"ar": "درجة حرارة البرق تفوق خمسة أضعاف حرارة سطح الشمس", "en": "Lightning is five times hotter than the Sun's surface"},
     {"ar": "هناك أكثر من 3,000 لغة محكية في قارة أفريقيا وحدها", "en": "Over 3,000 languages are spoken in Africa alone"},
     {"ar": "الفضاء بين المجرات ليس فارغًا تمامًا — يحوي ذرات متناثرة", "en": "Intergalactic space is not empty: it holds scattered atoms"},
-    {"ar": "أسماك القرش موجودة على الأرض منذ قبل الأشجار", "en": "Sharks existed on Earth before trees did"}
+    {"ar": "أسماك القرش موجودة على الأرض منذ قبل الأشجار", "en": "Sharks existed on Earth before trees did"},
+    {"ar": "البرق يضرب الأرض 100 مرة كل ثانية", "en": "Lightning strikes Earth 100 times per second"},
+    {"ar": "خلاياك تتجدد باستمرار — بطانة معدتك تتبدل كل بضعة أيام", "en": "Your stomach lining renews itself every few days"},
+    {"ar": "أذن الفيل تزن حوالي 100 كيلوغرام", "en": "An elephant's ear weighs about 100 kg"},
+    {"ar": "السحب قد تزن مئات الأطنان رغم طفوها في الهواء", "en": "Clouds can weigh hundreds of tons while floating"},
+    {"ar": "المجرة درب التبانة تضم بين 100 و400 مليار نجم", "en": "The Milky Way holds 100-400 billion stars"},
+    {"ar": "الدماغ البشري يستهلك 20% من طاقة الجسم", "en": "The brain uses 20% of the body's energy"},
+    {"ar": "الحلزون يستطيع النوم لثلاث سنوات متواصلة", "en": "A snail can sleep for three years straight"},
+    {"ar": "ساعة يومك على الزهرة تساوي 243 يومًا أرضيًا", "en": "One day on Venus equals 243 Earth days"},
+    {"ar": "النمل يمثل 20% من الكتلة الحيوانية البرية على الأرض", "en": "Ants make up 20% of land animal biomass"},
+    {"ar": "ضوء المدينة يجعل النجوم غير مرئية لنصف سكان العالم", "en": "Light pollution hides the stars from half of humanity"},
+    {"ar": "النسر يطير وهو نائم أحيانًا — نصف دماغه يرتاح", "en": "Eagles can sleep while gliding: half the brain rests"},
+    {"ar": "البطريق لا يستطيع الطيران لكنه يسبح بسرعة 35 كم/س", "en": "Penguins can't fly but swim at 35 km/h"},
+    {"ar": "أول رسالة SMS في التاريخ قيل إنها كتبت: Merry Christmas", "en": "The first SMS ever sent said: Merry Christmas"},
+    {"ar": "الأفعى لا تملك جفونًا — عيونها عدسات مكشوفة", "en": "Snakes have no eyelids: their eyes are exposed lenses"},
+    {"ar": "الشعاب المرجانية تبني أكبر هياكل حية على الأرض", "en": "Coral reefs are the largest living structures on Earth"},
+    {"ar": "الهيدروجين يشكل 75% من مادة الكون المرئي", "en": "Hydrogen makes up 75% of visible matter in the universe"},
+    {"ar": "الطاووس يملك نحو 200 ريشة في ذيله", "en": "A peacock's tail holds about 200 feathers"},
+    {"ar": "القطط تنام 70% من حياتها", "en": "Cats sleep 70% of their lives"},
+    {"ar": "المحيط الجنوبي هو الأحدث أعمارًا بين المحيطات الخمسة", "en": "The Southern Ocean is the youngest of the five oceans"},
+    {"ar": "الكفيرين يفرزان 1.5 لتر من اللعاب يوميًا", "en": "Your glands produce 1.5 liters of saliva daily"},
+    {"ar": "الفراشة تذوق الطعام بأرجلها", "en": "Butterflies taste food with their feet"},
+    {"ar": "أطول كلمة في اللغة الإنجليزية لاسم بروتين بـ189,819 حرفًا", "en": "The longest English word is a protein name: 189,819 letters"},
+    {"ar": "القمر يبتعد عن الأرض 3.8 سنتيمتر كل سنة", "en": "The Moon drifts 3.8 cm away from Earth yearly"},
+    {"ar": "الرعد هو صوت الهواء الذي يتمدد بسرعة بسبب حرارة البرق", "en": "Thunder is the sound of air expanding from lightning heat"},
+    {"ar": "البشر يتشاركون 99.9% من الحمض النووي مع بعضهم", "en": "Humans share 99.9% of their DNA with each other"},
+    {"ar": "الأوز يطير على شكل حرف V ليقلل الإرهاق", "en": "Geese fly in a V formation to reduce fatigue"},
+    {"ar": "الفولاذ الذي في برج إيفل يتمدد صيفًا فيميل 15 سنتيمترًا", "en": "The Eiffel Tower leans 15 cm in summer heat expansion"},
+    {"ar": "خفاش واحد يستطيع أكل 1000 بعوضة في ساعة", "en": "One bat can eat 1,000 mosquitoes in an hour"},
+    {"ar": "صوت الحوت الأزرق يمكن سماعه من 1600 كم تحت الماء", "en": "A blue whale's call travels 1,600 km underwater"},
+    {"ar": "الكركند كان يُعد طعام فقراء قبل أن يصير فاخرًا", "en": "Lobster was once considered poor people's food"}
 ]
 
 def get(url):
@@ -178,6 +208,28 @@ data = data[-400:]
 with open('archive.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False)
 
+# ================= حقن آخر الأسعار في index.html (SEO) =================
+def inject_prices(path, e):
+    try:
+        s = open(path, encoding='utf-8').read()
+        import re as _re
+        def rep(marker, val, dec):
+            if val is None:
+                return
+            txt = ('$%s' % format(round(val, dec), ',.%df' % dec)) if dec else ('$%s' % format(int(round(val)), ','))
+            s2 = _re.sub(_re.escape(marker) + r'[^<]*', marker + txt, s, count=1)
+            return s2
+        for marker, key, dec in [('id="goldP">', 'gold', 2), ('id="btcP">', 'btc', 0), ('id="oilP">', 'oil', 2)]:
+            r = rep(marker, e.get(key), dec)
+            if r:
+                s = r
+        open(path, 'w', encoding='utf-8').write(s)
+        print('prices injected into index.html')
+    except Exception as ex:
+        print('inject failed:', ex)
+
+inject_prices('index.html', entry)
+
 # ================= حقيقة اليوم — تُضاف مرة واحدة يوميًا وتُحفظ للأبد =================
 facts = []
 if os.path.exists('facts.json'):
@@ -187,7 +239,8 @@ if os.path.exists('facts.json'):
         facts = []
 today = entry['d']
 if not any(f.get('d') == today for f in facts):
-    facts.append({'d': today, 'f': FACTS[len(facts) % len(FACTS)]})
+    nf = FACTS[len(facts) % len(FACTS)]
+    facts.append({'d': today, 'f': nf})
     facts = facts[-365:]
     with open('facts.json', 'w', encoding='utf-8') as f:
         json.dump(facts, f, ensure_ascii=False)
