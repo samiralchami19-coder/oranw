@@ -87,6 +87,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi A
 .pxrow .sym{font-size:14px;color:var(--fg2)}
 .pxrow .sym small{display:block;font-size:11px;color:var(--fg4)}
 .pxrow .price{font-size:19px;font-weight:700}
+.shbtn{border:1px solid var(--bd);background:transparent;color:var(--fg4);border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:14px;flex-shrink:0}
+.shbtn:hover{color:var(--fg);border-color:var(--fg3)}
 .chg{font-size:12px;margin-inline-end:8px}
 .chg.up{color:var(--up)} .chg.down{color:var(--down)}
 .delta{font-size:12px} .delta.up{color:var(--up)} .delta.down{color:var(--down)}
@@ -129,15 +131,7 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 </script>
 </head>
 <body>
-<script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-</script>
-  <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-</script> 
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782"
-     crossorigin="anonymous"></script>
+
 <div id="breaking" dir="rtl">
   <span class="brk-tag">🔴 عاجل</span>
   <div class="brk-view"><a id="brkText" target="_blank" rel="noopener"></a></div>
@@ -174,6 +168,12 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   </section>
 
   <section class="card full">
+    <h2 class="lbl" data-i18n="prayers">🕌 مواقيت الصلاة اليوم</h2>
+    <div id="prayerRow" style="display:flex;gap:20px;flex-wrap:wrap;margin-top:10px"></div>
+    <div class="note"><b id="hijriDate"></b> · <span data-i18n="prayerNote">حسب موقعك — Aladhan API</span></div>
+  </section>
+
+  <section class="card full">
     <h2 class="lbl" data-i18n="weather">الطقس عندك الآن</h2>
     <div class="wx">
       <div><div class="t num" id="wxT">—</div><div class="det" id="wxCity">…</div></div>
@@ -188,7 +188,14 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 
   <section class="card full">
     <h2 class="lbl" data-i18n="prices">الأسعار الآن عالميًا</h2>
-    <div id="px"></div>
+    <div id="px">
+      <div class="pxrow"><span class="sym">الذهب<small>أونصة · USD</small></span><span><span class="chg num" id="goldC"></span><span class="price num" id="goldP">$4,314.56</span></span><button class="shbtn" onclick="sharePrice('gold')" aria-label="share">📤</button></div>
+      <div class="pxrow"><span class="sym">بيتكوين<small>BTC · USD</small></span><span><span class="chg num" id="btcC"></span><span class="price num" id="btcP">$79,133</span></span><button class="shbtn" onclick="sharePrice('btc')" aria-label="share">📤</button></div>
+      <div class="pxrow"><span class="sym">النفط الخام WTI<small>برميل · USD</small></span><span><span class="chg num" id="oilC"></span><span class="price num" id="oilP">$101.55</span></span><button class="shbtn" onclick="sharePrice('oil')" aria-label="share">📤</button></div>
+      <div class="pxrow"><span class="sym">لحم البقر<small>كغ عالميًا · USD</small></span><span><span class="chg num" id="beefC"></span><span class="price num" id="beefP">$9.40</span></span></div>
+      <div class="pxrow"><span class="sym">دجاج<small>كغ عالميًا · USD</small></span><span><span class="chg num" id="chickenC"></span><span class="price num" id="chickenP">$3.85</span></span></div>
+      <div class="pxrow"><span class="sym">أرز<small>كغ عالميًا · USD</small></span><span><span class="chg num" id="riceC"></span><span class="price num" id="riceP">$1.18</span></span></div>
+    </div>
     <div class="note" data-i18n="foodNote">بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا</div>
   </section>
 
@@ -266,7 +273,7 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   </a>
 </div>
 
-<footer class="foot">OraNW © 2026 · <span class="num" id="ver"></span> · <a href="archive.html" style="text-decoration:none;color:inherit">الأرشيف</a> · <a href="privacy.html" style="text-decoration:none;color:inherit">الخصوصية</a></footer>
+<footer class="foot">OraNW © 2026 · <span class="num" id="ver"></span> · <a href="gold.html" style="text-decoration:none;color:inherit">الذهب</a> · <a href="archive.html" style="text-decoration:none;color:inherit">الأرشيف</a> · <a href="privacy.html" style="text-decoration:none;color:inherit">الخصوصية</a></footer>
 
 <script>
 window.addEventListener("error",function(e){
@@ -282,23 +289,23 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v6.5";
+var VERSION="v7.0";
 var CONFIG = {
     };
 
 /* ================= الترجمات ================= */
 var T = {
-  ar:{title:"ماذا يحدث الآن",sub:"الكوكب في هذه اللحظة",local:"توقيتك المحلي",dayNight:"الليل والنهار اليوم في موقعك",dayLen:"مدة النهار",nightLen:"مدة الليل",sunTimes:"الشروق / الغروب",weather:"الطقس عندك الآن",wxNote:"بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك",prices:"الأسعار الآن عالميًا",foodNote:"بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا",sky:"في السماء الآن",planes:"طائرة محلقة",skyNote:"النسخة الكاملة: OpenSky Network",births:"وُلد اليوم حول العالم",deathsL:"توفي اليوم",prod:"الأرض تنتج في هذه الساعة",install:"⬇ تثبيت التطبيق",all:"الكل",langName:"العربية",factT:"🧪 حقيقة علمية اليوم",allF:"جميع الحقائق",conv:"محوّل العملات الحي",ccNote:"أسعار حية — تُحدّث تلقائيًا",extremes:"أقصى درجات العالم الآن",moonW:"القمر هذا الأسبوع",illum:"نسبة الإضاءة",nextFull:"البدر القادم",nextNew:"المحاق القادم",gold:"الذهب",oz:"أونصة",btc:"بيتكوين",oil:"النفط الخام WTI",barrel:"برميل",beef:"لحم البقر",chicken:"دجاج",rice:"أرز",kg:"كغ عالميًا"},
-  en:{title:"Live Now",sub:"The planet at this very moment",local:"Your local time",dayNight:"Day & night at your location today",dayLen:"Daylight",nightLen:"Night",sunTimes:"Sunrise / Sunset",weather:"Weather where you are",wxNote:"Live data from Open-Meteo — uses your device location",prices:"Live global prices",foodNote:"Bitcoin live from CoinGecko — other prices are updated global averages",sky:"In the sky right now",planes:"planes airborne",skyNote:"Full version: OpenSky Network",births:"Born today worldwide",deathsL:"Died today:",prod:"Earth produces this hour",install:"⬇ Install app",all:"All",langName:"English",factT:"🧪 Science fact of the day",allF:"All facts",conv:"Live currency converter",ccNote:"Live rates — auto-updated",extremes:"World temperature extremes now",moonW:"The Moon this week",illum:"Illumination",nextFull:"Next full moon",nextNew:"Next new moon",gold:"Gold",oz:"oz",btc:"Bitcoin",oil:"WTI Crude",barrel:"barrel",beef:"Beef",chicken:"Chicken",rice:"Rice",kg:"kg global avg"},
-  es:{title:"Ahora mismo",sub:"El planeta en este instante",local:"Tu hora local",dayNight:"Día y noche hoy en tu ubicación",dayLen:"Luz del día",nightLen:"Noche",sunTimes:"Amanecer / Atardecer",weather:"El tiempo donde estás",wxNote:"Datos en vivo de Open-Meteo — usa tu ubicación",prices:"Precios mundiales en vivo",foodNote:"Bitcoin en vivo de CoinGecko",sky:"En el cielo ahora",planes:"aviones en vuelo",skyNote:"Versión completa: OpenSky",births:"Nacidos hoy en el mundo",deathsL:"Fallecidos hoy:",prod:"La Tierra produce esta hora",install:"⬇ Instalar app",all:"Todo",langName:"Español",factT:"🧪 Dato científico del día",allF:"Todos los datos",conv:"Conversor de divisas en vivo",ccNote:"Tipos en vivo — se actualizan solos",extremes:"Extremos de temperatura mundiales",moonW:"La Luna esta semana",illum:"Iluminación",nextFull:"Próxima luna llena",nextNew:"Próxima luna nueva",gold:"Oro",oz:"onza",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne de res",chicken:"Pollo",rice:"Arroz",kg:"kg promedio"},
-  fr:{title:"En direct maintenant",sub:"La planète en ce moment",local:"Votre heure locale",dayNight:"Jour et nuit aujourd’hui chez vous",dayLen:"Jour",nightLen:"Nuit",sunTimes:"Lever / Coucher",weather:"Météo chez vous",wxNote:"Données en direct d’Open-Meteo — utilise votre position",prices:"Prix mondiaux en direct",foodNote:"Bitcoin en direct via CoinGecko",sky:"Dans le ciel en ce moment",planes:"avions en vol",skyNote:"Version complète : OpenSky",births:"Nés aujourd’hui dans le monde",deathsL:"Décédés aujourd’hui :",prod:"La Terre produit cette heure",install:"⬇ Installer l’app",all:"Tout",langName:"Français",factT:"🧪 Le savoir du jour",allF:"Tous les savoirs",conv:"Convertisseur de devises en direct",ccNote:"Taux en direct — mis à jour auto",extremes:"Extrêmes de température dans le monde",moonW:"La Lune cette semaine",illum:"Illumination",nextFull:"Prochaine pleine lune",nextNew:"Prochaine nouvelle lune",gold:"Or",oz:"once",btc:"Bitcoin",oil:"Pétrole WTI",barrel:"baril",beef:"Bœuf",chicken:"Poulet",rice:"Riz",kg:"kg moyen"},
-  tr:{title:"Şu an neler oluyor",sub:"Gezegenin bu anı",local:"Yerel saatiniz",dayNight:"Bugün bulunduğunuz yerde gece ve gündüz",dayLen:"Gündüz",nightLen:"Gece",sunTimes:"Gün doğumu / Batımı",weather:"Bulunduğunuz yerin havası",wxNote:"Open-Meteo canlı verisi — konumunuzu kullanır",prices:"Canlı küresel fiyatlar",foodNote:"Bitcoin canlı: CoinGecko",sky:"Şu anda gökyüzünde",planes:"uçak havada",skyNote:"Tam sürüm: OpenSky",births:"Bugün dünyada doğanlar",deathsL:"Bugün ölenler:",prod:"Dünya bu saatte üretiyor",install:"⬇ Uygulamayı yükle",all:"Hepsi",langName:"Türkçe",factT:"🧪 Günün bilimsel gerçeği",allF:"Tüm gerçekler",conv:"Canlı döviz çevirici",ccNote:"Canlı kurlar — otomatik güncellenir",extremes:"Dünya sıcaklık uçları",moonW:"Bu hafta Ay",illum:"Aydınlanma",nextFull:"Sonraki dolunay",nextNew:"Sonraki yeni ay",gold:"Altın",oz:"ons",btc:"Bitcoin",oil:"Ham petrol WTI",barrel:"varil",beef:"Sığır eti",chicken:"Tavuk",rice:"Pirinc",kg:"kg ort."},
-  ur:{title:"ابھی کیا ہو رہا ہے",sub:"اس لمحے سیارہ زمین",local:"آپ کا مقامی وقت",dayNight:"آج آپ کے مقام پر دن اور رات",dayLen:"دن",nightLen:"رات",sunTimes:"طلوع / غروب",weather:"آپ کے مقام کا موسم",wxNote:"Open-Meteo لائیو ڈیٹا — آپ کی لوکیشن استعمال کرتا ہے",prices:"عالمی لائیو قیمتیں",foodNote:"بٹ کوائن لائیو: CoinGecko",sky:"آسمان میں ابھی",planes:"ہوائی جہاز",skyNote:"مکمل ورژن: OpenSky",births:"آج دنیا میں پیدا ہونے والے",deathsL:"آج وفات پانے والے:",prod:"زمین اس گھنٹے میں پیدا کرتی ہے",install:"⬇ ایپ انسٹال کریں",all:"سب",langName:"اردو",factT:"🧪 آج کی سائنسی حقیقت",allF:"تمام حقائق",conv:"لائیو کرنسی کنورٹر",ccNote:"لائیو ریٹس — خودکار تازہ کاری",extremes:"دنیا بھر کے درجہ حرارت کے انتہا",moonW:"اس ہفتے چاند",illum:"روشنی",nextFull:"اگلا بدر",nextNew:"اگلا محاق",gold:"سونا",oz:"اونس",btc:"بٹ کوائن",oil:"خام تیل WTI",barrel:"بیریل",beef:"گائے کا گوشت",chicken:"مرغی",rice:"چاول",kg:"کلو اوسط"},
-  hi:{title:"अभी क्या हो रहा है",sub:"इस पल ग्रह पृथ्वी",local:"आपका स्थानीय समय",dayNight:"आज आपके स्थान पर दिन और रात",dayLen:"दिन",nightLen:"रात",sunTimes:"सूर्योदय / सूर्यास्त",weather:"आपके स्थान का मौसम",wxNote:"Open-Meteo लाइव डेटा — आपकी लोकेशन का उपयोग करता है",prices:"वैश्विक लाइव कीमतें",foodNote:"बिटकॉइन लाइव: CoinGecko",sky:"अभी आसमान में",planes:"हवाई जहाज",skyNote:"पूरा वर्ज़न: OpenSky",births:"आज दुनिया में जन्मे",deathsL:"आज मृत:",prod:"धरती इस घंटे में बनाती है",install:"⬇ ऐप इंस्टॉल करें",all:"सब",langName:"हिन्दी",factT:"🧪 आज का विज्ञान तथ्य",allF:"सभी तथ्य",conv:"लाइव करेंसी कन्वर्टर",ccNote:"लाइव रेट — अपडेट होते रहते हैं",extremes:"विश्व तापमान चरम",moonW:"इस हफ्ते चाँद",illum:"रोशनी",nextFull:"अगला पूर्णिमा",nextNew:"अगला अमावस",gold:"सोना",oz:"औंस",btc:"बिटकॉइन",oil:"कच्चा तेल WTI",barrel:"बैरल",beef:"गोमांस",chicken:"मुर्गी",rice:"चावल",kg:"किग्रा औसत"},
-  zh:{title:"此刻正在发生",sub:"此刻的地球",local:"您的当地时间",dayNight:"您所在地的今日昼夜时长",dayLen:"白天",nightLen:"夜晚",sunTimes:"日出 / 日落",weather:"您所在地的天气",wxNote:"Open-Meteo 实时数据 — 使用您的定位",prices:"全球实时价格",foodNote:"比特币实时: CoinGecko",sky:"此刻天空中有",planes:"架飞机在飞行",skyNote:"完整版: OpenSky",births:"今天全球出生",deathsL:"今天全球逝世:",prod:"地球这一小时的生产",install:"⬇ 安装应用",all:"全部",langName:"中文",factT:"🧪 今日科学小知识",allF:"所有知识",conv:"实时货币换算器",ccNote:"实时汇率 — 自动更新",extremes:"全球气温极端",moonW:"本周月亮",illum:"照亮比例",nextFull:"下一个满月",nextNew:"下一个新月",gold:"黄金",oz:"盎司",btc:"比特币",oil:"WTI 原油",barrel:"桶",beef:"牛肉",chicken:"鸡肉",rice:"大米",kg:"公斤均价"},
-  ru:{title:"Что происходит сейчас",sub:"Планета в этот момент",local:"Ваше местное время",dayNight:"День и ночь сегодня в вашей точке",dayLen:"День",nightLen:"Ночь",sunTimes:"Восход / Закат",weather:"Погода у вас",wxNote:"Живые данные Open-Meteo — использует геолокацию",prices:"Мировые цены сейчас",foodNote:"Биткоин в реальном времени: CoinGecko",sky:"В небе прямо сейчас",planes:"самолётов",skyNote:"Полная версия: OpenSky",births:"Родились сегодня в мире",deathsL:"Умерли сегодня:",prod:"Земля производит в этот час",install:"⬇ Установить",all:"Все",langName:"Русский",factT:"🧪 Научный факт дня",allF:"Все факты",conv:"Живой конвертер валют",ccNote:"Живые курсы — автообновление",extremes:"Мировые температурные рекорды",moonW:"Луна на этой неделе",illum:"Освещённость",nextFull:"Следующее полнолуние",nextNew:"Следующее новолуние",gold:"Золото",oz:"унция",btc:"Биткоин",oil:"Нефть WTI",barrel:"баррель",beef:"Говядина",chicken:"Курица",rice:"Рис",kg:"кг средн."},
-  pt:{title:"Acontecendo agora",sub:"O planeta neste momento",local:"Sua hora local",dayNight:"Dia e noite hoje na sua localização",dayLen:"Dia",nightLen:"Noite",sunTimes:"Nascer / Pôr do sol",weather:"Tempo onde você está",wxNote:"Dados ao vivo do Open-Meteo — usa sua localização",prices:"Preços mundiais ao vivo",foodNote:"Bitcoin ao vivo: CoinGecko",sky:"No céu agora",planes:"aviões no ar",skyNote:"Versão completa: OpenSky",births:"Nascidos hoje no mundo",deathsL:"Mortos hoje:",prod:"A Terra produz nesta hora",install:"⬇ Instalar app",all:"Todos",langName:"Português",factT:"🧪 Fato científico do dia",allF:"Todos os fatos",conv:"Conversor de moedas ao vivo",ccNote:"Cotações ao vivo — atualização automática",extremes:"Extremos de temperatura mundiais",moonW:"A Lua esta semana",illum:"Iluminação",nextFull:"Próxima lua cheia",nextNew:"Próxima lua nova",gold:"Ouro",oz:"onça",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne bovina",chicken:"Frango",rice:"Arroz",kg:"kg médio"},
-  de:{title:"Was jetzt passiert",sub:"Der Planet in diesem Moment",local:"Deine Ortszeit",dayNight:"Tag und Nacht heute an deinem Ort",dayLen:"Tag",nightLen:"Nacht",sunTimes:"Sonnenaufgang / -untergang",weather:"Wetter bei dir",wxNote:"Live-Daten von Open-Meteo — nutzt deinen Standort",prices:"Weltweite Preise live",foodNote:"Bitcoin live: CoinGecko",sky:"Jetzt am Himmel",planes:"Flugzeuge",skyNote:"Vollversion: OpenSky",births:"Heute weltweit geboren",deathsL:"Heute gestorben:",prod:"Die Erde produziert diese Stunde",install:"⬇ App installieren",all:"Alle",langName:"Deutsch",factT:"🧪 Wissenschaftsfakt des Tages",allF:"Alle Fakten",conv:"Live-Währungsrechner",ccNote:"Live-Kurse — auto-aktualisiert",extremes:"Weltweite Temperatur-Extreme",moonW:"Der Mond diese Woche",illum:"Beleuchtung",nextFull:"Nächster Vollmond",nextNew:"Nächster Neumond",gold:"Gold",oz:"Unze",btc:"Bitcoin",oil:"Rohöl WTI",barrel:"Barrel",beef:"Rindfleisch",chicken:"Hähnchen",rice:"Reis",kg:"kg Ø"}
+  ar:{title:"ماذا يحدث الآن",sub:"الكوكب في هذه اللحظة",local:"توقيتك المحلي",dayNight:"الليل والنهار اليوم في موقعك",dayLen:"مدة النهار",nightLen:"مدة الليل",sunTimes:"الشروق / الغروب",weather:"الطقس عندك الآن",wxNote:"بيانات حية من Open-Meteo — يُحدد موقعك من هاتفك",prices:"الأسعار الآن عالميًا",foodNote:"بيتكوين حي من CoinGecko — باقي الأسعار متوسطات عالمية محدثة دوريًا",sky:"في السماء الآن",planes:"طائرة محلقة",skyNote:"النسخة الكاملة: OpenSky Network",births:"وُلد اليوم حول العالم",deathsL:"توفي اليوم",prod:"الأرض تنتج في هذه الساعة",install:"⬇ تثبيت التطبيق",all:"الكل",langName:"العربية",prayers:"🕌 مواقيت الصلاة اليوم",prayerNote:"حسب موقعك — Aladhan API",share:"شارك كصورة",factT:"🧪 حقيقة علمية اليوم",allF:"جميع الحقائق",conv:"محوّل العملات الحي",ccNote:"أسعار حية — تُحدّث تلقائيًا",extremes:"أقصى درجات العالم الآن",moonW:"القمر هذا الأسبوع",illum:"نسبة الإضاءة",nextFull:"البدر القادم",nextNew:"المحاق القادم",gold:"الذهب",oz:"أونصة",btc:"بيتكوين",oil:"النفط الخام WTI",barrel:"برميل",beef:"لحم البقر",chicken:"دجاج",rice:"أرز",kg:"كغ عالميًا"},
+  en:{title:"Live Now",sub:"The planet at this very moment",local:"Your local time",dayNight:"Day & night at your location today",dayLen:"Daylight",nightLen:"Night",sunTimes:"Sunrise / Sunset",weather:"Weather where you are",wxNote:"Live data from Open-Meteo — uses your device location",prices:"Live global prices",foodNote:"Bitcoin live from CoinGecko — other prices are updated global averages",sky:"In the sky right now",planes:"planes airborne",skyNote:"Full version: OpenSky Network",births:"Born today worldwide",deathsL:"Died today:",prod:"Earth produces this hour",install:"⬇ Install app",all:"All",langName:"English",prayers:"🕌 Prayer times today",prayerNote:"By your location — Aladhan API",share:"Share as image",factT:"🧪 Science fact of the day",allF:"All facts",conv:"Live currency converter",ccNote:"Live rates — auto-updated",extremes:"World temperature extremes now",moonW:"The Moon this week",illum:"Illumination",nextFull:"Next full moon",nextNew:"Next new moon",gold:"Gold",oz:"oz",btc:"Bitcoin",oil:"WTI Crude",barrel:"barrel",beef:"Beef",chicken:"Chicken",rice:"Rice",kg:"kg global avg"},
+  es:{title:"Ahora mismo",sub:"El planeta en este instante",local:"Tu hora local",dayNight:"Día y noche hoy en tu ubicación",dayLen:"Luz del día",nightLen:"Noche",sunTimes:"Amanecer / Atardecer",weather:"El tiempo donde estás",wxNote:"Datos en vivo de Open-Meteo — usa tu ubicación",prices:"Precios mundiales en vivo",foodNote:"Bitcoin en vivo de CoinGecko",sky:"En el cielo ahora",planes:"aviones en vuelo",skyNote:"Versión completa: OpenSky",births:"Nacidos hoy en el mundo",deathsL:"Fallecidos hoy:",prod:"La Tierra produce esta hora",install:"⬇ Instalar app",all:"Todo",langName:"Español",prayers:"🕌 Horarios de oración",prayerNote:"Según tu ubicación — Aladhan API",share:"Compartir como imagen",factT:"🧪 Dato científico del día",allF:"Todos los datos",conv:"Conversor de divisas en vivo",ccNote:"Tipos en vivo — se actualizan solos",extremes:"Extremos de temperatura mundiales",moonW:"La Luna esta semana",illum:"Iluminación",nextFull:"Próxima luna llena",nextNew:"Próxima luna nueva",gold:"Oro",oz:"onza",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne de res",chicken:"Pollo",rice:"Arroz",kg:"kg promedio"},
+  fr:{title:"En direct maintenant",sub:"La planète en ce moment",local:"Votre heure locale",dayNight:"Jour et nuit aujourd’hui chez vous",dayLen:"Jour",nightLen:"Nuit",sunTimes:"Lever / Coucher",weather:"Météo chez vous",wxNote:"Données en direct d’Open-Meteo — utilise votre position",prices:"Prix mondiaux en direct",foodNote:"Bitcoin en direct via CoinGecko",sky:"Dans le ciel en ce moment",planes:"avions en vol",skyNote:"Version complète : OpenSky",births:"Nés aujourd’hui dans le monde",deathsL:"Décédés aujourd’hui :",prod:"La Terre produit cette heure",install:"⬇ Installer l’app",all:"Tout",langName:"Français",prayers:"🕌 Horaires de prière",prayerNote:"Selon votre position — Aladhan API",share:"Partager en image",factT:"🧪 Le savoir du jour",allF:"Tous les savoirs",conv:"Convertisseur de devises en direct",ccNote:"Taux en direct — mis à jour auto",extremes:"Extrêmes de température dans le monde",moonW:"La Lune cette semaine",illum:"Illumination",nextFull:"Prochaine pleine lune",nextNew:"Prochaine nouvelle lune",gold:"Or",oz:"once",btc:"Bitcoin",oil:"Pétrole WTI",barrel:"baril",beef:"Bœuf",chicken:"Poulet",rice:"Riz",kg:"kg moyen"},
+  tr:{title:"Şu an neler oluyor",sub:"Gezegenin bu anı",local:"Yerel saatiniz",dayNight:"Bugün bulunduğunuz yerde gece ve gündüz",dayLen:"Gündüz",nightLen:"Gece",sunTimes:"Gün doğumu / Batımı",weather:"Bulunduğunuz yerin havası",wxNote:"Open-Meteo canlı verisi — konumunuzu kullanır",prices:"Canlı küresel fiyatlar",foodNote:"Bitcoin canlı: CoinGecko",sky:"Şu anda gökyüzünde",planes:"uçak havada",skyNote:"Tam sürüm: OpenSky",births:"Bugün dünyada doğanlar",deathsL:"Bugün ölenler:",prod:"Dünya bu saatte üretiyor",install:"⬇ Uygulamayı yükle",all:"Hepsi",langName:"Türkçe",prayers:"🕌 Namaz vakitleri",prayerNote:"Konumunuza göre — Aladhan API",share:"Görsel olarak paylaş",factT:"🧪 Günün bilimsel gerçeği",allF:"Tüm gerçekler",conv:"Canlı döviz çevirici",ccNote:"Canlı kurlar — otomatik güncellenir",extremes:"Dünya sıcaklık uçları",moonW:"Bu hafta Ay",illum:"Aydınlanma",nextFull:"Sonraki dolunay",nextNew:"Sonraki yeni ay",gold:"Altın",oz:"ons",btc:"Bitcoin",oil:"Ham petrol WTI",barrel:"varil",beef:"Sığır eti",chicken:"Tavuk",rice:"Pirinc",kg:"kg ort."},
+  ur:{title:"ابھی کیا ہو رہا ہے",sub:"اس لمحے سیارہ زمین",local:"آپ کا مقامی وقت",dayNight:"آج آپ کے مقام پر دن اور رات",dayLen:"دن",nightLen:"رات",sunTimes:"طلوع / غروب",weather:"آپ کے مقام کا موسم",wxNote:"Open-Meteo لائیو ڈیٹا — آپ کی لوکیشن استعمال کرتا ہے",prices:"عالمی لائیو قیمتیں",foodNote:"بٹ کوائن لائیو: CoinGecko",sky:"آسمان میں ابھی",planes:"ہوائی جہاز",skyNote:"مکمل ورژن: OpenSky",births:"آج دنیا میں پیدا ہونے والے",deathsL:"آج وفات پانے والے:",prod:"زمین اس گھنٹے میں پیدا کرتی ہے",install:"⬇ ایپ انسٹال کریں",all:"سب",langName:"اردو",prayers:"🕌 نماز کے اوقات",prayerNote:"آپ کے مقام کے مطابق — Aladhan API",share:"تصویر کے طور پر شیئر کریں",factT:"🧪 آج کی سائنسی حقیقت",allF:"تمام حقائق",conv:"لائیو کرنسی کنورٹر",ccNote:"لائیو ریٹس — خودکار تازہ کاری",extremes:"دنیا بھر کے درجہ حرارت کے انتہا",moonW:"اس ہفتے چاند",illum:"روشنی",nextFull:"اگلا بدر",nextNew:"اگلا محاق",gold:"سونا",oz:"اونس",btc:"بٹ کوائن",oil:"خام تیل WTI",barrel:"بیریل",beef:"گائے کا گوشت",chicken:"مرغی",rice:"چاول",kg:"کلو اوسط"},
+  hi:{title:"अभी क्या हो रहा है",sub:"इस पल ग्रह पृथ्वी",local:"आपका स्थानीय समय",dayNight:"आज आपके स्थान पर दिन और रात",dayLen:"दिन",nightLen:"रात",sunTimes:"सूर्योदय / सूर्यास्त",weather:"आपके स्थान का मौसम",wxNote:"Open-Meteo लाइव डेटा — आपकी लोकेशन का उपयोग करता है",prices:"वैश्विक लाइव कीमतें",foodNote:"बिटकॉइन लाइव: CoinGecko",sky:"अभी आसमान में",planes:"हवाई जहाज",skyNote:"पूरा वर्ज़न: OpenSky",births:"आज दुनिया में जन्मे",deathsL:"आज मृत:",prod:"धरती इस घंटे में बनाती है",install:"⬇ ऐप इंस्टॉल करें",all:"सब",langName:"हिन्दी",prayers:"🕌 नमाज़ के समय",prayerNote:"आपके स्थान अनुसार — Aladhan API",share:"छवि के रूप में साझा करें",factT:"🧪 आज का विज्ञान तथ्य",allF:"सभी तथ्य",conv:"लाइव करेंसी कन्वर्टर",ccNote:"लाइव रेट — अपडेट होते रहते हैं",extremes:"विश्व तापमान चरम",moonW:"इस हफ्ते चाँद",illum:"रोशनी",nextFull:"अगला पूर्णिमा",nextNew:"अगला अमावस",gold:"सोना",oz:"औंस",btc:"बिटकॉइन",oil:"कच्चा तेल WTI",barrel:"बैरल",beef:"गोमांस",chicken:"मुर्गी",rice:"चावल",kg:"किग्रा औसत"},
+  zh:{title:"此刻正在发生",sub:"此刻的地球",local:"您的当地时间",dayNight:"您所在地的今日昼夜时长",dayLen:"白天",nightLen:"夜晚",sunTimes:"日出 / 日落",weather:"您所在地的天气",wxNote:"Open-Meteo 实时数据 — 使用您的定位",prices:"全球实时价格",foodNote:"比特币实时: CoinGecko",sky:"此刻天空中有",planes:"架飞机在飞行",skyNote:"完整版: OpenSky",births:"今天全球出生",deathsL:"今天全球逝世:",prod:"地球这一小时的生产",install:"⬇ 安装应用",all:"全部",langName:"中文",prayers:"🕌 每日礼拜时间",prayerNote:"按您的位置 — Aladhan API",share:"分享为图片",factT:"🧪 今日科学小知识",allF:"所有知识",conv:"实时货币换算器",ccNote:"实时汇率 — 自动更新",extremes:"全球气温极端",moonW:"本周月亮",illum:"照亮比例",nextFull:"下一个满月",nextNew:"下一个新月",gold:"黄金",oz:"盎司",btc:"比特币",oil:"WTI 原油",barrel:"桶",beef:"牛肉",chicken:"鸡肉",rice:"大米",kg:"公斤均价"},
+  ru:{title:"Что происходит сейчас",sub:"Планета в этот момент",local:"Ваше местное время",dayNight:"День и ночь сегодня в вашей точке",dayLen:"День",nightLen:"Ночь",sunTimes:"Восход / Закат",weather:"Погода у вас",wxNote:"Живые данные Open-Meteo — использует геолокацию",prices:"Мировые цены сейчас",foodNote:"Биткоин в реальном времени: CoinGecko",sky:"В небе прямо сейчас",planes:"самолётов",skyNote:"Полная версия: OpenSky",births:"Родились сегодня в мире",deathsL:"Умерли сегодня:",prod:"Земля производит в этот час",install:"⬇ Установить",all:"Все",langName:"Русский",prayers:"🕌 Время намаза",prayerNote:"По вашему месту — Aladhan API",share:"Поделиться изображением",factT:"🧪 Научный факт дня",allF:"Все факты",conv:"Живой конвертер валют",ccNote:"Живые курсы — автообновление",extremes:"Мировые температурные рекорды",moonW:"Луна на этой неделе",illum:"Освещённость",nextFull:"Следующее полнолуние",nextNew:"Следующее новолуние",gold:"Золото",oz:"унция",btc:"Биткоин",oil:"Нефть WTI",barrel:"баррель",beef:"Говядина",chicken:"Курица",rice:"Рис",kg:"кг средн."},
+  pt:{title:"Acontecendo agora",sub:"O planeta neste momento",local:"Sua hora local",dayNight:"Dia e noite hoje na sua localização",dayLen:"Dia",nightLen:"Noite",sunTimes:"Nascer / Pôr do sol",weather:"Tempo onde você está",wxNote:"Dados ao vivo do Open-Meteo — usa sua localização",prices:"Preços mundiais ao vivo",foodNote:"Bitcoin ao vivo: CoinGecko",sky:"No céu agora",planes:"aviões no ar",skyNote:"Versão completa: OpenSky",births:"Nascidos hoje no mundo",deathsL:"Mortos hoje:",prod:"A Terra produz nesta hora",install:"⬇ Instalar app",all:"Todos",langName:"Português",prayers:"🕌 Horários de oração",prayerNote:"Segundo sua localização — Aladhan API",share:"Compartilhar como imagem",factT:"🧪 Fato científico do dia",allF:"Todos os fatos",conv:"Conversor de moedas ao vivo",ccNote:"Cotações ao vivo — atualização automática",extremes:"Extremos de temperatura mundiais",moonW:"A Lua esta semana",illum:"Iluminação",nextFull:"Próxima lua cheia",nextNew:"Próxima lua nova",gold:"Ouro",oz:"onça",btc:"Bitcoin",oil:"Petróleo WTI",barrel:"barril",beef:"Carne bovina",chicken:"Frango",rice:"Arroz",kg:"kg médio"},
+  de:{title:"Was jetzt passiert",sub:"Der Planet in diesem Moment",local:"Deine Ortszeit",dayNight:"Tag und Nacht heute an deinem Ort",dayLen:"Tag",nightLen:"Nacht",sunTimes:"Sonnenaufgang / -untergang",weather:"Wetter bei dir",wxNote:"Live-Daten von Open-Meteo — nutzt deinen Standort",prices:"Weltweite Preise live",foodNote:"Bitcoin live: CoinGecko",sky:"Jetzt am Himmel",planes:"Flugzeuge",skyNote:"Vollversion: OpenSky",births:"Heute weltweit geboren",deathsL:"Heute gestorben:",prod:"Die Erde produziert diese Stunde",install:"⬇ App installieren",all:"Alle",langName:"Deutsch",prayers:"🕌 Gebetszeiten",prayerNote:"Nach deinem Standort — Aladhan API",share:"Als Bild teilen",factT:"🧪 Wissenschaftsfakt des Tages",allF:"Alle Fakten",conv:"Live-Währungsrechner",ccNote:"Live-Kurse — auto-aktualisiert",extremes:"Weltweite Temperatur-Extreme",moonW:"Der Mond diese Woche",illum:"Beleuchtung",nextFull:"Nächster Vollmond",nextNew:"Nächster Neumond",gold:"Gold",oz:"Unze",btc:"Bitcoin",oil:"Rohöl WTI",barrel:"Barrel",beef:"Rindfleisch",chicken:"Hähnchen",rice:"Reis",kg:"kg Ø"}
 };
 var lang = (navigator.language || "ar").slice(0,2).toLowerCase();
 var L = T[lang] || T.ar;
@@ -370,8 +377,31 @@ function fetchWeather(lat,lng){
       }
     }).catch(function(){});
 }
+
+/* ================= مواقيت الصلاة + التاريخ الهجري (Aladhan — مجاني، CORS مفتوح) ================= */
+var P_NAMES=(lang==="ar")?
+  [["Fajr","الفجر"],["Sunrise","الشروق"],["Dhuhr","الظهر"],["Asr","العصر"],["Maghrib","المغرب"],["Isha","العشاء"]]:
+  [["Fajr","Fajr"],["Sunrise","Sunrise"],["Dhuhr","Dhuhr"],["Asr","Asr"],["Maghrib","Maghrib"],["Isha","Isha"]];
+function fetchPrayers(lat,lng){
+  var method=(lang==="ar")?4:3;
+  var url="https://api.aladhan.com/v1/timings/"+Math.floor(Date.now()/1000)+"?latitude="+lat.toFixed(4)+"&longitude="+lng.toFixed(4)+"&method="+method;
+  fetch(url).then(function(r){return r.json();}).then(function(j){
+    if(!j||!j.data) return;
+    var row=$("prayerRow"); row.innerHTML="";
+    P_NAMES.forEach(function(p){
+      var t=(j.data.timings[p[0]]||"").slice(0,5);
+      var d=document.createElement("div");
+      d.innerHTML='<b class="num" style="font-size:18px;display:block">'+t+'</b><span style="font-size:12px;color:var(--fg3)">'+p[1]+"</span>";
+      row.appendChild(d);
+    });
+    var h=j.data.date.hijri;
+    if(h){ $("hijriDate").textContent=(RTL?h.weekday.ar+"، ":"")+h.day+" "+(RTL?h.month.ar:h.month.en)+" "+h.year+(RTL?" هـ":" AH"); }
+  }).catch(function(){});
+}
+
 function located(lat,lng){
   setSun(lat,lng);
+  fetchPrayers(lat,lng);
   fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+lat+"&longitude="+lng+"&localityLanguage="+lang)
     .then(function(r){return r.json();})
     .then(function(j){
@@ -406,14 +436,7 @@ var ITEMS=[
   {id:"chicken",base:3.85,    chg:-0.35,  d:2},
   {id:"rice",  base:1.18,     chg:0.08,   d:2}
 ];
-var pxEl=$("px");
-ITEMS.forEach(function(it){
-  var row=document.createElement("div"); row.className="pxrow";
-  var unit = (it.id==="gold")?L.oz : (it.id==="oil")?L.barrel : (it.id==="btc")?"BTC":L.kg;
-  row.innerHTML='<span class="sym">'+L[it.id]+'<small>'+unit+' · USD</small></span>'+
-    '<span><span class="chg num" id="'+it.id+'C"></span><span class="price num" id="'+it.id+'P"></span></span>';
-  pxEl.appendChild(row);
-});
+
 function renderPx(){
   ITEMS.forEach(function(it){
     var live=it.base*(1+(Math.random()-0.5)*(it.live?0.0004:0.0012));
@@ -672,6 +695,49 @@ function renderFacts(facts){
 }
 fetch("facts.json").then(function(r){return r.json();}).then(renderFacts).catch(function(){ renderFacts(null); });
 
+
+
+/* ================= مشاركة بطاقة كصورة PNG ================= */
+function drawLogo(ctx,x,y,s,col){
+  ctx.strokeStyle=col; ctx.lineWidth=6*s; ctx.beginPath(); ctx.arc(x,y,42*s,0,Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x-40*s,y); ctx.lineTo(x-14*s,y); ctx.lineTo(x-6*s,y-22*s); ctx.lineTo(x+6*s,y+20*s); ctx.lineTo(x+14*s,y-8*s); ctx.lineTo(x+20*s,y); ctx.lineTo(x+40*s,y);
+  ctx.lineCap="round"; ctx.lineJoin="round"; ctx.stroke();
+}
+function dlPNG(lines, fname){
+  var cv=document.createElement("canvas"); cv.width=1080; cv.height=1080;
+  var ctx=cv.getContext("2d");
+  ctx.fillStyle="#111111"; ctx.fillRect(0,0,1080,1080);
+  ctx.strokeStyle="rgba(255,255,255,.15)"; ctx.lineWidth=3; ctx.strokeRect(40,40,1000,1000);
+  drawLogo(ctx,120,140,1.1,"#ffffff");
+  ctx.fillStyle="#ffffff"; ctx.textAlign="center"; ctx.textBaseline="middle";
+  var y=330;
+  lines.forEach(function(ln){
+    ctx.font=ln.f+" "+ln.s+"px -apple-system,'Segoe UI',Roboto,'Noto Kufi Arabic',Arial,sans-serif";
+    ctx.direction=(RTL?"rtl":"ltr");
+    ctx.fillStyle=ln.c||"#ffffff";
+    ctx.fillText(ln.t,540,y);
+    y+=ln.gap;
+  });
+  ctx.font="400 34px -apple-system,'Segoe UI',Roboto,Arial,sans-serif";
+  ctx.fillStyle="rgba(255,255,255,.5)";
+  ctx.fillText("oranw.com",540,990);
+  var a=document.createElement("a");
+  a.download=fname||"oranw.png";
+  a.href=cv.toDataURL("image/png");
+  a.click();
+}
+function sharePrice(id){
+  var it=ITEMS.find(function(x){return x.id===id;});
+  var names={gold:(RTL?"الذهب":"Gold"),btc:"Bitcoin",oil:(RTL?"النفط WTI":"WTI Oil"),beef:(RTL?"لحم البقر":"Beef"),chicken:(RTL?"دجاج":"Chicken"),rice:(RTL?"أرز":"Rice")};
+  var units={gold:(RTL?"أونصة":"oz"),btc:"BTC",oil:(RTL?"برميل":"barrel")};
+  var name=names[id]||id, unit=units[id]||(RTL?"كغ":"kg");
+  dlPNG([
+    {t:name,f:"600",s:64,gap:120},
+    {t:"$"+px(it.base,it.d),f:"700",s:150,gap:170},
+    {t:unit+" · USD",f:"400",s:44,c:"rgba(255,255,255,.6)",gap:140},
+    {t:new Date().toLocaleString(LOCALE),f:"400",s:36,c:"rgba(255,255,255,.45)",gap:0}
+  ],"oranw-"+id+".png");
+}
 
 function tick(){
   births+=4.45; deaths+=1.97;
