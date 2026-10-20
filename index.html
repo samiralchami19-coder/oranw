@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi A
 .foot{margin-top:18px;text-align:center;font-size:12px;color:var(--fg4)}
 a{color:inherit}
 footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
-#breaking{display:none;position:sticky;top:0;z-index:60;background:#c0392b;color:#fff;align-items:center;direction:rtl;margin:-16px -14px 12px;padding:0 14px;height:38px;overflow:hidden}
+#breaking{display:none;background:#c0392b;color:#fff;align-items:center;direction:rtl;margin:-16px -14px 12px;padding:0 14px;height:38px;overflow:hidden}
 #breaking .brk-tag{flex-shrink:0;font-weight:700;font-size:13px;padding-inline-end:12px}
 #breaking .brk-view{flex:1;overflow:hidden;white-space:nowrap}
 #breaking #brkText{display:inline-block;color:#fff;text-decoration:none;font-size:14px;padding-inline-start:100%;animation:brk 18s linear infinite}
@@ -148,6 +148,7 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
     <div class="clock num" style="margin-top:6px"><span id="utcClock">--:--:--.---</span><small>UTC</small></div>
   </div>
 </header>
+<p style="font-size:14px;color:var(--fg3);line-height:1.8;margin-top:10px" id="siteIntro">لوحة حية تتابع الكوكب لحظة بلحظة: أسعار الذهب والبيتكوين والنفط الحقيقية، طقس مدينتك ومواقيت الصلاة، مدة الليل والنهار بمعادلات فلكية دقيقة، أقصى درجات الحرارة في العالم، أخبار عاجلة وزلازل مسجلة الآن، وحقيقة علمية جديدة كل يوم — بـ11 لغة وبدون تسجيل.</p>
 <button id="installBtn" aria-label="install" data-i18n="install">⬇ تثبيت التطبيق</button>
 
 <main>
@@ -289,7 +290,7 @@ window.addEventListener("error",function(e){
 function $(id){ var e=document.getElementById(id);
   if(!e){ e={textContent:"",style:{},innerHTML:"",value:"",title:"",dataset:{},appendChild:function(){},addEventListener:function(){},classList:{add:function(){},remove:function(){}}}; }
   return e; }
-var VERSION="v7.0";
+var VERSION="v7.1";
 var CONFIG = {
     };
 
