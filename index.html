@@ -119,6 +119,8 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 #breaking #brkText{display:inline-block;color:#fff;text-decoration:none;font-size:14px;padding-inline-start:100%;animation:brk 18s linear infinite}
 @keyframes brk{from{transform:translateX(0)}to{transform:translateX(calc(-100% - 100vw))}}
 @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+.sec{display:block;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;text-decoration:none;color:var(--fg);font-size:14px;font-weight:600}
+.sec:hover{background:var(--mut)}
 </style>
 <meta name="google-adsense-account" content="ca-pub-6507978376685782">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
@@ -152,6 +154,14 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 <p style="font-size:14px;color:var(--fg3);line-height:1.8;margin-top:10px" id="siteIntro">لوحة حية تتابع الكوكب لحظة بلحظة: أسعار الذهب والبيتكوين والنفط الحقيقية، طقس مدينتك ومواقيت الصلاة، مدة الليل والنهار بمعادلات فلكية دقيقة، أقصى درجات الحرارة في العالم، آخر الأخبار والزلازل المسجلة الآن، وحقيقة علمية جديدة كل يوم — بـ11 لغة وبدون تسجيل.</p>
 <button id="installBtn" aria-label="install" data-i18n="install">⬇ تثبيت التطبيق</button>
 
+<nav id="sections" aria-label="أقسام الموقع" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0 4px">
+  <a href="/gold" class="sec">🪙 سعر الذهب في بلدك</a>
+  <a href="/currency" class="sec">💱 أسعار العملات</a>
+  <a href="/prayer-times" class="sec">🕌 مواقيت الصلاة بالمدن</a>
+  <a href="/speed-test" class="sec">⚡ اختبار سرعة النت</a>
+  <a href="/tools" class="sec">🛠 أدوات الشبكة</a>
+  <a href="/archive" class="sec">📅 أرشيف الكوكب</a>
+</nav>
 <main>
   <section class="card full">
     <h2 class="lbl" data-i18n="factT">🧪 حقيقة علمية اليوم</h2>
@@ -284,7 +294,7 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   <p>OraNW لوحة عربية مجانية تعرض ما يحدث على الكوكب في هذه اللحظة: <a href="/gold">سعر الذهب اليوم</a> وسعر غرام كل عيار بعملتك، <a href="/bitcoin">سعر البيتكوين المباشر</a>، <a href="/oil">سعر النفط</a>، طقس مدينتك ومواقيت الصلاة، الزلازل المسجلة وآخر الأخبار. ونحفظ لقطة يومية في <a href="/archive">أرشيف الكوكب</a> لكل يوم صفحة مستقلة. وفي <a href="/tools">أدوات الشبكة</a> تعرف عنوان IP الخاص بك وتفحص DNS والبينغ والسرعة، مع <a href="/guides">شروحات مبسطة بالعربية</a>.</p>
 </section>
 <footer class="foot" style="line-height:2.3">
-  <div><a href="/tools">أدوات الشبكة</a> · <a href="/archive">الأرشيف</a> · <a href="/gold">الذهب</a> · <a href="/bitcoin">البيتكوين</a> · <a href="/oil">النفط</a> · <a href="/guides">الشروحات</a></div>
+  <div><a href="/tools">أدوات الشبكة</a> · <a href="/archive">الأرشيف</a> · <a href="/gold">الذهب</a> · <a href="/bitcoin">البيتكوين</a> · <a href="/oil">النفط</a> · <a href="/currency">العملات</a> · <a href="/prayer-times">مواقيت الصلاة</a> · <a href="/speed-test">سرعة النت</a> · <a href="/guides">الشروحات</a></div>
   <div><a href="/about">من نحن</a> · <a href="/contact">اتصل بنا</a> · <a href="/privacy">الخصوصية</a> · <a href="/en/">English</a></div>
   <div>OraNW © 2026 · <span class="num" id="ver"></span></div>
 </footer>
