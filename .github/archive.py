@@ -183,6 +183,25 @@ def day_length(lat, lng):
     sr, ss = calc(False), calc(True)
     return round((ss - sr) % 24, 2) if sr is not None and ss is not None else None
 
+FX_CODES = ['SAR','AED','KWD','QAR','BHD','OMR','EGP','JOD','MAD','IQD','DZD','TND','LYD','SYP','LBP','SDG','YER','TRY','EUR','GBP','INR','PKR','CNY','JPY','RUB']
+
+def fx_rates():
+    # أسعار الصرف المرجعية مقابل الدولار (open.er-api ثم currency-api احتياطًا)
+    try:
+        j = json.loads(get('https://open.er-api.com/v6/latest/USD'))
+        r = j.get('rates') or {}
+        out = {c: round(float(r[c]), 6) for c in FX_CODES if c in r}
+        if out: return out
+    except Exception:
+        pass
+    try:
+        j = json.loads(get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json'))
+        r = j.get('usd') or {}
+        out = {c: round(float(r[c.lower()]), 6) for c in FX_CODES if c.lower() in r}
+        return out or None
+    except Exception:
+        return None
+
 hot, cold = extremes()
 midx, illum = moon()
 entry = {
@@ -193,7 +212,8 @@ entry = {
     "oil": oil_price(),
     "hot": hot, "cold": cold,
     "moon": midx, "illum": illum,
-    "dayLen": day_length(24.71, 46.68)  # مرجع: الرياض
+    "dayLen": day_length(24.71, 46.68),  # مرجع: الرياض
+    "fx": fx_rates()
 }
 
 data = []
