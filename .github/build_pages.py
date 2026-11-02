@@ -126,7 +126,7 @@ for slug, name, in_name, code, cur, main_k, karats, note in COUNTRIES:
         ('كم سعر غرام الذهب عيار %d اليوم %s؟' % (main_k, in_name), 'سعر غرام الذهب عيار %d %s حسب آخر تحديث (%s UTC) هو %s %s تقريباً، وهو سعر الخام المحسوب من السعر العالمي دون المصنعية.' % (main_k, in_name, STAMP, gm, cur)),
         ('هل السعر يشمل المصنعية؟', 'لا. السعر المعروض هو قيمة الذهب الخام فقط. محلات الصاغة تضيف المصنعية وأحياناً ضريبة القيمة المضافة، فيكون سعر المشغولات أعلى.'),
         ('كيف يُحسب سعر الغرام %s؟' % in_name, 'نقسم سعر الأونصة العالمي بالدولار على 31.1035 غرام، ثم نضربه في نسبة نقاء العيار، ثم في سعر صرف %s مقابل الدولار.' % cur),
-        ('كم مرة يتحدث السعر؟', 'تتحدث هذه الصفحة تلقائياً 4 مرات يومياً من أرشيف OraNW، ويظهر وقت آخر تحديث أعلى الصفحة.'),
+        ('كم مرة يتحدث السعر؟', 'تتحدث هذه الصفحة تلقائياً عدة مرات يومياً من أرشيف OraNW، ويظهر وقت آخر تحديث أعلى الصفحة.'),
     ]
     body = '''<div class="crumbs"><a href="/gold">سعر الذهب</a> › %(name)s</div>
 <h1>سعر الذهب اليوم %(in_name)s</h1>
@@ -164,7 +164,7 @@ function calc(){ var g=parseFloat(document.getElementById("g").value)||0, k=+doc
 document.getElementById("g").oninput=calc; document.getElementById("k").onchange=calc; calc();
 </script>''' % (G_NOW['gold'], r_now, dec, code)
     title = 'سعر الذهب اليوم %s — غرام عيار %d و24 و18 بالـ%s | OraNW' % (in_name, main_k, cur)
-    desc = 'سعر الذهب اليوم %s: غرام عيار %d بـ%s %s. أسعار كل العيارات بالـ%s تتحدث 4 مرات يومياً، مع حاسبة وسجل الأيام الأخيرة.' % (in_name, main_k, gm, code, cur)
+    desc = 'سعر الذهب اليوم %s: غرام عيار %d بـ%s %s. أسعار كل العيارات بالـ%s تتحدث عدة مرات يومياً، مع حاسبة وسجل الأيام الأخيرة.' % (in_name, main_k, gm, code, cur)
     write(fname, page(path, esc(title), esc(desc), body, extra_css=EXTRA_CSS, schema=faq_schema(qas)).replace('</body>', js + '\n</body>'))
 
 # ======================= 2) أسعار العملات =======================
@@ -236,13 +236,13 @@ document.getElementById("amt").oninput=calc; document.getElementById("sw").oncli
 fetch("https://open.er-api.com/v6/latest/"+A).then(function(r){return r.json();}).then(function(j){ if(j&&j.rates&&j.rates[B]){ R=j.rates[B]; calc(); } }).catch(function(){});
 </script>''' % (v or 0, a, b)
     title = 'سعر %s مقابل %s اليوم — %s إلى %s | OraNW' % (an, bn, a, b)
-    desc = 'سعر %s مقابل %s اليوم: 1 %s = %s %s. محوّل مباشر وجدول تحويل وسجل الأيام الأخيرة، يتحدث 4 مرات يومياً.' % (an, bn, ash, fmt(v, d), bsh)
+    desc = 'سعر %s مقابل %s اليوم: 1 %s = %s %s. محوّل مباشر وجدول تحويل وسجل الأيام الأخيرة، يتحدث عدة مرات يومياً.' % (an, bn, ash, fmt(v, d), bsh)
     write(fname, page(path, esc(title), esc(desc), body, extra_css=EXTRA_CSS, schema=faq_schema(qas)).replace('</body>', js + '\n</body>'))
 
 # hub
 rows = ''.join('<tr><td><a href="/%s-to-%s">%s ← %s</a></td><td class="num">%s</td></tr>' % (a.lower(), b.lower(), a, b, fmt(cross(latest, a, b), dec_for(cross(latest, a, b) or 1))) for a, b in PAIRS)
 write('currency.html', page('/currency', 'أسعار العملات اليوم مقابل الدولار والجنيه والريال | OraNW',
-    'أسعار صرف العملات العربية اليوم: الدولار مقابل الجنيه المصري والريال السعودي والدرهم والدينار، تتحدث 4 مرات يومياً مع محوّل لكل عملة.',
+    'أسعار صرف العملات العربية اليوم: الدولار مقابل الجنيه المصري والريال السعودي والدرهم والدينار، تتحدث عدة مرات يومياً مع محوّل لكل عملة.',
     '<h1>أسعار العملات اليوم</h1><p class="lead">آخر تحديث %s UTC. اختر العملة لترى المحوّل وجدول التحويل والسجل.</p><table><tr><th>الزوج</th><th>السعر</th></tr>%s</table><p class="note">أسعار مرجعية من مصادر بيانات الصرف الدولية. للحسابات اليومية استخدم أيضاً <a href="/#ccAmt">محوّل العملات في الرئيسية</a>.</p>' % (latest['d'] + ' ' + latest.get('ts', ''), rows),
     extra_css=EXTRA_CSS))
 
