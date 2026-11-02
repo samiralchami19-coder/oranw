@@ -448,7 +448,7 @@ function setSun(lat,lng){
   var s=sunCalc(lat,lng), el1=$("dayLen"), el2=$("nightLen"), el3=$("sunTimes");
   if(!s){ el1.textContent="—"; el2.textContent="—"; el3.textContent="—"; return; }
   el1.textContent=hm(s.day); el2.textContent=hm(s.night);
-  function hhmm(t){ var h=Math.floor(t), m=Math.round((t-h)*60); if(m===60){ h=(h+1)%24; m=0; } return f2(h)+":"+f2(m); }
+  function hhmm(t){ t=((t-new Date().getTimezoneOffset()/60)%24+24)%24; var h=Math.floor(t), m=Math.round((t-h)*60); if(m===60){ h=(h+1)%24; m=0; } return f2(h)+":"+f2(m); }
   el3.textContent="☀ "+hhmm(s.sr)+" / 🌙 "+hhmm(s.ss);
 }
 
