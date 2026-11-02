@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="ar" href="https://oranw.com/">
 <link rel="alternate" hreflang="en" href="https://oranw.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://oranw.com/">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#15233F">
 
 <!-- مشاركة اجتماعية (Open Graph) -->
 <meta property="og:type" content="website">
@@ -42,13 +42,15 @@
   "description": "لوحة حية لما يحدث على الكوكب الآن: أسعار، طقس، وقت، حوادث، وعدادات عالمية.",
   "inLanguage": ["ar", "en", "es", "fr", "tr", "ur", "hi", "zh", "ru", "pt", "de"]
 </script>
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#15233F">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/icon.png">
 <link rel="apple-touch-icon" sizes="512x512" href="/icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa;
@@ -119,8 +121,55 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
 #breaking #brkText{display:inline-block;color:#fff;text-decoration:none;font-size:14px;padding-inline-start:100%;animation:brk 18s linear infinite}
 @keyframes brk{from{transform:translateX(0)}to{transform:translateX(calc(-100% - 100vw))}}
 @media (max-width:560px){ .grid{grid-template-columns:1fr} }
-.sec{display:block;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;text-decoration:none;color:var(--fg);font-size:14px;font-weight:600}
-.sec:hover{background:var(--mut)}
+
+/* ===== OraNW v9 visual layer ===== */
+:root{--page:#EEF2F7;--bg:#FFFFFF;--fg:#172036;--fg2:#3A4458;--fg3:#5B6478;--fg4:#8A93A6;--bd:#D9E0EA;--mut:#F3F6FA;
+--navy:#15233F;--c-gold:#B7811A;--c-cur:#0E7C74;--c-pray:#1F6B47;--c-speed:#5B45C9;--c-tools:#2D5DA8;--c-arch:#8A4B2D}
+@media (prefers-color-scheme: dark){:root{--page:#0D1424;--bg:#151F33;--fg:#E8EDF5;--fg2:#C3CBDA;--fg3:#93A0B8;--fg4:#6B7890;--bd:#26324A;--mut:#1B2740;--navy:#0A1020;
+--c-gold:#E2B04A;--c-cur:#37B5A9;--c-pray:#4FB585;--c-speed:#9C8BF2;--c-tools:#6E9BE6;--c-arch:#D08A63}}
+html{background:var(--page)}
+body{font-family:"IBM Plex Sans Arabic",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--page);max-width:1000px;padding:0 16px 48px;line-height:1.6}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--c-tools);outline-offset:2px;border-radius:8px}
+#breaking{margin:0 -16px 0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0 6px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-weight:700;font-size:18px}
+.brand svg{width:34px;height:34px;flex-shrink:0}
+.tools-r{display:flex;align-items:center;gap:8px}
+.langchip{background:var(--bg)!important;border:1px solid var(--bd)!important;border-radius:10px;padding:6px 10px;font-size:13px;color:var(--fg2);margin:0}
+#installBtn{margin:0;background:var(--bg);border-radius:10px}
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;align-items:center;padding:18px 0 22px}
+.hero h1.title{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;font-size:clamp(40px,7vw,66px);line-height:1.15;font-weight:700;letter-spacing:0;color:var(--fg)}
+.hero .sub{font-size:18px;color:var(--fg2);margin-top:6px}
+#siteIntro{font-size:15px!important;color:var(--fg3)!important;line-height:1.85!important;margin-top:12px!important;max-width:60ch}
+.clockpanel{background:var(--navy);color:#fff;border-radius:22px;padding:20px 22px;display:grid;gap:14px}
+.clockpanel .clock{font-size:clamp(28px,4.4vw,40px);font-weight:700;line-height:1.1;direction:ltr;text-align:end}
+.clockpanel .clock small{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,.65);margin-top:4px;direction:rtl}
+.clockpanel .clock + .clock{font-size:22px;color:rgba(255,255,255,.8);padding-top:12px;border-top:1px solid rgba(255,255,255,.14)}
+.sun{height:8px;border-radius:8px;background:rgba(255,255,255,.14);position:relative;overflow:visible;margin-top:2px}
+.sun i{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:#F5C451;transform:translate(50%,-50%);box-shadow:0 0 0 4px rgba(245,196,81,.25)}
+.sun-l{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.65);margin-top:8px}
+.sec-h{font-size:15px;font-weight:600;color:var(--fg3);margin:6px 0 10px}
+#sections{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:12px!important;margin:0 0 26px!important}
+.tile{--c:var(--c-tools);display:flex;flex-direction:column;gap:2px;min-height:118px;padding:16px 16px 14px;background:var(--bg);border:1px solid var(--bd);border-radius:18px;text-decoration:none;color:var(--fg);position:relative;overflow:hidden}
+.tile::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--c)}
+.tile:hover{border-color:var(--c)}
+.tile .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:19px;background:color-mix(in srgb,var(--c) 14%,transparent);margin-bottom:6px}
+.tile b{font-size:16px;font-weight:700}
+.tile .v{font-size:20px;font-weight:700;color:var(--c);font-variant-numeric:tabular-nums;margin-top:auto;padding-top:6px;min-height:1.4em}
+.tile .h{font-size:12.5px;color:var(--fg3)}
+.tile.gold{--c:var(--c-gold)}.tile.cur{--c:var(--c-cur)}.tile.pray{--c:var(--c-pray)}.tile.speed{--c:var(--c-speed)}.tile.tools{--c:var(--c-tools)}.tile.arch{--c:var(--c-arch)}
+.tile.gold .v{font-size:clamp(26px,3.6vw,34px);line-height:1.1}
+main{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+main>.card{margin:0!important}
+.card{background:var(--bg);border:1px solid var(--bd);border-radius:18px;padding:18px}
+.full{grid-column:1/-1}
+.lbl{font-size:14px!important;font-weight:600;color:var(--fg2)!important}
+.val{font-size:30px}
+.foot{margin-top:26px}
+#aboutPage{background:var(--bg);border:1px solid var(--bd);border-radius:18px;padding:18px}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.clockpanel{grid-template-columns:1fr 1fr}.clockpanel .clock+.clock{border-top:none;padding-top:0}.sun,.sun-l{grid-column:1/-1}#sections{grid-template-columns:1fr 1fr!important}.tile.gold,.tile.arch{grid-column:1/-1}}
+@media (max-width:620px){main{grid-template-columns:1fr}.tile .v{font-size:17px}.tile.gold .v{font-size:26px}.clockpanel .clock{text-align:start}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <meta name="google-adsense-account" content="ca-pub-6507978376685782">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
@@ -140,27 +189,32 @@ footer+div a:hover,div[style*="text-align:center"] a:hover{opacity:1}
   <div class="brk-view"><a id="brkText" target="_blank" rel="noopener"></a></div>
 </div>
 
-<header class="head">
+<div class="topbar">
+  <a class="brand" href="/" aria-label="OraNW"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="120" fill="var(--navy)"/><circle cx="256" cy="256" r="160" fill="none" stroke="#fff" stroke-width="26"/><polyline points="120,300 190,300 215,230 250,370 285,190 310,300 392,300" fill="none" stroke="#F5C451" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></svg>OraNW</a>
+  <div class="tools-r"><select class="langchip" id="langSel" aria-label="language" style="border:none;font-family:inherit;cursor:pointer"></select><button id="installBtn" aria-label="install" data-i18n="install">⬇ تثبيت التطبيق</button></div>
+</div>
+<header class="hero">
   <div>
     <h1 class="title" data-i18n="title">ماذا يحدث الآن</h1>
     <p class="sub" data-i18n="sub">الكوكب في هذه اللحظة</p>
-    <select class="langchip" id="langSel" aria-label="language" style="border:none;font-family:inherit;cursor:pointer"></select>
+    <p style="font-size:14px;color:var(--fg3);line-height:1.8;margin-top:10px" id="siteIntro">لوحة حية تتابع الكوكب لحظة بلحظة: أسعار الذهب والبيتكوين والنفط الحقيقية، طقس مدينتك ومواقيت الصلاة، مدة الليل والنهار بمعادلات فلكية دقيقة، أقصى درجات الحرارة في العالم، آخر الأخبار والزلازل المسجلة الآن، وحقيقة علمية جديدة كل يوم — بـ11 لغة وبدون تسجيل.</p>
   </div>
-  <div style="text-align:end">
-    <div class="clock num"><span id="localClock">--:--:--.---</span><small data-i18n="local">توقيتك المحلي</small></div>
-    <div class="clock num" style="margin-top:6px"><span id="utcClock">--:--:--.---</span><small>UTC</small></div>
+  <div class="clockpanel" aria-label="الساعة">
+    <div class="clock num"><span id="localClock">--:--:--</span><small data-i18n="local">توقيتك المحلي</small></div>
+    <div class="clock num"><span id="utcClock">--:--:--</span><small>UTC</small></div>
+    <div><div class="sun" aria-hidden="true"><i id="sunDot" style="right:0"></i></div><div class="sun-l"><span id="sunL1">الشروق</span><span id="sunL2">الغروب</span></div></div>
   </div>
 </header>
-<p style="font-size:14px;color:var(--fg3);line-height:1.8;margin-top:10px" id="siteIntro">لوحة حية تتابع الكوكب لحظة بلحظة: أسعار الذهب والبيتكوين والنفط الحقيقية، طقس مدينتك ومواقيت الصلاة، مدة الليل والنهار بمعادلات فلكية دقيقة، أقصى درجات الحرارة في العالم، آخر الأخبار والزلازل المسجلة الآن، وحقيقة علمية جديدة كل يوم — بـ11 لغة وبدون تسجيل.</p>
-<button id="installBtn" aria-label="install" data-i18n="install">⬇ تثبيت التطبيق</button>
 
-<nav id="sections" aria-label="أقسام الموقع" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0 4px">
-  <a href="/gold" class="sec">🪙 سعر الذهب في بلدك</a>
-  <a href="/currency" class="sec">💱 أسعار العملات</a>
-  <a href="/prayer-times" class="sec">🕌 مواقيت الصلاة بالمدن</a>
-  <a href="/speed-test" class="sec">⚡ اختبار سرعة النت</a>
-  <a href="/tools" class="sec">🛠 أدوات الشبكة</a>
-  <a href="/archive" class="sec">📅 أرشيف الكوكب</a>
+
+<h2 class="sec-h">أقسام الموقع</h2>
+<nav id="sections" aria-label="أقسام الموقع">
+  <a href="/gold" class="tile gold"><span class="ic">🪙</span><b>سعر الذهب في بلدك</b><span class="h">غرام كل عيار بعملة 10 دول عربية، مع حاسبة</span><span class="v" id="tGold"></span><span class="h" id="tGoldH"></span></a>
+  <a href="/currency" class="tile cur"><span class="ic">💱</span><b>أسعار العملات</b><span class="h">12 عملة مع محوّل</span><span class="v" id="tCur"></span></a>
+  <a href="/prayer-times" class="tile pray"><span class="ic">🕌</span><b>مواقيت الصلاة</b><span class="h">17 مدينة مع عدّ تنازلي</span><span class="v" id="tPray"></span></a>
+  <a href="/speed-test" class="tile speed"><span class="ic">⚡</span><b>اختبار سرعة النت</b><span class="h">السرعة والبينغ في 10 ثوانٍ</span><span class="v">ابدأ القياس</span></a>
+  <a href="/tools" class="tile tools"><span class="ic">🛠</span><b>أدوات الشبكة</b><span class="h">IP وDNS والبورتات والدومين</span><span class="v num" id="tIp" dir="ltr" style="text-align:end;font-size:16px"></span></a>
+  <a href="/archive" class="tile arch"><span class="ic">📅</span><b>أرشيف الكوكب</b><span class="h">صفحة لكل يوم منذ سبتمبر</span><span class="v" id="tArch"></span></a>
 </nav>
 <main>
   <section class="card full">
@@ -363,10 +417,10 @@ function f2(x){ return String(x).padStart(2,"0"); }
 /* ================= الساعة ================= */
 function clock(){
   var d=new Date(), ms=String(d.getMilliseconds()).padStart(3,"0");
-  $("localClock").textContent = f2(d.getHours())+":"+f2(d.getMinutes())+":"+f2(d.getSeconds())+"."+ms;
-  $("utcClock").textContent   = f2(d.getUTCHours())+":"+f2(d.getUTCMinutes())+":"+f2(d.getUTCSeconds())+"."+ms;
+  $("localClock").textContent = f2(d.getHours())+":"+f2(d.getMinutes())+":"+f2(d.getSeconds());
+  $("utcClock").textContent   = f2(d.getUTCHours())+":"+f2(d.getUTCMinutes())+":"+f2(d.getUTCSeconds());
 }
-setInterval(clock,47); clock();
+setInterval(clock,250); clock();
 
 /* ================= الشمس: معادلة فلكية حقيقية ================= */
 function sunCalc(lat,lng){
@@ -799,6 +853,40 @@ window.addEventListener("beforeinstallprompt",function(e){
 $("installBtn").onclick=function(){
   if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt=null; this.style.display="none"; }
 };
+</script>
+<script>
+/* بطاقات الأقسام: قيم حية من أرشيف الموقع */
+(function(){
+  function el(i){return document.getElementById(i);}
+  function n(v,d){return Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});}
+  fetch("/archive.json").then(function(r){return r.json();}).then(function(a){
+    if(!a||!a.length) return;
+    var L=a[a.length-1], g=null; for(var i=a.length-1;i>=0;i--){ if(a[i].gold){ g=a[i]; break; } }
+    if(g){ el("tGold").textContent=n(g.gold/31.1035*0.875*3.75,2)+" ريال"; el("tGoldH").textContent="غرام عيار 21 في السعودية الآن"; }
+    var fx=null; for(var j=a.length-1;j>=0;j--){ if(a[j].fx&&a[j].fx.EGP){ fx=a[j].fx; break; } }
+    if(fx) el("tCur").textContent="الدولار = "+n(fx.EGP,2)+" جنيه";
+    el("tArch").textContent=a.length+" يوماً محفوظاً";
+  }).catch(function(){});
+  fetch("/cdn-cgi/trace",{cache:"no-store"}).then(function(r){return r.text();}).then(function(t){ var m=t.match(/^ip=(.*)$/m); if(m) el("tIp").textContent=m[1].trim(); }).catch(function(){});
+  // الصلاة القادمة من جدول الصفحة نفسها عند توفره
+  setTimeout(function(){
+    var row=el("prayerRow"); if(!row) return;
+    var now=new Date(), mins=now.getHours()*60+now.getMinutes(), best=null;
+    row.querySelectorAll("div").forEach(function(d){ var t=(d.textContent.match(/(\d{1,2}):(\d{2})/)||[]); if(!t.length) return;
+      var m=+t[1]*60+ +t[2], name=d.textContent.replace(t[0],"").trim(); if(/الشروق|Sunrise/.test(name)) return;
+      if(m>mins && !best) best=name+" "+t[0]; });
+    el("tPray").textContent=best?("التالية: "+best):"افتح مدينتك";
+  },3500);
+  // موضع الشمس بين الشروق والغروب
+  function sun(){
+    var st=(el("sunTimes")||{}).textContent||"", m=st.match(/(\d{2}):(\d{2}).*?(\d{2}):(\d{2})/); if(!m) return;
+    var sr=+m[1]*60+ +m[2], ss=+m[3]*60+ +m[4], now=new Date(), c=now.getHours()*60+now.getMinutes();
+    var p=Math.max(0,Math.min(1,(c-sr)/(ss-sr)));
+    el("sunDot").style.right=(p*100)+"%"; el("sunDot").style.opacity=(c<sr||c>ss)?".35":"1";
+    el("sunL1").textContent="☀ "+m[1]+":"+m[2]; el("sunL2").textContent="🌙 "+m[3]+":"+m[4];
+  }
+  setTimeout(sun,2500); setInterval(sun,60000);
+})();
 </script>
 </body>
 </html>
