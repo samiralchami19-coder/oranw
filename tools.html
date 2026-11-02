@@ -9,7 +9,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="OraNW">
 <link rel="canonical" href="https://oranw.com/tools">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#15233F">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OraNW">
 <meta property="og:url" content="https://oranw.com/tools">
@@ -34,6 +34,8 @@
   "inLanguage":["ar","en"]
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa;
@@ -109,6 +111,20 @@ summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--fg2)}
 .speed{font-size:clamp(40px,11vw,56px);font-weight:800;line-height:1.1}
 .foot div{margin:4px 0}
 @media (max-width:520px){.title{font-size:22px}}
+
+/* ===== OraNW v9 visual layer ===== */
+:root{--page:#EEF2F7;--bg:#FFFFFF;--fg:#172036;--fg2:#3A4458;--fg3:#5B6478;--fg4:#8A93A6;--bd:#D9E0EA;--mut:#F3F6FA;--navy:#15233F;--accent:#2D5DA8}
+@media (prefers-color-scheme:dark){:root{--page:#0D1424;--bg:#151F33;--fg:#E8EDF5;--fg2:#C3CBDA;--fg3:#93A0B8;--fg4:#6B7890;--bd:#26324A;--mut:#1B2740;--navy:#0A1020;--accent:#6E9BE6}}
+html{background:var(--page)}
+body{font-family:"IBM Plex Sans Arabic",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--page);max-width:760px}
+.title{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;font-size:clamp(32px,6vw,44px)!important;font-weight:700}
+.card{border-radius:20px;padding:20px}
+.tab{background:var(--bg)}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn{background:var(--navy);color:#fff}
+.btn.ghost{background:var(--bg);color:var(--fg)}
+.backlink,.langbtn{background:var(--bg)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 </style>
 </head>
 <body>
