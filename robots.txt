@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://oranw.com/sitemap.xml
+Sitemap: https://oranw.com/day/sitemap.xml

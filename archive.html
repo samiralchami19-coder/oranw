@@ -3,95 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>أرشيف الكوكب — OraNW</title>
-<meta name="description" content="أرشيف يومي لما حدث على الكوكب: أسعار الذهب والبيتكوين والنفط، أقصى درجات الحرارة، مرحلة القمر">
-<meta name="robots" content="index,follow">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon.png">
-<style>
-:root{ --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa; --bd:#e5e5e5; --mut:#f2f2f2; --up:#0a7d3b; --down:#c0392b; }
-@media (prefers-color-scheme: dark){ :root{ --bg:#111111; --fg:#f2f2f2; --fg2:#c8c8c8; --fg3:#8a8a8a; --fg4:#5a5a5a; --bd:#2c2c2c; --mut:#1d1d1d; --up:#3ecf7a; --down:#ff6b5e; } }
+<title>أرشيف الكوكب — أسعار الذهب والبيتكوين والنفط والطقس يوماً بيوم | OraNW</title>
+<meta name="description" content="أرشيف يومي لما حدث على الكوكب منذ سبتمبر 2026: أسعار الذهب والبيتكوين والنفط، أقصى درجات الحرارة، وحالة القمر، مع صفحة مستقلة لكل يوم.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://oranw.com/archive">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OraNW">
+<meta property="og:url" content="https://oranw.com/archive">
+<meta property="og:title" content="أرشيف الكوكب — أسعار الذهب والبيتكوين والنفط والطقس يوماً بيوم | OraNW">
+<meta property="og:description" content="أرشيف يومي لما حدث على الكوكب منذ سبتمبر 2026: أسعار الذهب والبيتكوين والنفط، أقصى درجات الحرارة، وحالة القمر، مع صفحة مستقلة لكل يوم.">
+<meta property="og:image" content="https://oranw.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oranw.com/og.png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.png">
+
+<meta name="google-adsense-account" content="ca-pub-6507978376685782">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-04H2SF0KVS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04H2SF0KVS');</script>
+<style>:root{--bg:#ffffff;--fg:#111111;--fg2:#444444;--fg3:#777777;--fg4:#aaaaaa;--bd:#e5e5e5;--mut:#f2f2f2;--up:#0a7d3b;--down:#c0392b;--warn:#b8860b}
+@media (prefers-color-scheme:dark){:root{--bg:#111111;--fg:#f2f2f2;--fg2:#c8c8c8;--fg3:#8a8a8a;--fg4:#5a5a5a;--bd:#2c2c2c;--mut:#1d1d1d;--up:#3ecf7a;--down:#ff6b5e;--warn:#e6b93d}}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:680px;margin:0 auto;padding:20px 16px 60px}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:720px;margin:0 auto;padding:16px 16px 40px;line-height:1.9;font-size:16px}
+a{color:inherit}
 .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
-a{color:inherit;text-decoration:none}
-.back{display:inline-block;margin-bottom:16px;font-size:14px;color:var(--fg3)}
-h1{font-size:22px}
-.sub{font-size:13px;color:var(--fg3);margin:4px 0 18px}
-.picker{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
-.picker input,.picker button{padding:10px 14px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;font-family:inherit}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;font-size:14px}
+.topbar .brand{font-weight:800;text-decoration:none;font-size:17px}
+.topbar .links{display:flex;gap:14px;flex-wrap:wrap}
+.topbar .links a{color:var(--fg3);text-decoration:none}
+.topbar .links a:hover{color:var(--fg)}
+h1{font-size:26px;line-height:1.5;margin-bottom:6px}
+.lead{color:var(--fg3);font-size:15px;margin-bottom:22px}
+h2{font-size:20px;margin:28px 0 8px;line-height:1.5}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:var(--fg2);margin-bottom:10px}
+ul,ol{padding-inline-start:24px;margin-bottom:10px}
+strong{color:var(--fg)}
+code{direction:ltr;unicode-bidi:embed;background:var(--mut);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;font-size:14px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.card{border:1px solid var(--bd);border-radius:14px;padding:16px;margin:14px 0}
+.cta{display:inline-block;margin-top:6px;padding:10px 18px;border-radius:10px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{padding:8px;text-align:start;border-bottom:1px solid var(--bd)}
+th{color:var(--fg3);font-size:12px;font-weight:600}
+.note{font-size:12px;color:var(--fg4);margin-top:6px}
+.upd{font-size:12px;color:var(--fg4);margin-bottom:18px}
+.sitefoot{margin-top:40px;padding-top:18px;border-top:1px solid var(--bd);font-size:13px;color:var(--fg4);text-align:center;line-height:2.2}
+.sitefoot a{color:var(--fg3);text-decoration:none;margin:0 6px;white-space:nowrap}
+.sitefoot a:hover{color:var(--fg)}
+.crumbs{font-size:13px;color:var(--fg4);margin-bottom:6px}
+.crumbs a{color:var(--fg3);text-decoration:none}
+
+.picker{display:flex;gap:8px;align-items:center;margin:4px 0 14px;flex-wrap:wrap}
+.picker input,.picker button{padding:9px 14px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:var(--fg);font-size:15px;font-family:inherit}
 .picker button{background:var(--fg);color:var(--bg);border:none;font-weight:600;cursor:pointer}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{border:1px solid var(--bd);border-radius:14px;padding:14px}
+.grid .card{margin:0}
 .full{grid-column:1/-1}
 .lbl{font-size:12px;color:var(--fg3)}
-.val{font-size:24px;font-weight:700;margin-top:4px}
-.val small{font-size:13px;font-weight:400;color:var(--fg3)}
-.note{font-size:12px;color:var(--fg4);margin-top:6px}
-.empty{padding:40px 16px;text-align:center;color:var(--fg4);font-size:14px;line-height:2}
-.moon{font-size:44px}
+.val{font-size:24px;font-weight:700;margin-top:2px;line-height:1.4}
+.empty{padding:40px 16px;text-align:center;color:var(--fg4);font-size:14px}
+.moon{font-size:22px;font-weight:700}
+.sparks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 18px}
+.spark{border:1px solid var(--bd);border-radius:12px;padding:10px;text-decoration:none;display:block}
+.spark b{display:block;font-size:16px}
+.spark svg{width:100%;height:46px;display:block;margin-top:4px}
+.up{color:var(--up)}.down{color:var(--down)}
+.days{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.days a{font-size:13px;padding:5px 10px;border:1px solid var(--bd);border-radius:8px;text-decoration:none;color:var(--fg2)}
+@media (max-width:520px){.sparks{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
 </style>
+
 </head>
 <body>
-<a class="back" href="index.html">← <span data-x="back">العودة إلى الموقع</span></a>
-<h1 data-x="title">أرشيف الكوكب</h1>
-<p class="sub" data-x="sub">لقطة يومية محفوظة — اختر أي تاريخ وشاهد ما كان يحدث على الأرض</p>
+<header class="topbar"><a class="brand" href="/">OraNW</a>
+<nav class="links"><a href="/tools">الأدوات</a> <a href="/gold">الذهب</a> <a href="/archive">الأرشيف</a> <a href="/guides">الشروحات</a></nav></header>
+<main>
+<h1>أرشيف الكوكب</h1>
+<p class="lead">لقطة يومية محفوظة منذ 13 سبتمبر 2026: أسعار الذهب والبيتكوين والنفط، وأحرّ وأبرد مكان بين المدن التي نرصدها، وحالة القمر. لكل يوم صفحة مستقلة يمكنك مشاركتها.</p>
 
+<h2 style="margin-top:6px">حركة الأسعار خلال آخر 30 يوماً</h2>
+<div class="sparks" id="sparks"></div>
+
+<h2>اختر يوماً</h2>
 <div class="picker">
-  <input type="date" id="d" class="num">
-  <button id="go" data-x="show">اعرض</button>
-  <button id="latest" data-x="latest">الأحدث</button>
+  <input type="date" id="d" class="num" aria-label="التاريخ">
+  <button id="go">اعرض</button>
+  <button id="latest">الأحدث</button>
 </div>
+<div id="out"><div class="empty">يُحمَّل الأرشيف…</div></div>
 
-<div id="out"><div class="empty" data-x="loading">يُحمَّل الأرشيف…</div></div>
+<h2>كل الأيام</h2>
+<div class="days" id="days"></div>
 
+</main>
+<footer class="sitefoot">
+<div><a href="/">الرئيسية</a> <a href="/tools">أدوات الشبكة</a> <a href="/archive">أرشيف الكوكب</a> <a href="/gold">سعر الذهب</a> <a href="/bitcoin">سعر البيتكوين</a> <a href="/oil">سعر النفط</a> <a href="/guides">الشروحات</a></div>
+<div><a href="/about">من نحن</a> <a href="/contact">اتصل بنا</a> <a href="/privacy">سياسة الخصوصية</a> <a href="/en/">English</a></div>
+<div>OraNW © 2026</div>
+</footer>
 <script>
-var AR = (navigator.language||"ar").slice(0,2)==="ar";
-var X = AR ? {back:"العودة إلى الموقع",title:"أرشيف الكوكب",sub:"لقطة يومية محفوظة — اختر أي تاريخ وشاهد ما كان يحدث على الأرض",show:"اعرض",latest:"الأحدث",loading:"يُحمَّل الأرشيف…",prices:"الأسعار في ذلك اليوم",gold:"الذهب (أونصة)",btc:"بيتكوين",oil:"النفط WTI (برميل)",hot:"الأعلى حرارة",cold:"الأدنى برودة",moon:"القمر في ذلك الليلة",illum:"نسبة الإضاءة",day:"مدة النهار (الرياض)",none:"لا توجد لقطة لهذا التاريخ بعد — يبدأ الأرشيف من أول ليلة بعد التفعيل",err:"تعذر تحميل الأرشيف"}
-           : {back:"Back to site",title:"Planet Archive",sub:"A daily snapshot — pick any date and see what Earth looked like",show:"Show",latest:"Latest",loading:"Loading archive…",prices:"Prices that day",gold:"Gold (oz)",btc:"Bitcoin",oil:"WTI Oil (barrel)",hot:"Hottest",cold:"Coldest",moon:"The Moon that night",illum:"Illumination",day:"Daylight (Riyadh)",none:"No snapshot for this date yet — the archive starts from the first night after activation",err:"Failed to load archive"};
-document.documentElement.lang = AR?"ar":"en";
-document.documentElement.dir = AR?"rtl":"ltr";
-document.querySelectorAll("[data-x]").forEach(function(e){ e.textContent=X[e.dataset.x]; });
-
-var PHASES=[["محاق","New","🌑"],["هلال متزايد","Waxing crescent","🌒"],["تربيع أول","First quarter","🌓"],["أحدب متزايد","Waxing gibbous","🌔"],["بدر","Full","🌕"],["أحدب متناقص","Waning gibbous","🌖"],["تربيع أخير","Last quarter","🌗"],["هلال متناقص","Waning crescent","🌘"]];
-var DATA=null;
-
-function fmtHM(h){ var hh=Math.floor(h), m=Math.round((h-hh)*60); if(m===60){hh++;m=0;} return AR?hh+" س "+m+" د":hh+"h "+m+"m"; }
+var PHASES=[["محاق","🌑"],["هلال متزايد","🌒"],["تربيع أول","🌓"],["أحدب متزايد","🌔"],["بدر","🌕"],["أحدب متناقص","🌖"],["تربيع أخير","🌗"],["هلال متناقص","🌘"]];
+var DATA=[];
+function hm(h){ var hh=Math.floor(h), m=Math.round((h-hh)*60); if(m===60){hh++;m=0;} return hh+" س "+m+" د"; }
 function money(v,d){ return v==null?"—":"$"+Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}); }
-
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function card(lbl,val,sub,cls){ return '<div class="card '+(cls||"")+'"><div class="lbl">'+lbl+'</div><div class="val num">'+val+'</div>'+(sub?'<div class="note">'+sub+'</div>':'')+'</div>'; }
 function render(e){
-  if(!e){ document.getElementById("out").innerHTML='<div class="empty">'+X.none+'</div>'; return; }
-  var ph=PHASES[e.moon||0];
-  document.getElementById("out").innerHTML=
-  '<div class="grid">'+
-  '<div class="card full"><div class="lbl">'+X.prices+' — <b class="num">'+e.d+'</b></div>'+
-    '<div style="display:flex;gap:28px;margin-top:10px;flex-wrap:wrap">'+
-    '<div><div class="val num">'+money(e.gold,2)+'</div><div class="note">'+X.gold+'</div></div>'+
-    '<div><div class="val num">'+money(e.btc,0)+'</div><div class="note">'+X.btc+'</div></div>'+
-    '<div><div class="val num">'+money(e.oil,2)+'</div><div class="note">'+X.oil+'</div></div>'+
-    '</div></div>'+
-  '<div class="card"><div class="lbl">🔥 '+X.hot+'</div><div class="val num">'+e.hot.t+'°</div><div class="note">'+(AR?e.hot.n:e.hot.ne)+'</div></div>'+
-  '<div class="card"><div class="lbl">❄️ '+X.cold+'</div><div class="val num">'+e.cold.t+'°</div><div class="note">'+(AR?e.cold.n:e.cold.ne)+'</div></div>'+
-  '<div class="card"><div class="lbl">'+X.moon+'</div><div class="moon">'+(AR?ph[0]:ph[1])+' '+ph[2]+'</div><div class="note">'+X.illum+': <b class="num">'+e.illum+'٪</b></div></div>'+
-  '<div class="card"><div class="lbl">☀️ '+X.day+'</div><div class="val num">'+(e.dayLen?fmtHM(e.dayLen):"—")+'</div></div>'+
-  '</div>';
+  var out=document.getElementById("out");
+  if(!e){ out.innerHTML='<div class="empty">لا توجد لقطة لهذا التاريخ.</div>'; return; }
+  var ph=PHASES[e.moon||0]||PHASES[0];
+  out.innerHTML='<div class="grid">'+
+    card("الذهب (أونصة)",money(e.gold,2))+card("البيتكوين",money(e.btc,0))+
+    card("النفط WTI (برميل)",money(e.oil,2))+card("☀️ مدة النهار (الرياض)",e.dayLen?hm(e.dayLen):"—")+
+    card("🔥 الأعلى حرارة",e.hot?'<bdi dir="ltr">'+e.hot.t+"°</bdi>":"—",e.hot?esc(e.hot.n):"")+
+    card("❄️ الأدنى حرارة",e.cold?'<bdi dir="ltr">'+e.cold.t+"°</bdi>":"—",e.cold?esc(e.cold.n):"")+
+    '<div class="card full"><div class="lbl">القمر في تلك الليلة</div><div class="moon">'+ph[1]+" "+ph[0]+'</div><div class="note">نسبة الإضاءة: <b class="num">'+(e.illum!=null?e.illum+"٪":"—")+'</b></div></div>'+
+    '</div><p style="margin-top:14px"><a class="cta" href="/day/'+e.d+'">صفحة يوم '+e.d+' كاملة مع الملخص والمشاركة ←</a></p>';
 }
-
-fetch("archive.json").then(function(r){return r.json();}).then(function(j){
-  DATA=j||[];
-  if(!DATA.length){ document.getElementById("out").innerHTML='<div class="empty">'+X.none+'</div>'; return; }
-  document.getElementById("d").min=DATA[0].d;
-  document.getElementById("d").max=DATA[DATA.length-1].d;
-  showLatest();
-}).catch(function(){ document.getElementById("out").innerHTML='<div class="empty">'+X.err+'</div>'; });
-
-function showLatest(){ if(DATA&&DATA.length) render(DATA[DATA.length-1]); }
-document.getElementById("latest").onclick=showLatest;
-document.getElementById("go").onclick=function(){
-  var v=document.getElementById("d").value;
-  var e=DATA.find(function(x){return x.d===v;});
-  render(e);
-};
+function spark(key,label,dec,href){
+  var s=DATA.filter(function(e){return e[key]!=null;}).slice(-30);
+  if(s.length<2) return "";
+  var v=s.map(function(e){return +e[key];}), mn=Math.min.apply(null,v), mx=Math.max.apply(null,v); if(mx===mn) mx=mn+1;
+  var pts=v.map(function(x,i){ return (i/(v.length-1)*200).toFixed(1)+","+(44-(x-mn)/(mx-mn)*40).toFixed(1); }).join(" ");
+  var p=(v[v.length-1]-v[0])/v[0]*100, up=p>=0, col=up?"var(--up)":"var(--down)";
+  return '<a class="spark" href="'+href+'"><span class="lbl">'+label+'</span><b class="num">'+money(v[v.length-1],dec)+'</b>'+
+    '<span class="num '+(up?"up":"down")+'" style="font-size:12px;font-weight:700">'+(up?"▲ +":"▼ ")+Math.abs(p).toFixed(2)+'% · 30 يوماً</span>'+
+    '<svg viewBox="0 0 200 46" preserveAspectRatio="none"><polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></a>';
+}
+fetch("/archive.json").then(function(r){return r.json();}).then(function(j){
+  DATA=(j||[]).filter(function(e){return e&&e.d;});
+  if(!DATA.length){ render(null); return; }
+  var inp=document.getElementById("d"); inp.min=DATA[0].d; inp.max=DATA[DATA.length-1].d; inp.value=DATA[DATA.length-1].d;
+  document.getElementById("sparks").innerHTML=spark("gold","الذهب","2","/gold")+spark("btc","البيتكوين","0","/bitcoin")+spark("oil","النفط","2","/oil");
+  document.getElementById("days").innerHTML=DATA.slice().reverse().map(function(e){return '<a class="num" href="/day/'+e.d+'">'+e.d+'</a>';}).join("");
+  render(DATA[DATA.length-1]);
+}).catch(function(){ document.getElementById("out").innerHTML='<div class="empty">تعذّر تحميل الأرشيف</div>'; });
+document.getElementById("latest").onclick=function(){ if(DATA.length){ document.getElementById("d").value=DATA[DATA.length-1].d; render(DATA[DATA.length-1]); } };
+document.getElementById("go").onclick=function(){ var v=document.getElementById("d").value; render(DATA.find(function(x){return x.d===v;})); };
 document.getElementById("d").addEventListener("change",function(){ document.getElementById("go").click(); });
 </script>
 </body>

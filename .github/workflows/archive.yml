@@ -20,6 +20,6 @@ jobs:
         run: |
           git config user.name "archive-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add archive.json
+          git add archive.json facts.json index.html
           git diff --staged --quiet || git commit -m "archive: $(date -u +%F)"
           git push

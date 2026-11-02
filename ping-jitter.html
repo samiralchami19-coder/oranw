@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ما هو البينغ والـ Jitter؟ ولماذا يتقطع اتصالك في الألعاب والمكالمات — OraNW</title>
+<meta name="description" content="شرح زمن الاستجابة (Ping) والتذبذب (Jitter) بالعربية، والقيم الجيدة للألعاب والمكالمات، وطرق تحسين الاتصال.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://oranw.com/ping-jitter">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OraNW">
+<meta property="og:url" content="https://oranw.com/ping-jitter">
+<meta property="og:title" content="ما هو البينغ والـ Jitter؟ ولماذا يتقطع اتصالك في الألعاب والمكالمات — OraNW">
+<meta property="og:description" content="شرح زمن الاستجابة (Ping) والتذبذب (Jitter) بالعربية، والقيم الجيدة للألعاب والمكالمات، وطرق تحسين الاتصال.">
+<meta property="og:image" content="https://oranw.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oranw.com/og.png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"ما هو البينغ والـ Jitter؟ ولماذا يتقطع اتصالك في الألعاب والمكالمات","description":"شرح زمن الاستجابة (Ping) والتذبذب (Jitter) بالعربية، والقيم الجيدة للألعاب والمكالمات، وطرق تحسين الاتصال.","inLanguage":"ar","mainEntityOfPage":"https://oranw.com/ping-jitter","author":{"@type":"Organization","name":"OraNW"},"publisher":{"@type":"Organization","name":"OraNW","logo":{"@type":"ImageObject","url":"https://oranw.com/icon.png"}},"datePublished":"2026-11-02","dateModified":"2026-11-02","image":"https://oranw.com/og.png"}</script>
+<meta name="google-adsense-account" content="ca-pub-6507978376685782">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-04H2SF0KVS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04H2SF0KVS');</script>
+<style>:root{--bg:#ffffff;--fg:#111111;--fg2:#444444;--fg3:#777777;--fg4:#aaaaaa;--bd:#e5e5e5;--mut:#f2f2f2;--up:#0a7d3b;--down:#c0392b;--warn:#b8860b}
+@media (prefers-color-scheme:dark){:root{--bg:#111111;--fg:#f2f2f2;--fg2:#c8c8c8;--fg3:#8a8a8a;--fg4:#5a5a5a;--bd:#2c2c2c;--mut:#1d1d1d;--up:#3ecf7a;--down:#ff6b5e;--warn:#e6b93d}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:720px;margin:0 auto;padding:16px 16px 40px;line-height:1.9;font-size:16px}
+a{color:inherit}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;font-size:14px}
+.topbar .brand{font-weight:800;text-decoration:none;font-size:17px}
+.topbar .links{display:flex;gap:14px;flex-wrap:wrap}
+.topbar .links a{color:var(--fg3);text-decoration:none}
+.topbar .links a:hover{color:var(--fg)}
+h1{font-size:26px;line-height:1.5;margin-bottom:6px}
+.lead{color:var(--fg3);font-size:15px;margin-bottom:22px}
+h2{font-size:20px;margin:28px 0 8px;line-height:1.5}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:var(--fg2);margin-bottom:10px}
+ul,ol{padding-inline-start:24px;margin-bottom:10px}
+strong{color:var(--fg)}
+code{direction:ltr;unicode-bidi:embed;background:var(--mut);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;font-size:14px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.card{border:1px solid var(--bd);border-radius:14px;padding:16px;margin:14px 0}
+.cta{display:inline-block;margin-top:6px;padding:10px 18px;border-radius:10px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{padding:8px;text-align:start;border-bottom:1px solid var(--bd)}
+th{color:var(--fg3);font-size:12px;font-weight:600}
+.note{font-size:12px;color:var(--fg4);margin-top:6px}
+.upd{font-size:12px;color:var(--fg4);margin-bottom:18px}
+.sitefoot{margin-top:40px;padding-top:18px;border-top:1px solid var(--bd);font-size:13px;color:var(--fg4);text-align:center;line-height:2.2}
+.sitefoot a{color:var(--fg3);text-decoration:none;margin:0 6px;white-space:nowrap}
+.sitefoot a:hover{color:var(--fg)}
+.crumbs{font-size:13px;color:var(--fg4);margin-bottom:6px}
+.crumbs a{color:var(--fg3);text-decoration:none}
+</style>
+
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/">OraNW</a>
+<nav class="links"><a href="/tools">الأدوات</a> <a href="/gold">الذهب</a> <a href="/archive">الأرشيف</a> <a href="/guides">الشروحات</a></nav></header>
+<main>
+<div class="crumbs"><a href="/guides">الشروحات</a> ›</div><h1>ما هو البينغ والـ Jitter؟ ولماذا يتقطع اتصالك في الألعاب والمكالمات</h1>
+<p class="lead">قد تكون سرعة الإنترنت عندك عالية، ومع ذلك تتقطع المكالمة أو «يعلّق» اللاعب في اللعبة. السبب غالباً ليس السرعة، بل زمن الاستجابة والتذبذب.</p>
+
+<h2>ما هو البينغ (Ping)؟</h2>
+<p>البينغ أو <strong>زمن الاستجابة</strong> (Latency) هو الوقت الذي تستغرقه رسالة صغيرة لتذهب من جهازك إلى خادم وتعود، ويقاس بالمللي ثانية (ms). كلما قلّ كان أفضل.</p>
+<p>تشبيه بسيط: السرعة (Mbps) هي <strong>عرض الطريق</strong>، أي كم سيارة تمر في الوقت نفسه. والبينغ هو <strong>طول الطريق</strong>، أي كم تستغرق السيارة الواحدة لتصل. تحميل فيلم يحتاج طريقاً عريضاً، أما اللعب والمكالمات فتحتاج طريقاً قصيراً.</p>
+
+<h2>ما هو الـ Jitter؟</h2>
+<p>الـ <strong>Jitter</strong> أو التذبذب هو مقدار تغيّر البينغ من رسالة إلى أخرى. إذا كان البينغ 30 ثم 31 ثم 29 فالاتصال مستقر. أما إذا كان 30 ثم 120 ثم 40 فالتذبذب عالٍ، وهذا ما يسبب تقطّع الصوت في المكالمات و«القفزات» في الألعاب، حتى لو كان المتوسط جيداً.</p>
+
+<h2>ما القيم الجيدة؟</h2>
+<table>
+<tr><th>الاستخدام</th><th>البينغ</th><th>الـ Jitter</th></tr>
+<tr><td>الألعاب التنافسية</td><td>أقل من 40 ms</td><td>أقل من 10 ms</td></tr>
+<tr><td>مكالمات الفيديو والصوت</td><td>أقل من 100 ms</td><td>أقل من 30 ms</td></tr>
+<tr><td>التصفح والفيديو العادي</td><td>أقل من 150 ms</td><td>غير مهم كثيراً</td></tr>
+</table>
+
+<h2>لماذا يرتفع البينغ؟</h2>
+<ul>
+<li><strong>الـ Wi-Fi:</strong> أكثر سبب شائع. الجدران والمسافة والأجهزة المجاورة ترفع التذبذب.</li>
+<li><strong>استهلاك الشبكة:</strong> شخص آخر في البيت يحمّل ملفات أو يشاهد بجودة عالية.</li>
+<li><strong>بُعد الخادم:</strong> خادم لعبة في أوروبا سيعطيك بينغاً أعلى من خادم في الخليج.</li>
+<li><strong>ازدحام شبكة المزود</strong> في ساعات الذروة مساءً.</li>
+</ul>
+
+<h2>كيف تحسّن اتصالك؟</h2>
+<ol>
+<li>استخدم كابل إيثرنت للجهاز الذي تلعب أو تتصل منه، فهو أكثر حل فعالية.</li>
+<li>إن كنت على Wi-Fi فاقترب من الراوتر، واستخدم نطاق 5GHz.</li>
+<li>أوقف التحميلات والتحديثات التلقائية أثناء اللعب أو الاجتماعات.</li>
+<li>اختر في اللعبة أقرب خادم لمنطقتك.</li>
+<li>أعد تشغيل الراوتر إن لاحظت ارتفاعاً مفاجئاً ومستمراً.</li>
+</ol>
+
+<h2>كيف نقيسه في OraNW؟</h2>
+<p>أداة «زمن الاستجابة» ترسل 6 طلبات إلى كل وجهة: موقعنا وشبكة Cloudflare وشبكة Google، ثم تعرض الأدنى والمتوسط والأعلى والتذبذب. جرّبها مرة على Wi-Fi ومرة على الكابل أو بيانات الجوال لترى الفرق بنفسك.</p>
+<a class="cta" href="/tools#lat">قِس زمن الاستجابة ←</a>
+<div class="card"><strong>مقالات أخرى:</strong><ul style="margin-top:6px"><li><a href="/what-is-dns">ما هو DNS؟ شرح مبسّط لنظام أسماء النطاقات</a></li><li><a href="/what-is-my-ip">ما هو عنوان IP؟ وكيف تعرف عنوانك ومزود خدمتك</a></li><li><a href="/what-are-ports">ما هي البورتات (المنافذ)؟ وكيف تعرف إن كان المنفذ مفتوحاً</a></li></ul></div>
+</main>
+<footer class="sitefoot">
+<div><a href="/">الرئيسية</a> <a href="/tools">أدوات الشبكة</a> <a href="/archive">أرشيف الكوكب</a> <a href="/gold">سعر الذهب</a> <a href="/bitcoin">سعر البيتكوين</a> <a href="/oil">سعر النفط</a> <a href="/guides">الشروحات</a></div>
+<div><a href="/about">من نحن</a> <a href="/contact">اتصل بنا</a> <a href="/privacy">سياسة الخصوصية</a> <a href="/en/">English</a></div>
+<div>OraNW © 2026</div>
+</footer>
+</body>
+</html>

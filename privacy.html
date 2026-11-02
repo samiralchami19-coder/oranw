@@ -4,73 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>سياسة الخصوصية — OraNW</title>
-<meta name="robots" content="index,follow">
-<style>
-:root{
-  --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa;
-  --bd:#e5e5e5; --mut:#f2f2f2;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#111111; --fg:#f2f2f2; --fg2:#c8c8c8; --fg3:#8a8a8a; --fg4:#5a5a5a; --bd:#2c2c2c; --mut:#1d1d1d; }
-}
+<meta name="description" content="سياسة الخصوصية لموقع OraNW: ما البيانات التي نستخدمها، والخدمات الخارجية، وملفات تعريف الارتباط، وإعلانات Google AdSense.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://oranw.com/privacy">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OraNW">
+<meta property="og:url" content="https://oranw.com/privacy">
+<meta property="og:title" content="سياسة الخصوصية — OraNW">
+<meta property="og:description" content="سياسة الخصوصية لموقع OraNW: ما البيانات التي نستخدمها، والخدمات الخارجية، وملفات تعريف الارتباط، وإعلانات Google AdSense.">
+<meta property="og:image" content="https://oranw.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oranw.com/og.png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.png">
+
+<meta name="google-adsense-account" content="ca-pub-6507978376685782">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-04H2SF0KVS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04H2SF0KVS');</script>
+<style>:root{--bg:#ffffff;--fg:#111111;--fg2:#444444;--fg3:#777777;--fg4:#aaaaaa;--bd:#e5e5e5;--mut:#f2f2f2;--up:#0a7d3b;--down:#c0392b;--warn:#b8860b}
+@media (prefers-color-scheme:dark){:root{--bg:#111111;--fg:#f2f2f2;--fg2:#c8c8c8;--fg3:#8a8a8a;--fg4:#5a5a5a;--bd:#2c2c2c;--mut:#1d1d1d;--up:#3ecf7a;--down:#ff6b5e;--warn:#e6b93d}}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:680px;margin:0 auto;padding:24px 16px 60px;line-height:1.9;font-size:15px}
-h1{font-size:24px;margin-bottom:4px}
-.upd{font-size:12px;color:var(--fg4);margin-bottom:20px}
-h2{font-size:18px;margin:26px 0 8px}
-p,li{color:var(--fg2);margin-bottom:8px}
-ul{padding-inline-start:22px}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:720px;margin:0 auto;padding:16px 16px 40px;line-height:1.9;font-size:16px}
+a{color:inherit}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:18px;font-size:14px}
+.topbar .brand{font-weight:800;text-decoration:none;font-size:17px}
+.topbar .links{display:flex;gap:14px;flex-wrap:wrap}
+.topbar .links a{color:var(--fg3);text-decoration:none}
+.topbar .links a:hover{color:var(--fg)}
+h1{font-size:26px;line-height:1.5;margin-bottom:6px}
+.lead{color:var(--fg3);font-size:15px;margin-bottom:22px}
+h2{font-size:20px;margin:28px 0 8px;line-height:1.5}
+h3{font-size:17px;margin:20px 0 6px}
+p,li{color:var(--fg2);margin-bottom:10px}
+ul,ol{padding-inline-start:24px;margin-bottom:10px}
 strong{color:var(--fg)}
-a{color:var(--fg)}
-.back{display:inline-block;margin-bottom:20px;font-size:14px;color:var(--fg3);text-decoration:none}
-.back:hover{color:var(--fg)}
+code{direction:ltr;unicode-bidi:embed;background:var(--mut);border:1px solid var(--bd);border-radius:6px;padding:1px 6px;font-size:14px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.card{border:1px solid var(--bd);border-radius:14px;padding:16px;margin:14px 0}
+.cta{display:inline-block;margin-top:6px;padding:10px 18px;border-radius:10px;background:var(--fg);color:var(--bg);text-decoration:none;font-weight:700;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{padding:8px;text-align:start;border-bottom:1px solid var(--bd)}
+th{color:var(--fg3);font-size:12px;font-weight:600}
+.note{font-size:12px;color:var(--fg4);margin-top:6px}
+.upd{font-size:12px;color:var(--fg4);margin-bottom:18px}
+.sitefoot{margin-top:40px;padding-top:18px;border-top:1px solid var(--bd);font-size:13px;color:var(--fg4);text-align:center;line-height:2.2}
+.sitefoot a{color:var(--fg3);text-decoration:none;margin:0 6px;white-space:nowrap}
+.sitefoot a:hover{color:var(--fg)}
+.crumbs{font-size:13px;color:var(--fg4);margin-bottom:6px}
+.crumbs a{color:var(--fg3);text-decoration:none}
 </style>
+
 </head>
 <body>
-<a class="back" href="index.html">← العودة إلى الموقع</a>
+<header class="topbar"><a class="brand" href="/">OraNW</a>
+<nav class="links"><a href="/tools">الأدوات</a> <a href="/gold">الذهب</a> <a href="/archive">الأرشيف</a> <a href="/guides">الشروحات</a></nav></header>
+<main>
 <h1>سياسة الخصوصية</h1>
-<div class="upd">آخر تحديث: 13 سبتمبر 2026 — الإصدار 5.0</div>
+<div class="upd">آخر تحديث: 2 نوفمبر 2026</div>
+<p>موقع <strong>OraNW</strong> (oranw.com) يحترم خصوصيتك. توضح هذه الصفحة ما البيانات التي تُستخدم عند زيارتك، ومن يستقبلها، وكيف تتحكم فيها. باستخدامك الموقع فأنت توافق على هذه السياسة.</p>
 
-<p>موقع <strong>OraNW</strong> ("نحن") يحترم خصوصيتك. توضح هذه الصفحة ما البيانات التي يجمعها الموقع وكيف يستخدمها. باستخدامك الموقع فأنت توافق على هذه السياسة.</p>
+<h2>1. ما لا نجمعه</h2>
+<p>لا يوجد في الموقع تسجيل حسابات ولا نماذج تطلب اسمك أو رقم هاتفك. لا نملك قاعدة بيانات للزوار، ولا نخزّن عنوان IP الخاص بك أو موقعك على خوادمنا.</p>
 
-<h2>1. الموقع الجغرافي</h2>
+<h2>2. موقعك الجغرافي</h2>
 <ul>
-<li>يستخدم الموقع إحداثيات جهازك <strong>لعرض طقسك ومدة الليل والنهار ومواعيد الشروق والغروب</strong> في مدينتك فقط.</li>
-<li>لا نخزّن موقعك على أي خادم، ولا نشاركه مع أي طرف ثالث.</li>
-<li>تبقى الإحداثيات في متصفحك وتُرسل مباشرة إلى خدمة الطقس ثم تُتجاهل.</li>
-<li>يمكنك رفض إذن الموقع في أي وقت من إعدادات متصفحك — وسيعمل الموقع بمدينة افتراضية.</li>
+<li>يطلب الموقع إذن الموقع الجغرافي لعرض طقس مدينتك ومواعيد الشروق والغروب فقط.</li>
+<li>تُرسل الإحداثيات من متصفحك مباشرة إلى <strong>Open-Meteo</strong> (للطقس) و<strong>BigDataCloud</strong> (لمعرفة اسم المدينة)، ولا تمر عبر خوادمنا.</li>
+<li>يمكنك رفض الإذن، وسيعرض الموقع مدينة افتراضية.</li>
 </ul>
 
-<h2>2. خدمات الطرف الثالث</h2>
+<h2>3. الخدمات الخارجية التي يتصل بها متصفحك</h2>
+<p>لعرض البيانات الحية يتصل متصفحك مباشرة بالخدمات التالية، وكل خدمة منها ترى عنوان IP الخاص بك كما يحدث عند زيارة أي موقع:</p>
 <ul>
-<li><strong>Open-Meteo</strong>: لبيانات الطقس — تُرسل إليها إحداثياتك عند طلب الطقس فقط.</li>
-<li><strong>CoinGecko</strong>: لسعر بيتكوين — لا تُرسل أي بيانات شخصية.</li>
-<li><strong>USGS</strong>: لبيانات الزلازل العالمية اللحظية — لا تُرسل أي بيانات شخصية.</li>
-<li><strong>GDELT Project</strong>: لعناوين الأخبار العالمية — يُرسل استعلام اللغة فقط.</li>
-<li><strong>Aladhan</strong>: لمواقيت الصلاة وتاريخ الهجرة — تُرسل إحداثياتك عند طلب المواقيت فقط.</li>
+<li><strong>Open-Meteo</strong> و<strong>BigDataCloud</strong>: الطقس واسم المدينة.</li>
+<li><strong>CoinGecko</strong>: سعر البيتكوين.</li>
+<li><strong>USGS</strong>: الزلازل.</li>
+<li><strong>GDELT</strong> و<strong>rss2json</strong>: عناوين الأخبار.</li>
+<li><strong>open.er-api.com</strong> و<strong>jsDelivr</strong>: أسعار صرف العملات.</li>
+<li><strong>ipwho.is</strong>: معلومات مزود الخدمة في أداة «شبكتي»، وتعمل فقط عند فتح الأداة.</li>
+<li><strong>Cloudflare (1.1.1.1)</strong> و<strong>Google (8.8.8.8)</strong>: استعلامات أداة DNS، ويُرسل إليهما اسم الدومين الذي تكتبه أنت.</li>
+<li><strong>Cloudflare</strong>: استضافة الموقع وأدوات زمن الاستجابة والسرعة والبورتات ومعلومات الدومين. ما تكتبه في هذه الأدوات يُعالج لحظياً ولا يُحفظ.</li>
 </ul>
 
-<h2>3. تحليلات Google</h2>
+<h2>4. Google Analytics</h2>
+<p>نستخدم <strong>Google Analytics</strong> لمعرفة عدد الزوار والصفحات الأكثر زيارة والبلدان التي يأتون منها. تستخدم الخدمة ملفات تعريف ارتباط (كوكيز)، ولا نرسل إليها اسمك أو بريدك. يمكنك منعها عبر <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">أداة إلغاء الاشتراك من Google</a>.</p>
+
+<h2>5. الإعلانات (Google AdSense)</h2>
 <ul>
-<li>نستخدم <strong>Google Analytics</strong> لفهم عدد الزوار وبلدانهم وصفحاتهم — عبر ملفات تعريف ارتباط مجهولة الهوية.</li>
-<li>لا نجمع اسمك ولا بريدك ولا رقم هاتفك.</li>
-<li>يمكنك تعطيل التتبع عبر إضافة مانع الإعلانات أو من <a href="https://tools.google.com/dlpage/gaoptout">أداة تعطيل غوغل</a>.</li>
+<li>يعرض الموقع إعلانات عبر <strong>Google AdSense</strong>. Google وشركاؤها من المورّدين الخارجيين يستخدمون ملفات تعريف الارتباط لعرض إعلانات بناءً على زياراتك السابقة لهذا الموقع أو لمواقع أخرى.</li>
+<li>يتيح ملف تعريف ارتباط الإعلانات لـ Google وشركائها عرض إعلانات مخصّصة لك.</li>
+<li>يمكنك إيقاف الإعلانات المخصّصة من <a href="https://adssettings.google.com" target="_blank" rel="noopener">إعدادات الإعلانات في Google</a>، أو إيقاف ملفات تعريف الارتباط لدى بعض المورّدين الآخرين عبر <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a>.</li>
+<li>لمعرفة كيف تستخدم Google البيانات من المواقع التي تعرض إعلاناتها: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">طريقة استخدام Google للبيانات</a>.</li>
+<li>للزوار من الاتحاد الأوروبي والمملكة المتحدة وسويسرا، تُعرض رسالة موافقة على ملفات تعريف الارتباط قبل عرض الإعلانات المخصّصة.</li>
 </ul>
 
-<h2>4. ملفات الارتباط والتخزين المحلي</h2>
-<ul>
-<li>قد يخزن الموقع تفضيلات بسيطة (مثل اللغة) في جهازك لتسريع التصفح.</li>
-<li>لا نستخدم ملفات ارتباط لأغراض إعلانية تجارية.</li>
-</ul>
+<h2>6. التخزين في جهازك</h2>
+<p>قد يحفظ الموقع في متصفحك تفضيلات بسيطة مثل اللغة، ونسخة مؤقتة من الصفحة لتفتح بسرعة دون اتصال. يمكنك حذفها من إعدادات متصفحك في أي وقت.</p>
 
-<h2>5. الإعلانات</h2>
-<p>قد نعرض إعلانات مستقبلًا عبر شبكات إعلانية تستخدم ملفات تعريف ارتباط خاصة بها — سنوضح ذلك هنا عند تفعيلها.</p>
+<h2>7. الأطفال</h2>
+<p>الموقع غير موجّه للأطفال دون 13 عاماً، ولا نجمع عن قصد أي بيانات عنهم.</p>
 
-<h2>6. الأمان والأطفال</h2>
-<p>لا نجمع بيانات عن عمر الزائر، ولا يستهدف الموقع الأطفال دون 13 عامًا، ولا تجمع أي نماذج تسجيل.</p>
+<h2>8. التعديلات</h2>
+<p>قد نحدّث هذه السياسة عند إضافة خدمات جديدة، وسيظهر تاريخ آخر تحديث في أعلى الصفحة.</p>
 
-<h2>6. التواصل</h2>
-<p>لأي استفسار حول الخصوصية: <a href="mailto:afaq2000ccm@gmail.com">afaq2000ccm@gmail.com</a></p>
+<h2>9. التواصل</h2>
+<p>لأي سؤال حول الخصوصية: <a href="mailto:afaq2000ccm@gmail.com" dir="ltr">afaq2000ccm@gmail.com</a></p>
 
+</main>
+<footer class="sitefoot">
+<div><a href="/">الرئيسية</a> <a href="/tools">أدوات الشبكة</a> <a href="/archive">أرشيف الكوكب</a> <a href="/gold">سعر الذهب</a> <a href="/bitcoin">سعر البيتكوين</a> <a href="/oil">سعر النفط</a> <a href="/guides">الشروحات</a></div>
+<div><a href="/about">من نحن</a> <a href="/contact">اتصل بنا</a> <a href="/privacy">سياسة الخصوصية</a> <a href="/en/">English</a></div>
+<div>OraNW © 2026</div>
+</footer>
 </body>
 </html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أدوات الشبكة | OraNW — معرفة IP وفحص DNS والبينغ والسرعة والبورتات والدومين</title>
+<meta name="description" content="أدوات شبكة مجانية بالعربية: اعرف عنوان IP ومزود الخدمة، افحص سجلات DNS، قِس البينغ والـ Jitter وسرعة التحميل، افحص البورتات، واعرف معلومات تسجيل أي دومين وشهادة HTTPS — بلا تسجيل.">
+<meta name="keywords" content="what is my ip, dns checker, latency test, ping test, port checker, فحص DNS, معرفة الاي بي, فحص البورتات, قياس البينغ, مزود الخدمة">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="OraNW">
+<link rel="canonical" href="https://oranw.com/tools">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OraNW">
+<meta property="og:url" content="https://oranw.com/tools">
+<meta property="og:title" content="أدوات الشبكة | OraNW">
+<meta property="og:description" content="فحص IP وDNS والاستجابة والبورتات — مجانًا وبلا تسجيل.">
+<meta property="og:image" content="https://oranw.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="google-adsense-account" content="ca-pub-6507978376685782">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6507978376685782" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-04H2SF0KVS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-04H2SF0KVS');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"أدوات الشبكة — OraNW",
+  "url":"https://oranw.com/tools",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "inLanguage":["ar","en"]
+}
+</script>
+<style>
+:root{
+  --bg:#ffffff; --fg:#111111; --fg2:#444444; --fg3:#777777; --fg4:#aaaaaa;
+  --bd:#e5e5e5; --mut:#f2f2f2; --up:#0a7d3b; --down:#c0392b; --warn:#b8860b;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#111111; --fg:#f2f2f2; --fg2:#c8c8c8; --fg3:#8a8a8a; --fg4:#5a5a5a; --bd:#2c2c2c; --mut:#1d1d1d; --up:#3ecf7a; --down:#ff6b5e; --warn:#e6b93d; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Kufi Arabic","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--fg);max-width:680px;margin:0 auto;padding:16px;line-height:1.6}
+a{color:inherit}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:10px 0 16px}
+.title{font-size:26px;font-weight:800;letter-spacing:-.3px}
+.sub{color:var(--fg3);font-size:14px;margin-top:2px}
+.backlink{font-size:13px;color:var(--fg3);text-decoration:none;border:1px solid var(--bd);border-radius:10px;padding:6px 12px;white-space:nowrap;transition:.15s}
+.backlink:hover{background:var(--mut);color:var(--fg)}
+.langbtn{font-size:12px;color:var(--fg3);border:1px solid var(--bd);border-radius:10px;padding:6px 10px;background:transparent;cursor:pointer;font-family:inherit;margin-top:6px}
+.langbtn:hover{background:var(--mut);color:var(--fg)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.tab{flex:0 0 auto;padding:10px 16px;border:1px solid var(--bd);border-radius:12px;background:transparent;color:var(--fg3);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap}
+.tab:hover{color:var(--fg);background:var(--mut)}
+.tab.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.card{border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--bg)}
+.lbl{font-size:15px;font-weight:700;color:var(--fg2);margin-bottom:10px}
+.note{font-size:12px;color:var(--fg3);margin-top:10px}
+.num{direction:ltr;unicode-bidi:embed;font-variant-numeric:tabular-nums}
+.kv{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed var(--bd);font-size:15px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--fg3);font-size:13px;white-space:nowrap}
+.kv .v{font-weight:600;text-align:end;word-break:break-all}
+.bigip{font-size:clamp(26px,7vw,38px);font-weight:800;letter-spacing:.5px;margin:6px 0 2px;word-break:break-all}
+.badge{display:inline-block;font-size:12px;font-weight:700;border-radius:8px;padding:3px 10px;margin-inline-start:8px;vertical-align:middle}
+.badge.ok{background:color-mix(in srgb,var(--up) 15%,transparent);color:var(--up)}
+.badge.bad{background:color-mix(in srgb,var(--down) 15%,transparent);color:var(--down)}
+.badge.warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+input,select{width:100%;padding:12px 14px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--fg);font-family:inherit;font-size:16px;outline:none}
+input:focus,select:focus{border-color:var(--fg4)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:0}
+.btn{padding:12px 22px;border:none;border-radius:12px;background:var(--fg);color:var(--bg);font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn:hover{opacity:.85}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--bd);font-weight:600}
+.btn.ghost:hover{background:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{padding:7px 8px;text-align:start;border-bottom:1px solid var(--bd);word-break:break-all}
+th{color:var(--fg3);font-weight:600;font-size:12px}
+.resolver{font-size:13px;font-weight:700;color:var(--fg2);margin:14px 0 4px}
+.resolver small{color:var(--fg4);font-weight:400}
+.latgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.latcard{border:1px solid var(--bd);border-radius:14px;padding:14px}
+.latcard .h{font-size:12px;color:var(--fg3);margin-bottom:6px}
+.latcard .ms{font-size:26px;font-weight:800}
+.latcard .mm{font-size:11px;color:var(--fg3)}
+.unit{font-size:13px;color:var(--fg3);font-weight:400}
+.gauge{height:8px;border-radius:6px;background:var(--mut);overflow:hidden;margin-top:8px}
+.gauge i{display:block;height:100%;border-radius:6px;background:var(--up);transition:width .3s}
+pre{direction:ltr;text-align:left;background:var(--mut);border:1px solid var(--bd);border-radius:12px;padding:14px;font-size:12px;overflow-x:auto;line-height:1.5;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.steps{counter-reset:st;margin-top:10px}
+.steps li{list-style:none;position:relative;padding:8px 34px 8px 0;font-size:14px;color:var(--fg2)}
+html[dir="ltr"] .steps li{padding:8px 0 8px 34px}
+.steps li::before{counter-increment:st;content:counter(st);position:absolute;inset-inline-start:0;top:8px;width:22px;height:22px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+details{border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-top:12px}
+summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--fg2)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--bd);border-top-color:var(--fg);border-radius:50%;animation:sp 0.8s linear infinite;vertical-align:-2px;margin-inline-end:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.foot{margin:22px 0 10px;text-align:center;font-size:12px;color:var(--fg4)}
+.foot a{color:var(--fg3);text-decoration:none}
+.err{color:var(--down);font-size:13px;margin-top:8px}
+.hidden{display:none!important}
+.guide{display:inline-block;margin-top:10px;font-size:13px;color:var(--fg3)}
+.speed{font-size:clamp(40px,11vw,56px);font-weight:800;line-height:1.1}
+.foot div{margin:4px 0}
+@media (max-width:520px){.title{font-size:22px}}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div>
+    <h1 class="title" data-i="t">أدوات الشبكة</h1>
+    <p class="sub" data-i="s">افحص اتصالك بنفسك — مجانًا وبلا تسجيل</p>
+    <button class="langbtn" id="langBtn">English</button>
+  </div>
+  <a class="backlink" href="/" data-i="back">← الرئيسية</a>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab on" data-tab="ip" data-i="tab1">شبكتي</button>
+  <button class="tab" data-tab="dns" data-i="tab2">فاحص DNS</button>
+  <button class="tab" data-tab="lat" data-i="tab3">زمن الاستجابة</button>
+  <button class="tab" data-tab="speed" data-i="tab5">سرعة التحميل</button>
+  <button class="tab" data-tab="port" data-i="tab4">فاحص البورتات</button>
+  <button class="tab" data-tab="whois" data-i="tab6">معلومات الدومين</button>
+  <button class="tab" data-tab="ssl" data-i="tab7">فحص HTTPS</button>
+</nav>
+
+<main>
+<!-- ============ شبكتي ============ -->
+<section class="card pane" id="pane-ip">
+  <h2 class="lbl" data-i="ipT">عنوانك ومعلومات شبكتك</h2>
+  <div class="bigip num" id="ipAddr">…</div>
+  <div id="ipBadges"></div>
+  <div id="ipTable" style="margin-top:14px"></div>
+  <button class="btn ghost" id="copyIp" style="margin-top:12px" data-i="copy">نسخ التقرير</button>
+  <div class="note" data-i="ipN">المصدر: شبكة Cloudflare التي تخدم موقعك + ipwho.is — لا نحفظ أي بيانات</div>
+  <a class="guide" href="/what-is-my-ip" data-i="gIp">ما هو عنوان IP وماذا يكشف عنك؟ ←</a>
+</section>
+
+<!-- ============ DNS ============ -->
+<section class="card pane hidden" id="pane-dns">
+  <h2 class="lbl" data-i="dnsT">فحص سجلات DNS لأي دومين</h2>
+  <div class="row">
+    <input id="dnsName" inputmode="url" placeholder="example.com" style="flex:2" dir="ltr">
+    <select id="dnsType" dir="ltr">
+      <option value="A">A</option><option value="AAAA">AAAA</option>
+      <option value="MX">MX</option><option value="NS">NS</option>
+      <option value="TXT">TXT</option><option value="CNAME">CNAME</option>
+      <option value="CAA">CAA</option><option value="SOA">SOA</option>
+    </select>
+    <button class="btn" id="dnsGo" data-i="go">افحص</button>
+  </div>
+  <div id="dnsOut"></div>
+  <div class="note" data-i="dnsN">يستعلم من Cloudflare (1.1.1.1) وGoogle (8.8.8.8) معًا عبر DNS-over-HTTPS — تطابق النتيجتين يعني اكتمال انتشار السجل عالميًا</div>
+  <a class="guide" href="/what-is-dns" data-i="gDns">ما هو DNS وأنواع السجلات؟ ←</a>
+</section>
+
+<!-- ============ الاستجابة ============ -->
+<section class="card pane hidden" id="pane-lat">
+  <h2 class="lbl" data-i="latT">زمن الاستجابة من جهازك</h2>
+  <p style="font-size:14px;color:var(--fg2)" data-i="latD">قياس حقيقي بالمتصفح: ٦ طلبات لكل وجهة، نعرض الأدنى والمتوسط والأعلى والـ Jitter (تذبذب الاتصال).</p>
+  <button class="btn" id="latGo" style="margin-top:12px" data-i="start">ابدأ القياس</button>
+  <div class="latgrid" id="latOut"></div>
+  <div id="latColo"></div>
+  <div class="note" data-i="latN">يقيس إلى أقرب نقطة في كل شبكة عالمية — الأرقام تتأثر بجودة اتصالك الحالي (Wi-Fi/جوال) أكثر من مزود الخدمة نفسه</div>
+  <a class="guide" href="/ping-jitter" data-i="gLat">ما هو البينغ والـ Jitter؟ ←</a>
+</section>
+
+<!-- ============ البورتات ============ -->
+<section class="card pane hidden" id="pane-port">
+  <h2 class="lbl" data-i="portT">فحص فتح بورت على خادم</h2>
+  <div class="row">
+    <input id="portHost" inputmode="url" placeholder="oranw.com" style="flex:2" dir="ltr">
+    <input id="portNum" type="number" inputmode="numeric" placeholder="443" min="1" max="65535" dir="ltr">
+    <button class="btn" id="portGo" data-i="go">افحص</button>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <div style="display:flex;gap:6px;flex-wrap:wrap" id="portQuick" dir="ltr"></div>
+  </div>
+  <div id="portOut" style="margin-top:12px"></div>
+  <div class="note" data-i="portN">الفحص يتم من شبكة Cloudflare العالمية — يكشف هل البورت مفتوح للعالم (وليس فقط من جهازك)</div>
+  <a class="guide" href="/what-are-ports" data-i="gPort">ما هي البورتات ومتى تكون خطرًا؟ ←</a>
+</section>
+
+<!-- ============ السرعة ============ -->
+<section class="card pane hidden" id="pane-speed">
+  <h2 class="lbl" data-i="spT">قياس سرعة التحميل</h2>
+  <p style="font-size:14px;color:var(--fg2)" data-i="spD">نحمّل ملفات تجريبية من أقرب مركز Cloudflare إليك لمدة ١٠ ثوانٍ تقريبًا ونحسب السرعة الفعلية.</p>
+  <div class="speed num" id="spVal">— <span class="unit">Mbps</span></div>
+  <div class="gauge"><i id="spBar" style="width:0%"></i></div>
+  <button class="btn" id="spGo" style="margin-top:14px" data-i="start">ابدأ القياس</button>
+  <div id="spOut" class="note"></div>
+  <div class="note" data-i="spN">يستهلك الاختبار نحو ٢٠–٦٠ ميغابايت من باقتك. النتيجة تتأثر بالـ Wi-Fi والأجهزة الأخرى على الشبكة.</div>
+</section>
+
+<!-- ============ الدومين ============ -->
+<section class="card pane hidden" id="pane-whois">
+  <h2 class="lbl" data-i="whT">معلومات تسجيل الدومين (WHOIS)</h2>
+  <div class="row">
+    <input id="whName" inputmode="url" placeholder="example.com" style="flex:2" dir="ltr">
+    <button class="btn" id="whGo" data-i="go">افحص</button>
+  </div>
+  <div id="whOut" style="margin-top:10px"></div>
+  <div class="note" data-i="whN">من سجلات RDAP الرسمية لجهات التسجيل — تاريخ الإنشاء والانتهاء والمسجِّل وخوادم الأسماء</div>
+</section>
+
+<!-- ============ HTTPS ============ -->
+<section class="card pane hidden" id="pane-ssl">
+  <h2 class="lbl" data-i="slT">فحص HTTPS وشهادة الأمان</h2>
+  <div class="row">
+    <input id="slName" inputmode="url" placeholder="example.com" style="flex:2" dir="ltr">
+    <button class="btn" id="slGo" data-i="go">افحص</button>
+  </div>
+  <div id="slOut" style="margin-top:10px"></div>
+  <div class="note" data-i="slN">يفحص عمل HTTPS، وتحويل HTTP إلى HTTPS، وHSTS، وآخر شهادة صادرة من سجلات الشفافية (Certificate Transparency)</div>
+</section>
+</main>
+
+<section style="margin-top:22px;font-size:14px;color:var(--fg3);line-height:1.9">
+  <h2 style="font-size:16px;color:var(--fg2);margin-bottom:6px" data-i="abT">عن أدوات الشبكة</h2>
+  <p data-i="abP">أدوات مجانية بالعربية لفهم اتصالك بالإنترنت: اعرف عنوانك العام ومزود الخدمة، تأكد من انتشار سجلات DNS بعد تغييرها، قِس زمن الاستجابة والتذبذب وسرعة التحميل، وافحص البورتات وتاريخ انتهاء أي دومين وشهادته. كل الفحوصات تتم لحظيًا ولا نحفظ ما تكتبه.</p>
+</section>
+<footer class="foot">
+  <div><a href="/">الرئيسية</a> · <a href="/guides">الشروحات</a> · <a href="/archive">الأرشيف</a> · <a href="/gold">سعر الذهب</a></div>
+  <div><a href="/about">من نحن</a> · <a href="/contact">اتصل بنا</a> · <a href="/privacy">الخصوصية</a></div>
+  <div>OraNW © 2026</div>
+</footer>
+
+<script>
+/* ================= i18n ================= */
+const I = {
+ar: {
+  t:"أدوات الشبكة", s:"افحص اتصالك بنفسك — مجانًا وبلا تسجيل", back:"← الرئيسية",
+  tab1:"شبكتي", tab2:"فاحص DNS", tab3:"زمن الاستجابة", tab4:"فاحص البورتات",
+  tab5:"سرعة التحميل", tab6:"معلومات الدومين", tab7:"فحص HTTPS",
+  gIp:"ما هو عنوان IP وماذا يكشف عنك؟ ←", gDns:"ما هو DNS وأنواع السجلات؟ ←", gLat:"ما هو البينغ والـ Jitter؟ ←", gPort:"ما هي البورتات ومتى تكون خطرًا؟ ←",
+  spT:"قياس سرعة التحميل", spD:"نحمّل ملفات تجريبية من أقرب مركز Cloudflare إليك لمدة ١٠ ثوانٍ تقريبًا ونحسب السرعة الفعلية.",
+  spN:"يستهلك الاختبار نحو ٢٠–٦٠ ميغابايت من باقتك. النتيجة تتأثر بالـ Wi-Fi والأجهزة الأخرى على الشبكة.",
+  spDone:"تم تحميل", spMB:"ميغابايت في", spSec:"ثانية", spFail:"تعذّر القياس — حاول مرة أخرى",
+  whT:"معلومات تسجيل الدومين (WHOIS)", whN:"من سجلات RDAP الرسمية لجهات التسجيل — تاريخ الإنشاء والانتهاء والمسجِّل وخوادم الأسماء",
+  kReg:"جهة التسجيل", kCreated:"تاريخ الإنشاء", kExpires:"تاريخ الانتهاء", kUpdated:"آخر تعديل", kNS:"خوادم الأسماء", kStatus:"الحالة", kDnssec:"DNSSEC",
+  daysLeft:"يوم متبقٍ", expired:"منتهٍ", notFound:"الدومين غير مسجل (أو امتداده لا يدعم RDAP)", yes:"مفعّل", no:"غير مفعّل",
+  slT:"فحص HTTPS وشهادة الأمان", slN:"يفحص عمل HTTPS، وتحويل HTTP إلى HTTPS، وHSTS، وآخر شهادة صادرة من سجلات الشفافية (Certificate Transparency)",
+  kHttps:"HTTPS يعمل", kRedir:"تحويل HTTP ← HTTPS", kHsts:"HSTS", kIssuer:"مُصدر الشهادة", kValid:"صالحة حتى", kNames:"الأسماء المشمولة", kServer:"الخادم", kCode:"رمز الاستجابة",
+  noCert:"لم نجد شهادة حديثة في سجلات الشفافية لهذا الاسم",
+  apiOff:"هذه الأداة غير متاحة مؤقتًا — حاول لاحقًا", apiLimit:"طلبات كثيرة — انتظر دقيقة ثم حاول", pCF:"لا يمكن فحص الخوادم المستضافة على Cloudflare من شبكة Cloudflare نفسها",
+  abT:"عن أدوات الشبكة", abP:"أدوات مجانية بالعربية لفهم اتصالك بالإنترنت: اعرف عنوانك العام ومزود الخدمة، تأكد من انتشار سجلات DNS بعد تغييرها، قِس زمن الاستجابة والتذبذب وسرعة التحميل، وافحص البورتات وتاريخ انتهاء أي دومين وشهادته. كل الفحوصات تتم لحظيًا ولا نحفظ ما تكتبه.",
+
+  ipT:"عنوانك ومعلومات شبكتك", copy:"نسخ التقرير", copied:"تم النسخ ✓",
+  ipN:"المصدر: شبكة Cloudflare التي تخدم موقعك + ipwho.is — لا نحفظ أي بيانات",
+  kCountry:"الدولة", kCity:"المدينة", kISP:"مزود الخدمة", kASN:"رقم الشبكة (ASN)",
+  kTZ:"المنطقة الزمنية", kColo:"مركز بيانات Cloudflare", kType:"نوع الاتصال",
+  kBrowser:"المتصفح", kScreen:"الشاشة", kLang:"لغة الجهاز",
+  tMobile:"جوال/خلوي", tBroad:"ثابت/منزلي", tHost:"استضافة/خوادم",
+  dnsT:"فحص سجلات DNS لأي دومين", go:"افحص",
+  dnsN:"يستعلم من Cloudflare (1.1.1.1) وGoogle (8.8.8.8) معًا عبر DNS-over-HTTPS — تطابق النتيجتين يعني اكتمال انتشار السجل عالميًا",
+  dMatch:"النتائج متطابقة — السجل منتشر عالميًا", dDiff:"النتائج مختلفة — السجل ما زال ينتشر",
+  dNone:"لا توجد سجلات من هذا النوع", dBad:"أدخل دومينًا صحيحًا", dErr:"تعذّر الاستعلام — تحقق من الاتصال",
+  thName:"الاسم", thVal:"القيمة", thTTL:"TTL", cfRes:"Cloudflare", gRes:"Google",
+  latT:"زمن الاستجابة من جهازك", start:"ابدأ القياس", measuring:"جارٍ القياس…",
+  latD:"قياس حقيقي بالمتصفح: ٦ طلبات لكل وجهة، نعرض الأدنى والمتوسط والأعلى والـ Jitter (تذبذب الاتصال).",
+  latN:"يقيس إلى أقرب نقطة في كل شبكة عالمية — الأرقام تتأثر بجودة اتصالك الحالي (Wi-Fi/جوال) أكثر من مزود الخدمة نفسه",
+  lMin:"أدنى", lAvg:"متوسط", lMax:"أعلى", lJit:"Jitter",
+  lYou:"موقعك (OraNW)", lCF:"شبكة Cloudflare", lG:"شبكة Google",
+  coloMsg:"أقرب مركز بيانات Cloudflare إليك الآن:",
+  portT:"فحص فتح بورت على خادم",
+  portN:"الفحص يتم من شبكة Cloudflare العالمية — يكشف هل البورت مفتوح للعالم (وليس فقط من جهازك)",
+  pOpen:"مفتوح", pClosed:"مغلق/محجوب", pMs:"زمن الاستجابة",
+  pBad:"أدخل خادمًا وبورتًا صحيحين (1-65535)",
+  pNeed:"هذه الأداة تحتاج تفعيل الـ Worker أولاً — افتح قسم «تفعيل هذه الأداة» بالأسفل (دقيقتان لمرة واحدة)",
+  setupT:"⚙️ تفعيل هذه الأداة (خطوة واحدة لمرة واحدة)",
+  setupD:"المتصفح لا يستطيع فتح اتصالات TCP بنفسه — نحتاج «Worker» صغير مجاني على حساب Cloudflare نفسه (الخطة المجانية تكفي):",
+  st1:"ادخل لوحة Cloudflare → Workers & Pages → Create Worker → أعطه اسمًا مثل portcheck → Deploy",
+  st2:"افتح الـ Worker → Edit code → امسح المحتوى والصق الكود أدناه → Deploy",
+  st3:"من إعدادات الـ Worker → Triggers → Routes → أضف: oranw.com/api/portcheck*",
+  st4:"عد لهذه الصفحة وجرّب — ستعمل الأداة فورًا",
+  copyCode:"نسخ الكود", setupN:"الكود آمن: يقبل host وport فقط، مهلة ٥ ثوانٍ، بلا تخزين — والخطة المجانية تتحمل ١٠٠ ألف طلب يوميًا",
+  foot:"أدوات الشبكة — مجانية بالكامل"
+},
+en: {
+  t:"Network Tools", s:"Test your connection yourself — free, no signup", back:"Home →",
+  tab1:"My Network", tab2:"DNS Checker", tab3:"Latency", tab4:"Port Checker",
+  tab5:"Download speed", tab6:"Domain info", tab7:"HTTPS check",
+  gIp:"What is an IP address? (Arabic) →", gDns:"What is DNS? (Arabic) →", gLat:"What are ping & jitter? (Arabic) →", gPort:"What are ports? (Arabic) →",
+  spT:"Download speed test", spD:"We download test data from the Cloudflare datacenter nearest to you for about 10 seconds and compute the real speed.",
+  spN:"The test uses roughly 20–60 MB of data. Results depend on Wi-Fi and other devices on your network.",
+  spDone:"Downloaded", spMB:"MB in", spSec:"s", spFail:"Test failed — please try again",
+  whT:"Domain registration info (WHOIS)", whN:"From official registry RDAP records — creation & expiry dates, registrar and name servers",
+  kReg:"Registrar", kCreated:"Created", kExpires:"Expires", kUpdated:"Last updated", kNS:"Name servers", kStatus:"Status", kDnssec:"DNSSEC",
+  daysLeft:"days left", expired:"expired", notFound:"Domain not registered (or its TLD has no RDAP)", yes:"Enabled", no:"Disabled",
+  slT:"HTTPS & certificate check", slN:"Checks HTTPS, HTTP→HTTPS redirect, HSTS and the latest certificate from Certificate Transparency logs",
+  kHttps:"HTTPS works", kRedir:"HTTP → HTTPS redirect", kHsts:"HSTS", kIssuer:"Issuer", kValid:"Valid until", kNames:"Covered names", kServer:"Server", kCode:"Response code",
+  noCert:"No recent certificate found in transparency logs for this name",
+  apiOff:"This tool is temporarily unavailable — try later", apiLimit:"Too many requests — wait a minute and retry", pCF:"Servers hosted on Cloudflare cannot be checked from Cloudflare's own network",
+  abT:"About these tools", abP:"Free tools to understand your internet connection: see your public IP and ISP, verify DNS propagation, measure latency, jitter and download speed, and check ports, domain expiry and certificates. All checks run live and nothing you type is stored.",
+
+  ipT:"Your IP & network info", copy:"Copy report", copied:"Copied ✓",
+  ipN:"Sources: the Cloudflare network serving you + ipwho.is — nothing is stored",
+  kCountry:"Country", kCity:"City", kISP:"ISP", kASN:"ASN",
+  kTZ:"Timezone", kColo:"Cloudflare datacenter", kType:"Connection type",
+  kBrowser:"Browser", kScreen:"Screen", kLang:"Device language",
+  tMobile:"Mobile/cellular", tBroad:"Fixed/home", tHost:"Hosting/servers",
+  dnsT:"Check DNS records for any domain", go:"Check",
+  dnsN:"Queries Cloudflare (1.1.1.1) and Google (8.8.8.8) together via DNS-over-HTTPS — matching results mean the record has fully propagated",
+  dMatch:"Results match — record propagated worldwide", dDiff:"Results differ — record still propagating",
+  dNone:"No records of this type", dBad:"Enter a valid domain", dErr:"Query failed — check your connection",
+  thName:"Name", thVal:"Value", thTTL:"TTL", cfRes:"Cloudflare", gRes:"Google",
+  latT:"Latency from your device", start:"Start test", measuring:"Measuring…",
+  latD:"Real browser measurement: 6 requests per target, showing min / avg / max and Jitter (connection stability).",
+  latN:"Measures to the nearest edge of each global network — numbers reflect your current link quality (Wi-Fi/mobile) more than the ISP itself",
+  lMin:"Min", lAvg:"Avg", lMax:"Max", lJit:"Jitter",
+  lYou:"Your site (OraNW)", lCF:"Cloudflare network", lG:"Google network",
+  coloMsg:"Nearest Cloudflare datacenter to you right now:",
+  portT:"Check if a port is open on a server",
+  portN:"Checked from Cloudflare's global network — tells you if the port is open to the world (not just from your device)",
+  pOpen:"OPEN", pClosed:"CLOSED/BLOCKED", pMs:"Response time",
+  pBad:"Enter a valid host and port (1-65535)",
+  pNeed:"This tool needs the Worker enabled first — open “Activate this tool” below (2 minutes, one time)",
+  setupT:"⚙️ Activate this tool (one-time setup)",
+  setupD:"Browsers cannot open raw TCP connections — we need a tiny free Worker on your same Cloudflare account (free plan is enough):",
+  st1:"Open Cloudflare dashboard → Workers & Pages → Create Worker → name it e.g. portcheck → Deploy",
+  st2:"Open the Worker → Edit code → clear contents, paste the code below → Deploy",
+  st3:"In Worker settings → Triggers → Routes → add: oranw.com/api/portcheck*",
+  st4:"Return here and test — the tool will work instantly",
+  copyCode:"Copy code", setupN:"Safe code: accepts host & port only, 5s timeout, no storage — free plan covers 100k requests/day",
+  foot:"Network Tools — completely free"
+}};
+
+let LANG = 'ar'; try { LANG = localStorage.getItem('nt-lang') || 'ar'; } catch(e) {}
+function applyLang(){
+  const d = I[LANG];
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const k = el.dataset.i; if (d[k] !== undefined) el.textContent = d[k];
+  });
+  document.getElementById('langBtn').textContent = LANG === 'ar' ? 'English' : 'العربية';
+}
+document.getElementById('langBtn').onclick = () => {
+  LANG = LANG === 'ar' ? 'en' : 'ar';
+  try { localStorage.setItem('nt-lang', LANG); } catch(e) {}
+  applyLang();
+};
+const L = k => I[LANG][k] || k;
+
+/* ================= tabs ================= */
+function openTab(name, push){
+  const b = document.querySelector('.tab[data-tab="' + name + '"]'); if (!b) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t === b));
+  document.querySelectorAll('.pane').forEach(p => p.classList.add('hidden'));
+  document.getElementById('pane-' + name).classList.remove('hidden');
+  if (push) history.replaceState(null, '', '#' + name);
+}
+document.getElementById('tabs').addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if (!b) return;
+  openTab(b.dataset.tab, true);
+});
+window.addEventListener('hashchange', () => openTab(location.hash.slice(1)));
+
+/* ================= COLO names ================= */
+const COLO = {DAM:'دمشق Damascus',BEY:'بيروت Beirut',AMM:'عمّان Amman',CAI:'القاهرة Cairo',IST:'إسطنبول Istanbul',ADB:'إزمير Izmir',DXB:'دبي Dubai',AUH:'أبوظبي Abu Dhabi',JED:'جدة Jeddah',RUH:'الرياض Riyadh',DMM:'الدمام Dammam',KWI:'الكويت Kuwait',DOH:'الدوحة Doha',BAH:'البحرين Bahrain',MCT:'مسقط Muscat',BGW:'بغداد Baghdad',EVN:'يريفان Yerevan',TBS:'تبليسي Tbilisi',FRA:'فرانكفورت Frankfurt',AMS:'أمستردام Amsterdam',LHR:'لندن London',CDG:'باريس Paris',MAD:'مدريد Madrid',VIE:'فيينا Vienna',ZRH:'زيورخ Zurich',MXP:'ميلانو Milan',ATH:'أثينا Athens',WAW:'وارسو Warsaw',PRG:'براغ Prague',BUD:'بودابست Budapest',OTP:'بوخارست Bucharest',SOF:'صوفيا Sofia',ARN:'ستوكهولم Stockholm',CPH:'كوبنهاغن Copenhagen',OSL:'أوسلو Oslo',HEL:'هلسنكي Helsinki',DUB:'دبلن Dublin',LIS:'لشبونة Lisbon',MOW:'موسكو Moscow',LED:'سان بطرسبرغ St. Petersburg',IAD:'واشنطن Washington',LAX:'لوس أنجلوس Los Angeles',ORD:'شيكاغو Chicago',JFK:'نيويورك New York',MIA:'ميامي Miami',DFW:'دالاس Dallas',SEA:'سياتل Seattle',SFO:'سان فرانسيسكو San Francisco',YYZ:'تورونتو Toronto',GRU:'ساو باولو São Paulo',EZE:'بوينس آيرس Buenos Aires',SCL:'سانتياغو Santiago',MEX:'مكسيكو Mexico City',LOS:'لاغوس Lagos',JNB:'جوهانسبرغ Johannesburg',NBO:'نيروبي Nairobi',SIN:'سنغافورة Singapore',HKG:'هونغ كونغ Hong Kong',NRT:'طوكيو Tokyo',ICN:'سيول Seoul',BOM:'مومباي Mumbai',DEL:'نيودلهي New Delhi',BKK:'بانكوك Bangkok',KUL:'كوالالمبور Kuala Lumpur',CGK:'جاكرتا Jakarta',SYD:'سيدني Sydney',AKL:'أوكلاند Auckland'};
+
+/* ================= أداة 1: شبكتي ================= */
+let ipReport = {};
+async function loadMyNet(){
+  const $ = id => document.getElementById(id);
+  let trace = {};
+  try {
+    const txt = await fetch('/cdn-cgi/trace', {cache:'no-store'}).then(r => r.text());
+    txt.split('\n').forEach(l => { const i = l.indexOf('='); if (i > 0) trace[l.slice(0,i)] = l.slice(i+1).trim(); });
+  } catch(e) {}
+
+  let who = {};
+  try { who = await fetch('https://ipwho.is/', {cache:'no-store'}).then(r => r.json()); } catch(e) {}
+
+  const ip = trace.ip || who.ip || '—';
+  $('ipAddr').textContent = ip;
+
+  let badges = '';
+  if (ip.includes(':')) badges += `<span class="badge ok">IPv6</span>`;
+  else if (ip !== '—') badges += `<span class="badge warn">IPv4</span>`;
+  const cType = who.type === 'Mobile' ? L('tMobile') : (who.connection && who.connection.isp ? L('tBroad') : '');
+  $('ipBadges').innerHTML = badges;
+
+  const coloName = trace.colo ? (COLO[trace.colo] || trace.colo) : '—';
+  const rows = [
+    [L('kCountry'), who.country || trace.loc || '—'],
+    [L('kCity'), who.city || '—'],
+    [L('kISP'), (who.connection && who.connection.isp) || '—'],
+    [L('kASN'), (who.connection && who.connection.asn) ? 'AS' + who.connection.asn : '—'],
+    [L('kTZ'), (who.timezone && who.timezone.id) || Intl.DateTimeFormat().resolvedOptions().timeZone],
+    [L('kColo'), coloName],
+    [L('kBrowser'), navigator.userAgentData ? (navigator.userAgentData.brands.map(b=>b.brand).find(b=>!/Chromium|Not/.test(b)) || 'Chromium') : navigator.userAgent.split(') ').pop()],
+    [L('kScreen'), screen.width + '×' + screen.height],
+    [L('kLang'), navigator.language]
+  ];
+  $('ipTable').innerHTML = rows.map(r => `<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join('');
+
+  ipReport = {IP: ip, ...Object.fromEntries(rows)};
+}
+document.getElementById('copyIp').onclick = async e => {
+  const txt = Object.entries(ipReport).map(([k,v]) => k + ': ' + v).join('\n');
+  try { await navigator.clipboard.writeText(txt); e.target.textContent = L('copied'); }
+  catch(e2) { e.target.textContent = txt.slice(0, 30) + '…'; }
+  setTimeout(() => e.target.textContent = L('copy'), 2000);
+};
+
+/* ================= أداة 2: DNS ================= */
+const RT = {1:'A',2:'NS',5:'CNAME',6:'SOA',12:'PTR',15:'MX',16:'TXT',28:'AAAA',65:'HTTPS',257:'CAA'};
+async function dohCF(name, type){
+  const r = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(name)}&type=${type}`, {headers:{accept:'application/dns-json'}});
+  return r.json();
+}
+async function dohG(name, type){
+  const r = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(name)}&type=${type}`);
+  return r.json();
+}
+function norm(j){
+  if (!j || !j.Answer) return [];
+  return j.Answer.filter(a => RT[a.type]).map(a => a.data.replace(/\.$/, '').replace(/^"|"$/g, '')).sort();
+}
+function resTable(title, badge, answers){
+  let h = `<div class="resolver">${title} <small>${badge}</small></div>`;
+  if (!answers.length) return h + `<div class="note">${L('dNone')}</div>`;
+  h += `<table><tr><th>${L('thName')}</th><th>${L('thVal')}</th><th>${L('thTTL')}</th></tr>`;
+  answers.forEach(a => { h += `<tr><td class="num" dir="ltr">${a.name}</td><td class="num" dir="ltr">${a.data}</td><td class="num">${a.TTL}</td></tr>`; });
+  return h + '</table>';
+}
+document.getElementById('dnsGo').onclick = async () => {
+  const out = document.getElementById('dnsOut');
+  const name = document.getElementById('dnsName').value.trim().replace(/^https?:\/\//, '').split('/')[0];
+  const type = document.getElementById('dnsType').value;
+  if (!/^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/i.test(name)) { out.innerHTML = `<div class="err">${L('dBad')}</div>`; return; }
+  out.innerHTML = `<div class="note"><span class="spin"></span>${L('measuring')}</div>`;
+  try {
+    const [cf, g] = await Promise.all([dohCF(name, type), dohG(name, type)]);
+    const same = JSON.stringify(norm(cf)) === JSON.stringify(norm(g));
+    const anyAns = (cf.Answer && cf.Answer.length) || (g.Answer && g.Answer.length);
+    let h = '';
+    if (anyAns) h += same ? `<span class="badge ok">${L('dMatch')}</span>` : `<span class="badge warn">${L('dDiff')}</span>`;
+    h += resTable(L('cfRes') + ' · 1.1.1.1', '', cf.Answer || []);
+    h += resTable(L('gRes') + ' · 8.8.8.8', '', g.Answer || []);
+    out.innerHTML = h;
+  } catch(e) { out.innerHTML = `<div class="err">${L('dErr')}</div>`; }
+};
+
+/* ================= أداة 3: الاستجابة ================= */
+async function pingURL(url, n){
+  const ts = [];
+  for (let i = 0; i < n; i++) {
+    const t0 = performance.now();
+    try { await fetch(url + (url.includes('?') ? '&' : '?') + '_=' + Date.now() + i, {cache:'no-store', mode:'no-cors'}); } catch(e) {}
+    ts.push(performance.now() - t0);
+    await new Promise(r => setTimeout(r, 120));
+  }
+  ts.sort((a,b) => a - b);
+  const avg = ts.reduce((a,b) => a + b, 0) / ts.length;
+  const jit = ts.length > 1 ? ts.slice(1).map((v,i) => Math.abs(v - ts[i])).reduce((a,b) => a + b, 0) / (ts.length - 1) : 0;
+  return {min: ts[0], avg, max: ts[ts.length-1], jit};
+}
+function latCard(title, r){
+  const q = r.avg < 60 ? 'var(--up)' : r.avg < 150 ? 'var(--warn)' : 'var(--down)';
+  const pct = Math.min(100, r.avg / 3);
+  return `<div class="latcard">
+    <div class="h">${title}</div>
+    <div class="ms num" style="color:${q}">${Math.round(r.avg)}<span class="unit"> ms</span></div>
+    <div class="gauge"><i style="width:${pct}%;background:${q}"></i></div>
+    <div class="mm num" dir="ltr">${L('lMin')} ${Math.round(r.min)} · ${L('lMax')} ${Math.round(r.max)} · ${L('lJit')} ${Math.round(r.jit)}</div>
+  </div>`;
+}
+document.getElementById('latGo').onclick = async e => {
+  const btn = e.target, out = document.getElementById('latOut');
+  btn.disabled = true; btn.innerHTML = `<span class="spin"></span>${L('measuring')}`;
+  out.innerHTML = '';
+  const targets = [
+    [L('lYou'), location.origin + '/icon.svg'],
+    [L('lCF'), 'https://1.1.1.1/cdn-cgi/trace'],
+    [L('lG'), 'https://www.gstatic.com/generate_204']
+  ];
+  for (const [name, url] of targets) {
+    const r = await pingURL(url, 6);
+    out.innerHTML += latCard(name, r);
+  }
+  // أقرب مركز بيانات
+  try {
+    const txt = await fetch('/cdn-cgi/trace', {cache:'no-store'}).then(r => r.text());
+    const colo = (txt.match(/^colo=(.*)$/m) || [])[1];
+    if (colo) document.getElementById('latColo').innerHTML =
+      `<div class="note" style="margin-top:12px;font-size:13px;color:var(--fg2)">${L('coloMsg')} <b class="num">${COLO[colo.trim()] || colo}</b></div>`;
+  } catch(e2) {}
+  btn.disabled = false; btn.textContent = L('start');
+};
+
+/* ================= أداة 4: البورتات ================= */
+const PORT_API = '/api/portcheck';
+const QUICK = [80, 443, 22, 21, 25, 3389, 8080, 3306];
+document.getElementById('portQuick').innerHTML = QUICK.map(p =>
+  `<button class="btn ghost" style="padding:6px 12px;font-size:13px" data-p="${p}">${p}</button>`).join('');
+document.getElementById('portQuick').addEventListener('click', e => {
+  const b = e.target.closest('[data-p]'); if (b) document.getElementById('portNum').value = b.dataset.p;
+});
+
+async function api(path){
+  const r = await fetch(path, {cache:'no-store'});
+  if (r.status === 429) throw new Error('limit');
+  if (r.status === 404 && !(r.headers.get('content-type') || '').includes('json')) throw new Error('off');
+  let j; try { j = await r.json(); } catch(e) { throw new Error('off'); }
+  if (j && (j.error === 'forbidden' || j.error === 'not_found')) throw new Error('off');
+  return j;
+}
+function apiErr(e){ return `<div class="err">${e && e.message === 'limit' ? L('apiLimit') : L('apiOff')}</div>`; }
+function cleanName(v){ return v.trim().toLowerCase().replace(/^https?:\/\//, '').split('/')[0].split(':')[0]; }
+
+document.getElementById('portGo').onclick = async () => {
+  const out = document.getElementById('portOut');
+  const host = cleanName(document.getElementById('portHost').value);
+  const port = parseInt(document.getElementById('portNum').value, 10);
+  if (!host || !port || port < 1 || port > 65535) { out.innerHTML = `<div class="err">${L('pBad')}</div>`; return; }
+  out.innerHTML = `<div class="note"><span class="spin"></span>${L('measuring')}</div>`;
+  try {
+    const j = await api(`${PORT_API}?host=${encodeURIComponent(host)}&port=${port}`);
+    if (j.error) { out.innerHTML = `<div class="err">${L('pBad')}</div>`; return; }
+    if (j.open === null) { out.innerHTML = `<div class="note" style="color:var(--warn);font-size:14px">${L('pCF')}</div>`; return; }
+    out.innerHTML = j.open
+      ? `<div style="font-size:20px;font-weight:800"><span class="num" dir="ltr">${host}:${port}</span> <span class="badge ok">${L('pOpen')}</span></div><div class="note num">${L('pMs')}: ${j.ms} ms</div>`
+      : `<div style="font-size:20px;font-weight:800"><span class="num" dir="ltr">${host}:${port}</span> <span class="badge bad">${L('pClosed')}</span></div>`;
+  } catch(e) { out.innerHTML = apiErr(e); }
+};
+
+/* ================= أداة 5: سرعة التحميل ================= */
+document.getElementById('spGo').onclick = async e => {
+  const btn = e.target, val = document.getElementById('spVal'), bar = document.getElementById('spBar'), out = document.getElementById('spOut');
+  btn.disabled = true; btn.innerHTML = `<span class="spin"></span>${L('measuring')}`; out.textContent = '';
+  const show = mbps => { val.innerHTML = (mbps >= 100 ? Math.round(mbps) : mbps.toFixed(1)) + ' <span class="unit">Mbps</span>'; bar.style.width = Math.min(100, mbps / 5) + '%'; };
+  const sources = [b => 'https://speed.cloudflare.com/__down?bytes=' + b, b => '/api/down?bytes=' + b];
+  let total = 0, t0 = performance.now(), size = 2e6, ok = false;
+  for (const src of sources) {
+    try {
+      total = 0; t0 = performance.now(); size = 2e6;
+      while (performance.now() - t0 < 10000) {
+        const r = await fetch(src(size) + '&r=' + Math.random(), {cache:'no-store'});
+        if (!r.ok || !r.body) throw new Error('bad');
+        const rd = r.body.getReader();
+        for (;;) { const {done, value} = await rd.read(); if (done) break; total += value.length;
+          const sec = (performance.now() - t0) / 1000; if (sec > 0.3) show(total * 8 / sec / 1e6); }
+        size = Math.min(size * 2, 25e6);
+      }
+      ok = true; break;
+    } catch(err) { if (total > 0) { ok = true; break; } }
+  }
+  const sec = (performance.now() - t0) / 1000;
+  if (ok && total > 0) { show(total * 8 / sec / 1e6); out.textContent = `${L('spDone')} ${(total / 1e6).toFixed(1)} ${L('spMB')} ${sec.toFixed(1)} ${L('spSec')}`; }
+  else out.innerHTML = `<span class="err">${L('spFail')}</span>`;
+  btn.disabled = false; btn.textContent = L('start');
+};
+
+/* ================= أداة 6: معلومات الدومين ================= */
+function fmtDate(iso){ if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? iso : d.toISOString().slice(0,10); }
+function kv(k, v){ return `<div class="kv"><span class="k">${k}</span><span class="v">${v}</span></div>`; }
+function escH(t){ return String(t == null ? '' : t).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+document.getElementById('whGo').onclick = async () => {
+  const out = document.getElementById('whOut');
+  const d = cleanName(document.getElementById('whName').value).replace(/^www\./, '');
+  if (!/^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/i.test(d)) { out.innerHTML = `<div class="err">${L('dBad')}</div>`; return; }
+  out.innerHTML = `<div class="note"><span class="spin"></span>${L('measuring')}</div>`;
+  try {
+    const j = await api('/api/rdap?domain=' + encodeURIComponent(d));
+    if (j.error) throw new Error('off');
+    if (!j.found) { out.innerHTML = `<div class="note" style="font-size:14px">${L('notFound')}</div>`; return; }
+    let exp = fmtDate(j.expires);
+    if (j.expires) { const days = Math.floor((new Date(j.expires) - Date.now()) / 864e5);
+      exp += days >= 0 ? ` <span class="badge ${days < 30 ? 'warn' : 'ok'}">${days} ${L('daysLeft')}</span>` : ` <span class="badge bad">${L('expired')}</span>`; }
+    out.innerHTML = `<div class="bigip num" style="font-size:24px">${escH(j.domain)}</div>` +
+      kv(L('kReg'), escH(j.registrar || '—')) + kv(L('kCreated'), `<span class="num">${fmtDate(j.created)}</span>`) +
+      kv(L('kExpires'), `<span class="num">${exp}</span>`) + kv(L('kUpdated'), `<span class="num">${fmtDate(j.updated)}</span>`) +
+      kv(L('kNS'), `<span class="num" dir="ltr">${(j.nameservers || []).map(escH).join('<br>') || '—'}</span>`) +
+      kv(L('kDnssec'), j.dnssec == null ? '—' : (j.dnssec ? L('yes') : L('no'))) +
+      kv(L('kStatus'), `<span class="num" dir="ltr" style="font-size:12px">${(j.status || []).map(escH).join('<br>') || '—'}</span>`);
+  } catch(e) { out.innerHTML = apiErr(e); }
+};
+
+/* ================= أداة 7: HTTPS ================= */
+const yesNo = (b, warn) => b == null ? '—' : b ? `<span class="badge ok">${L('yes')}</span>` : `<span class="badge ${warn ? 'warn' : 'bad'}">${L('no')}</span>`;
+document.getElementById('slGo').onclick = async () => {
+  const out = document.getElementById('slOut');
+  const d = cleanName(document.getElementById('slName').value);
+  if (!/^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/i.test(d)) { out.innerHTML = `<div class="err">${L('dBad')}</div>`; return; }
+  out.innerHTML = `<div class="note"><span class="spin"></span>${L('measuring')}</div>`;
+  try {
+    const j = await api('/api/ssl?domain=' + encodeURIComponent(d));
+    if (j.error) throw new Error(j.error === 'bad_domain' ? 'bad' : 'off');
+    let h = `<div class="bigip num" style="font-size:24px">${escH(j.domain)}</div>` +
+      kv(L('kHttps'), yesNo(j.https)) + kv(L('kRedir'), yesNo(j.httpRedirects, true)) + kv(L('kHsts'), yesNo(j.hsts ? true : (j.https ? false : null), true));
+    if (j.status) h += kv(L('kCode'), `<span class="num">${j.status}</span>`);
+    if (j.server) h += kv(L('kServer'), `<span class="num" dir="ltr">${escH(j.server)}</span>`);
+    if (j.cert) {
+      const c = j.cert;
+      h += kv(L('kIssuer'), escH(c.issuer || '—')) +
+        kv(L('kValid'), `<span class="num">${fmtDate(c.notAfter)}</span> <span class="badge ${c.daysLeft < 14 ? 'warn' : 'ok'}">${c.daysLeft} ${L('daysLeft')}</span>`) +
+        kv(L('kNames'), `<span class="num" dir="ltr" style="font-size:12px">${(c.names || []).map(escH).join('<br>')}</span>`);
+    } else h += `<div class="note">${L('noCert')}</div>`;
+    out.innerHTML = h;
+  } catch(e) { out.innerHTML = e.message === 'bad' ? `<div class="err">${L('dBad')}</div>` : apiErr(e); }
+};
+/* ================= init ================= */
+applyLang();
+loadMyNet();
+if (location.hash) openTab(location.hash.slice(1));
+</script>
+</body>
+</html>
