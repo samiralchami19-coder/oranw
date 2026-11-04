@@ -281,3 +281,90 @@ for p_ in NEW_PATHS:
         s = s.replace('</urlset>', '  <url><loc>https://oranw.com%s</loc><lastmod>%s</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>\n</urlset>' % (p_, TODAY.isoformat()))
 open(sp, 'w', encoding='utf-8').write(s)
 print('extra pages built:', ', '.join(NEW_PATHS), '| hijri today:', hstr(H_TODAY))
+
+# ======================= 4) حاسبة الحمل والولادة =======================
+qas = [
+    ('كيف يُحسب موعد الولادة؟', 'يُحسب عادة بإضافة 280 يوماً (40 أسبوعاً) إلى أول يوم من آخر دورة شهرية، مع تعديل بسيط إذا كانت الدورة أطول أو أقصر من 28 يوماً. وإذا كان تاريخ الإخصاب معروفاً يضاف إليه 266 يوماً.'),
+    ('هل موعد الولادة المتوقع دقيق؟', 'هو تقدير فقط. نسبة قليلة من الأطفال يولدون في اليوم المحدد بالضبط، ومعظم الولادات الطبيعية تحدث بين الأسبوع 37 والأسبوع 42. سونار الأشهر الأولى يعطي تقديراً أدق، والطبيب قد يعدّل الموعد بناءً عليه.'),
+    ('كم أسبوعاً مدة الحمل؟', 'مدة الحمل نحو 40 أسبوعاً محسوبة من أول يوم في آخر دورة، أي نحو 9 أشهر وأسبوع. وتنقسم إلى ثلاثة أثلاث: الأول حتى الأسبوع 13، والثاني من 14 إلى 27، والثالث من 28 حتى الولادة.'),
+    ('متى أعرف أنني حامل؟', 'يمكن لاختبار الحمل المنزلي أن يكشف الحمل غالباً من أول يوم لتأخر الدورة. ولتأكيد الحمل وموعده بدقة راجعي الطبيبة.'),
+]
+body = '''<h1>حاسبة الحمل والولادة</h1>
+<p class="lead">احسبي موعد الولادة المتوقع، وفي أي أسبوع من الحمل أنتِ اليوم، ومواعيد المراحل المهمة.</p>
+<div class="card">
+  <div class="grid2">
+    <div><label for="pm">طريقة الحساب</label><select id="pm">
+      <option value="lmp">أول يوم من آخر دورة شهرية</option>
+      <option value="conc">تاريخ الإخصاب (الحمل)</option>
+      <option value="ivf3">نقل أجنة عمرها 3 أيام (أطفال الأنابيب)</option>
+      <option value="ivf5">نقل أجنة عمرها 5 أيام (أطفال الأنابيب)</option>
+      <option value="due">أعرف موعد الولادة من الطبيبة</option>
+    </select></div>
+    <div><label for="pd" id="pdl">التاريخ</label><input id="pd" type="date" class="num"></div>
+    <div id="cycWrap"><label for="pc">طول الدورة الشهرية (بالأيام)</label><input id="pc" type="number" min="20" max="45" value="28" class="num"></div>
+  </div>
+  <div id="pErr" class="note" style="color:var(--down);margin-top:8px"></div>
+</div>
+<div id="pOut" style="display:none">
+  <div class="card" style="background:var(--navy);color:#fff;border:none">
+    <div style="font-size:13px;opacity:.75">موعد الولادة المتوقع</div>
+    <div class="big" id="oDue" style="color:#fff"></div>
+    <div id="oDueH" style="opacity:.8"></div>
+    <div style="margin-top:14px;font-size:13px;opacity:.75">عمر الحمل اليوم</div>
+    <div style="font-size:24px;font-weight:700" id="oAge"></div>
+    <div style="height:10px;border-radius:10px;background:rgba(255,255,255,.18);margin-top:12px;overflow:hidden"><div id="oBar" style="height:100%%;width:0;background:#F5C451;border-radius:10px"></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;opacity:.8;margin-top:6px"><span id="oTri"></span><span id="oLeft"></span></div>
+  </div>
+  <h2>مواعيد مهمة في حملك</h2>
+  <table id="oMs"></table>
+  <p class="note">المواعيد تقريبية ومبنية على المراحل الشائعة. الطبيبة هي من تحدد مواعيد الفحوصات المناسبة لكِ.</p>
+</div>
+<h2>مراحل الحمل الثلاث</h2>
+<ul>
+<li><strong>الثلث الأول (الأسبوع 1 إلى 13):</strong> تتكوّن فيه أعضاء الجنين الأساسية. قد تظهر أعراض مثل الغثيان والتعب. هذه الفترة مناسبة لأول زيارة للطبيبة وتأكيد الحمل بالسونار.</li>
+<li><strong>الثلث الثاني (الأسبوع 14 إلى 27):</strong> غالباً أريح فترات الحمل. يكبر الجنين بسرعة، وتبدأ الأم بالشعور بحركته عادة بين الأسبوعين 18 و22.</li>
+<li><strong>الثلث الثالث (الأسبوع 28 حتى الولادة):</strong> يكتمل نمو الرئتين ويزداد الوزن. يُعدّ الطفل مكتمل النمو من الأسبوع 37.</li>
+</ul>
+<div class="card"><strong>تنبيه طبي:</strong> هذه الحاسبة للمعرفة العامة ولا تغني عن متابعة الطبيبة. راجعي الطبيبة فوراً عند النزيف، أو الألم الشديد في البطن، أو الصداع الشديد مع تشوّش الرؤية، أو نزول ماء، أو قلة حركة الجنين بشكل واضح.</div>
+%(faq)s
+<h2>حاسبات أخرى</h2>
+<div class="chips"><a href="/zakat-calculator">حاسبة الزكاة</a><a href="/hijri-date">تحويل التاريخ الهجري</a><a href="/ramadan-countdown">كم باقي على رمضان</a></div>
+''' % dict(faq=faq_html(qas))
+JS = r'''<script>
+(function(){
+var GM=%s, HM=%s, WD=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"], DAY=864e5;
+var $=function(i){return document.getElementById(i);};
+function utc(s){ var p=s.split("-"); return Date.UTC(+p[0],+p[1]-1,+p[2]); }
+function today(){ var n=new Date(); return Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()); }
+function gs(t){ var d=new Date(t); return WD[d.getUTCDay()]+" "+d.getUTCDate()+" "+GM[d.getUTCMonth()]+" "+d.getUTCFullYear(); }
+function hs(t){ try{ var p=new Intl.DateTimeFormat("en-u-ca-islamic-umalqura",{day:"numeric",month:"numeric",year:"numeric",timeZone:"UTC"}).formatToParts(new Date(t+43200000)); var g=function(k){return +p.find(function(x){return x.type===k;}).value;}; return g("day")+" "+HM[g("month")-1]+" "+g("year")+" هـ"; }catch(e){ return ""; } }
+var LABEL={lmp:"أول يوم من آخر دورة",conc:"تاريخ الإخصاب",ivf3:"تاريخ نقل الأجنة",ivf5:"تاريخ نقل الأجنة",due:"موعد الولادة الذي حددته الطبيبة"};
+function calc(){
+  var m=$("pm").value; $("pdl").textContent=LABEL[m]; $("cycWrap").style.display=m==="lmp"?"":"none";
+  var v=$("pd").value; $("pErr").textContent=""; if(!v){ $("pOut").style.display="none"; return; }
+  var t=utc(v), cyc=Math.min(45,Math.max(20,+$("pc").value||28)), lmp;
+  if(m==="lmp") lmp=t+(cyc-28)*DAY; else if(m==="conc") lmp=t-14*DAY; else if(m==="ivf3") lmp=t-17*DAY; else if(m==="ivf5") lmp=t-19*DAY; else lmp=t-280*DAY;
+  var due=lmp+280*DAY, now=today(), ga=Math.floor((now-lmp)/DAY);
+  if(m!=="due" && t>now){ $("pErr").textContent="التاريخ في المستقبل — اختاري تاريخاً سابقاً."; $("pOut").style.display="none"; return; }
+  if(ga>44*7){ $("pErr").textContent="هذا التاريخ أقدم من مدة الحمل الطبيعية (أكثر من 44 أسبوعاً)."; $("pOut").style.display="none"; return; }
+  $("pOut").style.display="";
+  $("oDue").textContent=gs(due); $("oDueH").textContent="الموافق "+hs(due);
+  if(ga<0){ $("oAge").textContent="لم يبدأ الحمل بعد حسب هذا التاريخ"; $("oBar").style.width="0"; $("oTri").textContent=""; }
+  else { var w=Math.floor(ga/7), d=ga%%7; $("oAge").textContent="الأسبوع "+w+(d?" و"+d+(d===1?" يوم":d===2?" يومان":" أيام"):"")+" (الشهر "+Math.min(9,Math.floor(ga/30.4)+1)+")";
+    $("oBar").style.width=Math.min(100,ga/280*100)+"%%"; $("oTri").textContent=w<14?"الثلث الأول":w<28?"الثلث الثاني":"الثلث الثالث"; }
+  var left=Math.round((due-now)/DAY); $("oLeft").textContent=left>0?("باقي "+left+" يوماً"):left===0?"اليوم هو الموعد المتوقع":"تجاوزتِ الموعد المتوقع بـ "+(-left)+" يوماً";
+  var ms=[[lmp+14*DAY,"الإخصاب التقريبي"],[lmp+42*DAY,"يمكن غالباً رؤية نبض الجنين بالسونار (الأسبوع 6–7)"],[lmp+91*DAY,"نهاية الثلث الأول (الأسبوع 13)"],[lmp+126*DAY,"فحص التشوهات بالسونار (الأسبوع 18–22)"],[lmp+168*DAY,"فحص سكري الحمل غالباً (الأسبوع 24–28)"],[lmp+189*DAY,"بداية الثلث الثالث (الأسبوع 27)"],[lmp+259*DAY,"الطفل مكتمل النمو (الأسبوع 37)"],[due,"موعد الولادة المتوقع (الأسبوع 40)"]];
+  $("oMs").innerHTML="<tr><th>المرحلة</th><th>التاريخ التقريبي</th></tr>"+ms.map(function(x){ return "<tr"+(x[0]<now?" style=\"opacity:.55\"":"")+"><td>"+x[1]+"</td><td class=\"num\">"+gs(x[0])+"</td></tr>"; }).join("");
+}
+["pm","pd","pc"].forEach(function(i){ $(i).addEventListener("input",calc); $(i).addEventListener("change",calc); });
+calc();
+})();
+</script>''' % (json.dumps(G_MONTHS, ensure_ascii=False), json.dumps(H_MONTHS, ensure_ascii=False))
+write('pregnancy-calculator.html', page('/pregnancy-calculator', esc('حاسبة الحمل والولادة — موعد الولادة المتوقع وعمر الحمل بالأسابيع | OraNW'),
+      esc('حاسبة الحمل: احسبي موعد الولادة المتوقع من آخر دورة أو تاريخ الإخصاب أو أطفال الأنابيب، وعمر الحمل بالأسابيع والأشهر اليوم، ومواعيد الفحوصات المهمة بالتاريخ الميلادي والهجري.'),
+      body, extra_css=CSS, schema=faq_schema(qas)).replace('</body>', JS + '\n</body>'))
+s = open(sp, encoding='utf-8').read()
+if '/pregnancy-calculator</loc>' not in s:
+    s = s.replace('</urlset>', '  <url><loc>https://oranw.com/pregnancy-calculator</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n</urlset>' % TODAY.isoformat())
+    open(sp, 'w', encoding='utf-8').write(s)
+print('pregnancy calculator built')

@@ -159,7 +159,9 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{ou
 .tile b{font-size:16px;font-weight:700}
 .tile .v{font-size:20px;font-weight:700;color:var(--c);font-variant-numeric:tabular-nums;margin-top:auto;padding-top:6px;min-height:1.4em}
 .tile .h{font-size:12.5px;color:var(--fg3)}
-.tile.gold{--c:var(--c-gold)}.tile.cur{--c:var(--c-cur)}.tile.pray{--c:var(--c-pray)}.tile.speed{--c:var(--c-speed)}.tile.tools{--c:var(--c-tools)}.tile.arch{--c:var(--c-arch)}.tile.hij{--c:#3C5A99}.tile.zak{--c:#2F7D5B}.tile.ram{--c:#A4572E}
+.tile.gold{--c:var(--c-gold)}.tile.cur{--c:var(--c-cur)}.tile.pray{--c:var(--c-pray)}.tile.speed{--c:var(--c-speed)}.tile.tools{--c:var(--c-tools)}.tile.arch{--c:var(--c-arch)}.tile.hij{--c:#3C5A99}.tile.zak{--c:#2F7D5B}.tile.ram{--c:#A4572E}.tile.preg{--c:#B04A7A}
+@media (min-width:861px){.tile.gold{grid-column:1/-1}}
+@media (max-width:860px){.tile.arch{grid-column:1/-1}}
 .tile.gold .v{font-size:clamp(26px,3.6vw,34px);line-height:1.1}
 main{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 main>.card{margin:0!important}
@@ -219,6 +221,7 @@ main>.card{margin:0!important}
   <a href="/hijri-date" class="tile hij"><span class="ic">🌙</span><b>التاريخ الهجري اليوم</b><span class="h">مع محوّل هجري ↔ ميلادي</span><span class="v" id="tHij"></span></a>
   <a href="/zakat-calculator" class="tile zak"><span class="ic">🤲</span><b>حاسبة الزكاة</b><span class="h">النصاب اليوم حسب سعر الذهب</span><span class="v" id="tZak"></span></a>
   <a href="/ramadan-countdown" class="tile ram"><span class="ic">🏮</span><b>كم باقي على رمضان</b><span class="h">عدّاد رمضان والعيدين</span><span class="v" id="tRam"></span></a>
+  <a href="/pregnancy-calculator" class="tile preg"><span class="ic">🤰</span><b>حاسبة الحمل والولادة</b><span class="h">موعد الولادة وعمر الحمل بالأسابيع</span><span class="v">احسبي موعدك</span></a>
   <a href="/archive" class="tile arch"><span class="ic">📅</span><b>أرشيف الكوكب</b><span class="h">صفحة لكل يوم منذ سبتمبر</span><span class="v" id="tArch"></span></a>
 </nav>
 <main>
