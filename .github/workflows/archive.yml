@@ -17,6 +17,7 @@ jobs:
           python-version: '3.13'
       - run: python .github/archive.py
       - run: python .github/build_pages.py
+      - run: python .github/build_extra.py
       - name: Commit archive
         run: |
           git config user.name "archive-bot"

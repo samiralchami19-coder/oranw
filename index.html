@@ -159,7 +159,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{ou
 .tile b{font-size:16px;font-weight:700}
 .tile .v{font-size:20px;font-weight:700;color:var(--c);font-variant-numeric:tabular-nums;margin-top:auto;padding-top:6px;min-height:1.4em}
 .tile .h{font-size:12.5px;color:var(--fg3)}
-.tile.gold{--c:var(--c-gold)}.tile.cur{--c:var(--c-cur)}.tile.pray{--c:var(--c-pray)}.tile.speed{--c:var(--c-speed)}.tile.tools{--c:var(--c-tools)}.tile.arch{--c:var(--c-arch)}
+.tile.gold{--c:var(--c-gold)}.tile.cur{--c:var(--c-cur)}.tile.pray{--c:var(--c-pray)}.tile.speed{--c:var(--c-speed)}.tile.tools{--c:var(--c-tools)}.tile.arch{--c:var(--c-arch)}.tile.hij{--c:#3C5A99}.tile.zak{--c:#2F7D5B}.tile.ram{--c:#A4572E}
 .tile.gold .v{font-size:clamp(26px,3.6vw,34px);line-height:1.1}
 main{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 main>.card{margin:0!important}
@@ -169,7 +169,7 @@ main>.card{margin:0!important}
 .val{font-size:30px}
 .foot{margin-top:26px}
 #aboutPage{background:var(--bg);border:1px solid var(--bd);border-radius:18px;padding:18px}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.clockpanel{grid-template-columns:1fr 1fr}.clockpanel .clock+.clock{border-top:none;padding-top:0}.sun,.sun-l{grid-column:1/-1}#sections{grid-template-columns:1fr 1fr!important}.tile.gold,.tile.arch{grid-column:1/-1}}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.clockpanel{grid-template-columns:1fr 1fr}.clockpanel .clock+.clock{border-top:none;padding-top:0}.sun,.sun-l{grid-column:1/-1}#sections{grid-template-columns:1fr 1fr!important}.tile.gold{grid-column:1/-1}}
 @media (max-width:620px){main{grid-template-columns:1fr}.tile .v{font-size:17px}.tile.gold .v{font-size:26px}.clockpanel .clock{text-align:start}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -216,6 +216,9 @@ main>.card{margin:0!important}
   <a href="/prayer-times" class="tile pray"><span class="ic">🕌</span><b>مواقيت الصلاة</b><span class="h">17 مدينة مع عدّ تنازلي</span><span class="v" id="tPray"></span></a>
   <a href="/speed-test" class="tile speed"><span class="ic">⚡</span><b>اختبار سرعة النت</b><span class="h">السرعة والبينغ في 10 ثوانٍ</span><span class="v">ابدأ القياس</span></a>
   <a href="/tools" class="tile tools"><span class="ic">🛠</span><b>أدوات الشبكة</b><span class="h">IP وDNS والبورتات والدومين</span><span class="v num" id="tIp" dir="ltr" style="text-align:end;font-size:16px"></span></a>
+  <a href="/hijri-date" class="tile hij"><span class="ic">🌙</span><b>التاريخ الهجري اليوم</b><span class="h">مع محوّل هجري ↔ ميلادي</span><span class="v" id="tHij"></span></a>
+  <a href="/zakat-calculator" class="tile zak"><span class="ic">🤲</span><b>حاسبة الزكاة</b><span class="h">النصاب اليوم حسب سعر الذهب</span><span class="v" id="tZak"></span></a>
+  <a href="/ramadan-countdown" class="tile ram"><span class="ic">🏮</span><b>كم باقي على رمضان</b><span class="h">عدّاد رمضان والعيدين</span><span class="v" id="tRam"></span></a>
   <a href="/archive" class="tile arch"><span class="ic">📅</span><b>أرشيف الكوكب</b><span class="h">صفحة لكل يوم منذ سبتمبر</span><span class="v" id="tArch"></span></a>
 </nav>
 <main>
@@ -868,6 +871,7 @@ $("installBtn").onclick=function(){
     var fx=null; for(var j=a.length-1;j>=0;j--){ if(a[j].fx&&a[j].fx.EGP){ fx=a[j].fx; break; } }
     if(fx) el("tCur").textContent="الدولار = "+n(fx.EGP,2)+" جنيه";
     el("tArch").textContent=a.length+" يوماً محفوظاً";
+    if(g) el("tZak").textContent=n(g.gold/31.1035*85*3.75,0)+" ريال";
   }).catch(function(){});
   fetch("/cdn-cgi/trace",{cache:"no-store"}).then(function(r){return r.text();}).then(function(t){ var m=t.match(/^ip=(.*)$/m); if(m) el("tIp").textContent=m[1].trim(); }).catch(function(){});
   // الصلاة القادمة من جدول الصفحة نفسها عند توفره
@@ -879,6 +883,12 @@ $("installBtn").onclick=function(){
       if(m>mins && !best) best=name+" "+t[0]; });
     el("tPray").textContent=best?("التالية: "+best):"افتح مدينتك";
   },3500);
+  try{ var HM=["محرم","صفر","ربيع الأول","ربيع الآخر","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"];
+    var pp=new Intl.DateTimeFormat("en-u-ca-islamic-umalqura",{day:"numeric",month:"numeric",year:"numeric"}).formatToParts(new Date());
+    var gp=function(t){return +pp.find(function(x){return x.type===t;}).value;}; el("tHij").textContent=gp("day")+" "+HM[gp("month")-1]+" "+gp("year");
+  }catch(e){}
+  (function(){ var R=["2027-02-08","2028-01-28","2029-01-16","2030-01-05"], now=new Date();
+    for(var i=0;i<R.length;i++){ var p=R[i].split("-"), d=new Date(+p[0],+p[1]-1,+p[2]); if(d>now){ el("tRam").textContent=Math.ceil((d-now)/864e5)+" يوماً"; break; } } })();
   // موضع الشمس بين الشروق والغروب
   function sun(){
     var st=(el("sunTimes")||{}).textContent||"", m=st.match(/(\d{2}):(\d{2}).*?(\d{2}):(\d{2})/); if(!m) return;
